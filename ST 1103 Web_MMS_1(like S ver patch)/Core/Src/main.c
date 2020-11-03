@@ -39,6 +39,7 @@ typedef struct _paramType
 	//uint32_t encoderPulseCount;
 	float wheelRadius;
 	//float targetDistance;
+	int encoderTargetCount;
 	uint8_t cs;
 	uint16_t cv[4];
 } __attribute__((aligned(1), packed)) WheelParam;
@@ -113,7 +114,7 @@ int usbselect = 2;
 
 // Encoder, ADC, STROBE
 uint8_t setcdsvalue;
-int encoderTargetCount = -1, adcValue[4]; // ADC DATA SAVE
+int adcValue[4]; // ADC DATA SAVE int encoderTargetCount = -1;
 uint16_t stb0, stb1, stb2, stb3, stb_all; // STROBE Count
 uint8_t stbchk0, stbchk1, stbchk2, stbchk3; // STROBE CHECK FLAG
 
@@ -276,7 +277,8 @@ void UDP_INPUT()
 	}
 	if (udp_flag)
 	{
-		encoderTargetCount = atoi(&udp_data);
+		WheelParam wP;
+		wP.encoderTargetCount = atoi(&udp_data);
 		udp_flag = 0;
 	}
 }
@@ -445,9 +447,11 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 	UFlag = 0;
 	bFlag = 0;
-	encoderTargetCount = targetPulseCount(
-			rotationForShoot(TARGET_DISTANCE, diameter(wP.wheelRadius)),
-			ENCODER_PULSE_COUNT);
+	/*
+	 encoderTargetCount = targetPulseCount(
+	 rotationForShoot(TARGET_DISTANCE, diameter(wP.wheelRadius)),
+	 ENCODER_PULSE_COUNT);
+	 */
 	while (1)
 	{
 		/* USER CODE END WHILE */
@@ -464,7 +468,7 @@ int main(void)
 			sprintf(UTxbuf, "EncoderTargetCount= %d\r\n"
 					"Chip 0 ~ 3 Value= %d %d %d %d\r\n\r\n"
 					"USB Select= %d.0 (default : 2.0)\r\n"
-					"Auto triggering= %s\r\n", encoderTargetCount, wP.cv[0],
+					"Auto triggering= %s\r\n", wP.encoderTargetCount, wP.cv[0],
 					wP.cv[1], wP.cv[2], wP.cv[3], usbselect,
 					(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
 			CDC_Transmit_FS(UTxbuf, strlen(UTxbuf));
@@ -477,7 +481,7 @@ int main(void)
 			{
 			}
 			EnterFlag = 0;
-			encoderTargetCount = atoi(URxbuf);
+			wP.encoderTargetCount = atoi(URxbuf);
 			UFlag = 0;
 			bFlag = 0;
 			break;
@@ -582,7 +586,7 @@ int main(void)
 		{
 			A_PLS_CNT = TIM8->CNT;
 
-			if (A_PLS_CNT >= encoderTargetCount)
+			if (A_PLS_CNT >= wP.encoderTargetCount)
 			{
 				TIM8->CNT = 0;
 				//DSLR_Action(); // Driver Control
