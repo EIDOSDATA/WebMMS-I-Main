@@ -71,7 +71,7 @@ uint8_t UFlag = 0, EnterFlag = 0; // USB Select Flag, Enter key input
 
 char UTxbuf[200], buf[130]; // USB Tx, ADC print buf
 extern uint8_t URxbuf[200]; // USB Rx
-int encoderTargetCount = -1, adcValue[4]; // ADC DATA SAVE
+int encoderTargetCount = 5785, adcValue[4]; // ADC DATA SAVE
 volatile uint8_t stb0 = 0, stb1 = 0, stb2 = 0, stb3 = 0, stb_all = 0; // STROBE CHECK FLAG
 
 ///// UDP FLAG
@@ -199,32 +199,6 @@ int main(void)
 		//udp_sendto_if(pcb, p, dst_ip, dst_port, netif)
 		//udp_recv(pcb, recv, recv_arg)
 		MX_LWIP_Process();
-		/*
-		 char buf[10] =
-		 { 0, };
-
-		 if (stb0)
-		 {
-		 strcat(buf, "A ");
-		 stb0 = 0;
-		 }
-		 if (stb1)
-		 {
-		 strcat(buf, "B ");
-		 stb1 = 0;
-		 }
-		 if (stb_all)
-		 {
-		 strcat(buf, "C ");
-		 stb_all = 0;
-		 }
-		 size_t len = strlen(buf);
-		 if (len)
-		 {
-		 HAL_Delay(1);
-		 CDC_Transmit_FS(buf, len);
-		 }
-		 */
 		if (udp_data == 'i')
 		{
 			udp_data = 0;
@@ -295,12 +269,7 @@ int main(void)
 				//B_PLS_CNT = 0;
 				TIM8->CNT = 0;
 			}
-			sprintf(UTxbuf, "A_PLS_CNT = %d\r\n", A_PLS_CNT);
-			CDC_Transmit_FS(UTxbuf, strlen(UTxbuf));
-			HAL_Delay(100);
-
 		}
-
 	}
 	/* USER CODE END 3 */
 }
