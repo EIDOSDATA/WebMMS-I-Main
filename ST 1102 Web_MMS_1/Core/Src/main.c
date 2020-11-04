@@ -102,6 +102,7 @@ static void MX_SPI2_Init(void);
 void FLIR_Action()
 {
 	HAL_GPIO_WritePin(SIG_SHUTTER_GPIO_Port, SIG_SHUTTER_Pin, SET);
+	HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, RESET);
 }
 
 void ADC_Print()

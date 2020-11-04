@@ -441,7 +441,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			case 'T':
 			case 't':
 				bFlag = 0;
-				CDC_Transmit_FS((uint8_t*) "Stopped!\r\n", 22); // ACK
+				CDC_Transmit_FS((uint8_t*) "Stopped!\r\n", 10); // ACK
 				break;
 			default:
 				CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));

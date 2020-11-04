@@ -37,9 +37,9 @@
 typedef struct _paramType
 {
 	//uint32_t encoderPulseCount;
-	float wheelRadius;
+	float wheelRadius; // S version
 	//float targetDistance;
-	int encoderTargetCount;
+	int encoderTargetCount; // I version add
 	uint8_t cs;
 	uint16_t cv[4];
 } __attribute__((aligned(1), packed)) WheelParam;
