@@ -1,9 +1,9 @@
 --cpu Cortex-M3
 "web_mms_1\startup_stm32f207xx.o"
+"web_mms_1\udp_echoserver.o"
 "web_mms_1\main.o"
 "web_mms_1\stm32f2xx_it.o"
 "web_mms_1\stm32f2xx_hal_msp.o"
-"web_mms_1\udp_echoserver.o"
 "web_mms_1\bsp_driver_sd.o"
 "web_mms_1\fatfs_platform.o"
 "web_mms_1\fatfs.o"

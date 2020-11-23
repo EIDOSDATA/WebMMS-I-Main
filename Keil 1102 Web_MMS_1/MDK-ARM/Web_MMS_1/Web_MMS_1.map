@@ -30,6 +30,20 @@ Section Cross References
     startup_stm32f207xx.o(RESET) refers to stm32f2xx_it.o(.text.DMA2_Stream6_IRQHandler) for DMA2_Stream6_IRQHandler
     startup_stm32f207xx.o(.text) refers to system_stm32f2xx.o(.text.SystemInit) for SystemInit
     startup_stm32f207xx.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    udp_echoserver.o(.text.udp_echoserver_init) refers to udp.o(.text.udp_new) for udp_new
+    udp_echoserver.o(.text.udp_echoserver_init) refers to udp.o(.text.udp_bind) for udp_bind
+    udp_echoserver.o(.text.udp_echoserver_init) refers to udp.o(.text.udp_recv) for udp_recv
+    udp_echoserver.o(.text.udp_echoserver_init) refers to ip4_addr.o(.rodata.ip_addr_any) for ip_addr_any
+    udp_echoserver.o(.text.udp_echoserver_init) refers to udp_echoserver.o(.text.udp_echoserver_receive_callback) for udp_echoserver_receive_callback
+    udp_echoserver.o(.ARM.exidx.text.udp_echoserver_init) refers to udp_echoserver.o(.text.udp_echoserver_init) for [Anonymous Symbol]
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to memcpya.o(.text) for __aeabi_memcpy
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to usbd_cdc_if.o(.text.CDC_Transmit_FS) for CDC_Transmit_FS
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp.o(.text.udp_connect) for udp_connect
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp.o(.text.udp_send) for udp_send
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp.o(.text.udp_disconnect) for udp_disconnect
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to pbuf.o(.text.pbuf_free) for pbuf_free
+    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp_echoserver.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
+    udp_echoserver.o(.ARM.exidx.text.udp_echoserver_receive_callback) refers to udp_echoserver.o(.text.udp_echoserver_receive_callback) for [Anonymous Symbol]
     main.o(.text.FLIR_Action) refers to stm32f2xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     main.o(.ARM.exidx.text.FLIR_Action) refers to main.o(.text.FLIR_Action) for [Anonymous Symbol]
     main.o(.text.ADC_Print) refers to stm32f2xx_hal_adc.o(.text.HAL_ADC_Start_DMA) for HAL_ADC_Start_DMA
@@ -54,7 +68,6 @@ Section Cross References
     main.o(.text.main) refers to memseta.o(.text) for __aeabi_memclr4
     main.o(.text.main) refers to stm32f2xx_ll_tim.o(.text.LL_TIM_Init) for LL_TIM_Init
     main.o(.text.main) refers to stm32f2xx_hal_adc.o(.text.HAL_ADC_Init) for HAL_ADC_Init
-    main.o(.text.main) refers to stm32f2xx_hal_adc.o(.text.HAL_ADC_ConfigChannel) for HAL_ADC_ConfigChannel
     main.o(.text.main) refers to stm32f2xx_hal_tim.o(.text.HAL_TIM_Encoder_Init) for HAL_TIM_Encoder_Init
     main.o(.text.main) refers to stm32f2xx_hal_tim_ex.o(.text.HAL_TIMEx_MasterConfigSynchronization) for HAL_TIMEx_MasterConfigSynchronization
     main.o(.text.main) refers to fatfs.o(.text.MX_FATFS_Init) for MX_FATFS_Init
@@ -73,6 +86,7 @@ Section Cross References
     main.o(.text.main) refers to stm32f2xx_hal_cortex.o(.text.HAL_NVIC_EnableIRQ) for HAL_NVIC_EnableIRQ
     main.o(.text.main) refers to main.o(.bss.huart3) for huart3
     main.o(.text.main) refers to main.o(.bss.hadc1) for hadc1
+    main.o(.text.main) refers to stm32f2xx_hal_adc.o(.text.HAL_ADC_ConfigChannel) for HAL_ADC_ConfigChannel
     main.o(.text.main) refers to main.o(.bss.hsd) for hsd
     main.o(.text.main) refers to main.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     main.o(.text.main) refers to main.o(.bss.hspi2) for hspi2
@@ -182,20 +196,6 @@ Section Cross References
     stm32f2xx_hal_msp.o(.ARM.exidx.text.HAL_UART_MspInit) refers to stm32f2xx_hal_msp.o(.text.HAL_UART_MspInit) for [Anonymous Symbol]
     stm32f2xx_hal_msp.o(.text.HAL_UART_MspDeInit) refers to stm32f2xx_hal_gpio.o(.text.HAL_GPIO_DeInit) for HAL_GPIO_DeInit
     stm32f2xx_hal_msp.o(.ARM.exidx.text.HAL_UART_MspDeInit) refers to stm32f2xx_hal_msp.o(.text.HAL_UART_MspDeInit) for [Anonymous Symbol]
-    udp_echoserver.o(.text.udp_echoserver_init) refers to udp.o(.text.udp_new) for udp_new
-    udp_echoserver.o(.text.udp_echoserver_init) refers to udp.o(.text.udp_bind) for udp_bind
-    udp_echoserver.o(.text.udp_echoserver_init) refers to udp.o(.text.udp_recv) for udp_recv
-    udp_echoserver.o(.text.udp_echoserver_init) refers to ip4_addr.o(.rodata.ip_addr_any) for ip_addr_any
-    udp_echoserver.o(.text.udp_echoserver_init) refers to udp_echoserver.o(.text.udp_echoserver_receive_callback) for udp_echoserver_receive_callback
-    udp_echoserver.o(.ARM.exidx.text.udp_echoserver_init) refers to udp_echoserver.o(.text.udp_echoserver_init) for [Anonymous Symbol]
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to memcpya.o(.text) for __aeabi_memcpy
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to usbd_cdc_if.o(.text.CDC_Transmit_FS) for CDC_Transmit_FS
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp.o(.text.udp_connect) for udp_connect
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp.o(.text.udp_send) for udp_send
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp.o(.text.udp_disconnect) for udp_disconnect
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to pbuf.o(.text.pbuf_free) for pbuf_free
-    udp_echoserver.o(.text.udp_echoserver_receive_callback) refers to udp_echoserver.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
-    udp_echoserver.o(.ARM.exidx.text.udp_echoserver_receive_callback) refers to udp_echoserver.o(.text.udp_echoserver_receive_callback) for [Anonymous Symbol]
     bsp_driver_sd.o(.text.BSP_SD_Init) refers to bsp_driver_sd.o(.text.BSP_SD_IsDetected) for BSP_SD_IsDetected
     bsp_driver_sd.o(.text.BSP_SD_Init) refers to stm32f2xx_hal_sd.o(.text.HAL_SD_Init) for HAL_SD_Init
     bsp_driver_sd.o(.text.BSP_SD_Init) refers to stm32f2xx_hal_sd.o(.text.HAL_SD_ConfigWideBusOperation) for HAL_SD_ConfigWideBusOperation
@@ -3086,6 +3086,9 @@ Section Cross References
 
 Removing Unused input sections from the image.
 
+    Removing udp_echoserver.o(.text), (0 bytes).
+    Removing udp_echoserver.o(.ARM.exidx.text.udp_echoserver_init), (8 bytes).
+    Removing udp_echoserver.o(.ARM.exidx.text.udp_echoserver_receive_callback), (8 bytes).
     Removing main.o(.text), (0 bytes).
     Removing main.o(.text.FLIR_Action), (36 bytes).
     Removing main.o(.ARM.exidx.text.FLIR_Action), (8 bytes).
@@ -3140,9 +3143,6 @@ Removing Unused input sections from the image.
     Removing stm32f2xx_hal_msp.o(.ARM.exidx.text.HAL_UART_MspInit), (8 bytes).
     Removing stm32f2xx_hal_msp.o(.text.HAL_UART_MspDeInit), (40 bytes).
     Removing stm32f2xx_hal_msp.o(.ARM.exidx.text.HAL_UART_MspDeInit), (8 bytes).
-    Removing udp_echoserver.o(.text), (0 bytes).
-    Removing udp_echoserver.o(.ARM.exidx.text.udp_echoserver_init), (8 bytes).
-    Removing udp_echoserver.o(.ARM.exidx.text.udp_echoserver_receive_callback), (8 bytes).
     Removing bsp_driver_sd.o(.text), (0 bytes).
     Removing bsp_driver_sd.o(.ARM.exidx.text.BSP_SD_Init), (8 bytes).
     Removing bsp_driver_sd.o(.ARM.exidx.text.BSP_SD_IsDetected), (8 bytes).
@@ -5813,192 +5813,193 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08007b50   Section        0  def.o(.text.lwip_htons)
     [Anonymous Symbol]                       0x08007b54   Section        0  init.o(.text.lwip_init)
     [Anonymous Symbol]                       0x08007b70   Section        0  main.o(.text.main)
-    __arm_cp.3_28                            0x08007f40   Number         4  main.o(.text.main)
-    __arm_cp.3_1                             0x0800802c   Number         4  main.o(.text.main)
-    __arm_cp.3_2                             0x08008030   Number         4  main.o(.text.main)
-    __arm_cp.3_3                             0x08008034   Number         4  main.o(.text.main)
-    __arm_cp.3_4                             0x08008038   Number         4  main.o(.text.main)
-    __arm_cp.3_5                             0x0800803c   Number         4  main.o(.text.main)
-    __arm_cp.3_6                             0x08008040   Number         4  main.o(.text.main)
-    __arm_cp.3_7                             0x08008044   Number         4  main.o(.text.main)
-    __arm_cp.3_8                             0x08008048   Number         4  main.o(.text.main)
-    __arm_cp.3_9                             0x0800804c   Number         4  main.o(.text.main)
-    __arm_cp.3_10                            0x08008050   Number         4  main.o(.text.main)
-    __arm_cp.3_11                            0x08008054   Number         4  main.o(.text.main)
-    __arm_cp.3_12                            0x08008058   Number         4  main.o(.text.main)
-    __arm_cp.3_13                            0x0800805c   Number         4  main.o(.text.main)
-    __arm_cp.3_14                            0x08008060   Number         4  main.o(.text.main)
-    __arm_cp.3_15                            0x08008064   Number         4  main.o(.text.main)
-    __arm_cp.3_16                            0x08008068   Number         4  main.o(.text.main)
-    __arm_cp.3_17                            0x0800806c   Number         4  main.o(.text.main)
-    __arm_cp.3_18                            0x08008070   Number         4  main.o(.text.main)
-    __arm_cp.3_20                            0x0800808c   Number         4  main.o(.text.main)
-    __arm_cp.3_21                            0x08008090   Number         4  main.o(.text.main)
-    __arm_cp.3_24                            0x080080ac   Number         4  main.o(.text.main)
-    __arm_cp.3_27                            0x080080fc   Number         4  main.o(.text.main)
-    [Anonymous Symbol]                       0x08008100   Section        0  mem.o(.text.mem_free)
-    __arm_cp.1_0                             0x08008204   Number         4  mem.o(.text.mem_free)
-    __arm_cp.1_2                             0x0800822c   Number         4  mem.o(.text.mem_free)
-    __arm_cp.1_3                             0x08008230   Number         4  mem.o(.text.mem_free)
-    __arm_cp.1_8                             0x08008294   Number         4  mem.o(.text.mem_free)
-    __arm_cp.1_9                             0x08008298   Number         4  mem.o(.text.mem_free)
-    [Anonymous Symbol]                       0x0800829c   Section        0  mem.o(.text.mem_init)
-    __arm_cp.0_0                             0x080082c8   Number         4  mem.o(.text.mem_init)
-    __arm_cp.0_2                             0x080082cc   Number         4  mem.o(.text.mem_init)
-    [Anonymous Symbol]                       0x080082d0   Section        0  mem.o(.text.mem_malloc)
-    __arm_cp.3_0                             0x080083c4   Number         4  mem.o(.text.mem_malloc)
-    __arm_cp.3_1                             0x080083c8   Number         4  mem.o(.text.mem_malloc)
-    __arm_cp.3_3                             0x080083e8   Number         4  mem.o(.text.mem_malloc)
-    __arm_cp.3_6                             0x0800844c   Number         4  mem.o(.text.mem_malloc)
-    [Anonymous Symbol]                       0x08008450   Section        0  mem.o(.text.mem_trim)
-    __arm_cp.2_0                             0x08008548   Number         4  mem.o(.text.mem_trim)
-    __arm_cp.2_1                             0x0800854c   Number         4  mem.o(.text.mem_trim)
-    __arm_cp.2_3                             0x08008568   Number         4  mem.o(.text.mem_trim)
-    [Anonymous Symbol]                       0x0800858c   Section        0  memp.o(.text.memp_free)
-    __arm_cp.7_0                             0x080085ac   Number         4  memp.o(.text.memp_free)
-    [Anonymous Symbol]                       0x080085cc   Section        0  memp.o(.text.memp_init)
-    [Anonymous Symbol]                       0x080085e4   Section        0  memp.o(.text.memp_init_pool)
-    [Anonymous Symbol]                       0x0800860c   Section        0  memp.o(.text.memp_malloc)
-    __arm_cp.4_0                             0x08008634   Number         4  memp.o(.text.memp_malloc)
-    __arm_cp.4_2                             0x08008658   Number         4  memp.o(.text.memp_malloc)
-    __arm_cp.4_3                             0x0800865c   Number         4  memp.o(.text.memp_malloc)
-    [Anonymous Symbol]                       0x08008660   Section        0  netif.o(.text.netif_add)
-    [Anonymous Symbol]                       0x08008740   Section        0  netif.o(.text.netif_init)
-    netif_issue_reports                      0x08008743   Thumb Code    26  netif.o(.text.netif_issue_reports)
-    [Anonymous Symbol]                       0x08008742   Section        0  netif.o(.text.netif_issue_reports)
-    [Anonymous Symbol]                       0x0800875c   Section        0  netif.o(.text.netif_set_addr)
-    [Anonymous Symbol]                       0x080087a4   Section        0  netif.o(.text.netif_set_default)
-    __arm_cp.9_0                             0x080087ac   Number         4  netif.o(.text.netif_set_default)
-    [Anonymous Symbol]                       0x080087b0   Section        0  netif.o(.text.netif_set_down)
-    [Anonymous Symbol]                       0x080087cc   Section        0  netif.o(.text.netif_set_ipaddr)
-    __arm_cp.4_0                             0x08008804   Number         4  netif.o(.text.netif_set_ipaddr)
-    [Anonymous Symbol]                       0x08008808   Section        0  netif.o(.text.netif_set_link_callback)
-    [Anonymous Symbol]                       0x0800880e   Section        0  netif.o(.text.netif_set_up)
-    [Anonymous Symbol]                       0x0800882c   Section        0  pbuf.o(.text.pbuf_alloc)
-    __arm_cp.0_0                             0x080089bc   Number         4  pbuf.o(.text.pbuf_alloc)
-    __arm_cp.0_2                             0x080089dc   Number         4  pbuf.o(.text.pbuf_alloc)
-    __arm_cp.0_4                             0x080089f4   Number         4  pbuf.o(.text.pbuf_alloc)
-    [Anonymous Symbol]                       0x08008a58   Section        0  pbuf.o(.text.pbuf_alloced_custom)
-    __arm_cp.2_0                             0x08008aa0   Number         4  pbuf.o(.text.pbuf_alloced_custom)
-    __arm_cp.2_2                             0x08008ac8   Number         4  pbuf.o(.text.pbuf_alloced_custom)
-    [Anonymous Symbol]                       0x08008ae0   Section        0  pbuf.o(.text.pbuf_cat)
-    __arm_cp.9_0                             0x08008b40   Number         4  pbuf.o(.text.pbuf_cat)
-    __arm_cp.9_2                             0x08008b7c   Number         4  pbuf.o(.text.pbuf_cat)
-    [Anonymous Symbol]                       0x08008bc0   Section        0  pbuf.o(.text.pbuf_chain)
-    [Anonymous Symbol]                       0x08008bd2   Section        0  pbuf.o(.text.pbuf_clen)
-    [Anonymous Symbol]                       0x08008be0   Section        0  pbuf.o(.text.pbuf_copy)
-    __arm_cp.12_0                            0x08008cec   Number         4  pbuf.o(.text.pbuf_copy)
-    __arm_cp.12_2                            0x08008d08   Number         4  pbuf.o(.text.pbuf_copy)
-    __arm_cp.12_5                            0x08008d38   Number         4  pbuf.o(.text.pbuf_copy)
-    [Anonymous Symbol]                       0x08008d6c   Section        0  pbuf.o(.text.pbuf_free)
-    __arm_cp.1_0                             0x08008e20   Number         4  pbuf.o(.text.pbuf_free)
-    __arm_cp.1_2                             0x08008e3c   Number         4  pbuf.o(.text.pbuf_free)
-    [Anonymous Symbol]                       0x08008e7c   Section        0  pbuf.o(.text.pbuf_header)
-    [Anonymous Symbol]                       0x08008e82   Section        0  pbuf.o(.text.pbuf_header_force)
-    pbuf_header_impl                         0x08008e89   Thumb Code   204  pbuf.o(.text.pbuf_header_impl)
-    [Anonymous Symbol]                       0x08008e88   Section        0  pbuf.o(.text.pbuf_header_impl)
-    __arm_cp.5_0                             0x08008f18   Number         4  pbuf.o(.text.pbuf_header_impl)
-    __arm_cp.5_2                             0x08008f2c   Number         4  pbuf.o(.text.pbuf_header_impl)
-    __arm_cp.5_4                             0x08008f50   Number         4  pbuf.o(.text.pbuf_header_impl)
-    [Anonymous Symbol]                       0x08008f54   Section        0  pbuf.o(.text.pbuf_realloc)
-    __arm_cp.3_0                             0x08009014   Number         4  pbuf.o(.text.pbuf_realloc)
-    __arm_cp.3_2                             0x08009030   Number         4  pbuf.o(.text.pbuf_realloc)
-    [Anonymous Symbol]                       0x08009098   Section        0  pbuf.o(.text.pbuf_ref)
-    __arm_cp.8_0                             0x080090b8   Number         4  pbuf.o(.text.pbuf_ref)
-    __arm_cp.8_2                             0x080090d0   Number         4  pbuf.o(.text.pbuf_ref)
-    [Anonymous Symbol]                       0x080090d4   Section        0  timeouts.o(.text.sys_check_timeouts)
-    [Anonymous Symbol]                       0x08009124   Section        0  ethernetif.o(.text.sys_now)
-    [Anonymous Symbol]                       0x08009128   Section        0  timeouts.o(.text.sys_timeout)
-    __arm_cp.1_0                             0x080091a8   Number         4  timeouts.o(.text.sys_timeout)
-    __arm_cp.1_1                             0x080091ac   Number         4  timeouts.o(.text.sys_timeout)
-    [Anonymous Symbol]                       0x08009224   Section        0  timeouts.o(.text.sys_timeouts_init)
-    __arm_cp.0_0                             0x08009248   Number         4  timeouts.o(.text.sys_timeouts_init)
-    __arm_cp.0_1                             0x0800924c   Number         4  timeouts.o(.text.sys_timeouts_init)
-    __arm_cp.0_2                             0x08009250   Number         4  timeouts.o(.text.sys_timeouts_init)
-    [Anonymous Symbol]                       0x08009254   Section        0  udp.o(.text.udp_bind)
-    __arm_cp.6_2                             0x08009300   Number         4  udp.o(.text.udp_bind)
-    [Anonymous Symbol]                       0x08009304   Section        0  udp.o(.text.udp_connect)
-    [Anonymous Symbol]                       0x08009350   Section        0  udp.o(.text.udp_disconnect)
-    [Anonymous Symbol]                       0x08009360   Section        0  udp_echoserver.o(.text.udp_echoserver_init)
-    __arm_cp.0_0                             0x0800938c   Number         4  udp_echoserver.o(.text.udp_echoserver_init)
-    __arm_cp.0_1                             0x08009390   Number         4  udp_echoserver.o(.text.udp_echoserver_init)
-    [Anonymous Symbol]                       0x08009394   Section        0  udp_echoserver.o(.text.udp_echoserver_receive_callback)
-    __arm_cp.1_0                             0x080093dc   Number         4  udp_echoserver.o(.text.udp_echoserver_receive_callback)
-    [Anonymous Symbol]                       0x080093e0   Section        0  udp.o(.text.udp_init)
-    [Anonymous Symbol]                       0x080093e4   Section        0  udp.o(.text.udp_input)
-    __arm_cp.1_0                             0x080094fc   Number         4  udp.o(.text.udp_input)
-    __arm_cp.1_1                             0x08009500   Number         4  udp.o(.text.udp_input)
-    __arm_cp.1_2                             0x08009504   Number         4  udp.o(.text.udp_input)
-    [Anonymous Symbol]                       0x0800951c   Section        0  udp.o(.text.udp_netif_ip_addr_changed)
-    __arm_cp.13_0                            0x08009544   Number         4  udp.o(.text.udp_netif_ip_addr_changed)
-    [Anonymous Symbol]                       0x08009548   Section        0  udp.o(.text.udp_new)
-    [Anonymous Symbol]                       0x08009564   Section        0  udp.o(.text.udp_recv)
-    [Anonymous Symbol]                       0x0800956a   Section        0  udp.o(.text.udp_send)
-    [Anonymous Symbol]                       0x0800957a   Section        0  udp.o(.text.udp_sendto)
-    [Anonymous Symbol]                       0x080095a8   Section        0  udp.o(.text.udp_sendto_if)
-    [Anonymous Symbol]                       0x080095d8   Section        0  udp.o(.text.udp_sendto_if_src)
-    __arm_cp.5_0                             0x08009688   Number         4  udp.o(.text.udp_sendto_if_src)
-    __arm_cp.5_2                             0x080096bc   Number         4  udp.o(.text.udp_sendto_if_src)
-    __arm_cp.5_3                             0x080096c0   Number         4  udp.o(.text.udp_sendto_if_src)
-    i.__0printf$6                            0x080096c4   Section        0  printf6.o(i.__0printf$6)
-    i.__0sprintf$6                           0x080096e4   Section        0  printf6.o(i.__0sprintf$6)
-    i.__aeabi_errno_addr                     0x0800970c   Section        0  errno.o(i.__aeabi_errno_addr)
-    i.__scatterload_copy                     0x08009714   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x08009722   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08009724   Section       14  handlers.o(i.__scatterload_zeroinit)
-    _printf_core                             0x08009735   Thumb Code   748  printf6.o(i._printf_core)
-    i._printf_core                           0x08009734   Section        0  printf6.o(i._printf_core)
-    _printf_post_padding                     0x08009a25   Thumb Code    36  printf6.o(i._printf_post_padding)
-    i._printf_post_padding                   0x08009a24   Section        0  printf6.o(i._printf_post_padding)
-    _printf_pre_padding                      0x08009a49   Thumb Code    46  printf6.o(i._printf_pre_padding)
-    i._printf_pre_padding                    0x08009a48   Section        0  printf6.o(i._printf_pre_padding)
-    _sputc                                   0x08009a77   Thumb Code    10  printf6.o(i._sputc)
-    i._sputc                                 0x08009a76   Section        0  printf6.o(i._sputc)
-    i.fputc                                  0x08009a80   Section        0  fputc.o(i.fputc)
-    i.free                                   0x08009a94   Section        0  malloc.o(i.free)
-    i.malloc                                 0x08009ae4   Section        0  malloc.o(i.malloc)
-    .constdata                               0x08009b50   Section      129  ctype_o.o(.constdata)
-    table                                    0x08009bd4   Data           4  ctype_o.o(.constdata)
-    .constdata                               0x08009bd4   Section        4  ctype_o.o(.constdata)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    .L.str                                   0x08009c84   Data          40  ethernet.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009c84   Section        0  ethernet.o(.rodata.str1.1)
-    .L.str.13                                0x08009cac   Data          27  mem.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009cac   Section        0  mem.o(.rodata.str1.1)
-    .L.str.14                                0x08009cc7   Data          42  mem.o(.rodata.str1.1)
-    .L.str.2                                 0x08009cf1   Data          47  mem.o(.rodata.str1.1)
-    .L.str.10                                0x08009d20   Data          35  mem.o(.rodata.str1.1)
-    .L.str.2                                 0x08009d43   Data          48  memp.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009d43   Section        0  memp.o(.rodata.str1.1)
-    .L.str.1                                 0x08009d6b   Data          18  memp.o(.rodata.str1.1)
-    .L.str.30                                0x08009d73   Data          42  pbuf.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009d73   Section        0  pbuf.o(.rodata.str1.1)
-    .L.str.16                                0x08009d9d   Data          10  pbuf.o(.rodata.str1.1)
-    .L.str.2                                 0x08009da7   Data          48  pbuf.o(.rodata.str1.1)
-    .L.str.4                                 0x08009dd7   Data          49  pbuf.o(.rodata.str1.1)
-    .L.str.2                                 0x08009e08   Data          47  udp.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009e08   Section        0  udp.o(.rodata.str1.1)
-    .L.str.16                                0x08009e37   Data          65  etharp.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009e37   Section        0  etharp.o(.rodata.str1.1)
-    .L.str.11                                0x08009e78   Data          19  etharp.o(.rodata.str1.1)
-    .L.str.4                                 0x08009e8b   Data          14  etharp.o(.rodata.str1.1)
-    .L.str.3                                 0x08009e99   Data          15  etharp.o(.rodata.str1.1)
-    .L.str.2                                 0x08009ea8   Data          55  etharp.o(.rodata.str1.1)
-    .L.str.2                                 0x08009edf   Data          53  icmp.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009edf   Section        0  icmp.o(.rodata.str1.1)
-    .L.str.1                                 0x08009f14   Data          12  ip4.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009f14   Section        0  ip4.o(.rodata.str1.1)
-    .L.str.2                                 0x08009f20   Data          52  ip4.o(.rodata.str1.1)
-    .L.str.2                                 0x08009f54   Data          57  ip4_frag.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08009f54   Section        0  ip4_frag.o(.rodata.str1.1)
+    __arm_cp.3_29                            0x08007f64   Number         4  main.o(.text.main)
+    __arm_cp.3_1                             0x08008070   Number         4  main.o(.text.main)
+    __arm_cp.3_2                             0x08008074   Number         4  main.o(.text.main)
+    __arm_cp.3_3                             0x08008078   Number         4  main.o(.text.main)
+    __arm_cp.3_4                             0x0800807c   Number         4  main.o(.text.main)
+    __arm_cp.3_5                             0x08008080   Number         4  main.o(.text.main)
+    __arm_cp.3_6                             0x08008084   Number         4  main.o(.text.main)
+    __arm_cp.3_7                             0x08008088   Number         4  main.o(.text.main)
+    __arm_cp.3_8                             0x0800808c   Number         4  main.o(.text.main)
+    __arm_cp.3_9                             0x08008090   Number         4  main.o(.text.main)
+    __arm_cp.3_10                            0x08008094   Number         4  main.o(.text.main)
+    __arm_cp.3_11                            0x08008098   Number         4  main.o(.text.main)
+    __arm_cp.3_12                            0x0800809c   Number         4  main.o(.text.main)
+    __arm_cp.3_13                            0x080080a0   Number         4  main.o(.text.main)
+    __arm_cp.3_14                            0x080080a4   Number         4  main.o(.text.main)
+    __arm_cp.3_15                            0x080080a8   Number         4  main.o(.text.main)
+    __arm_cp.3_16                            0x080080ac   Number         4  main.o(.text.main)
+    __arm_cp.3_17                            0x080080b0   Number         4  main.o(.text.main)
+    __arm_cp.3_18                            0x080080b4   Number         4  main.o(.text.main)
+    __arm_cp.3_19                            0x080080b8   Number         4  main.o(.text.main)
+    __arm_cp.3_21                            0x080080d4   Number         4  main.o(.text.main)
+    __arm_cp.3_22                            0x080080d8   Number         4  main.o(.text.main)
+    __arm_cp.3_25                            0x080080f4   Number         4  main.o(.text.main)
+    __arm_cp.3_28                            0x08008144   Number         4  main.o(.text.main)
+    [Anonymous Symbol]                       0x08008148   Section        0  mem.o(.text.mem_free)
+    __arm_cp.1_0                             0x0800824c   Number         4  mem.o(.text.mem_free)
+    __arm_cp.1_2                             0x08008274   Number         4  mem.o(.text.mem_free)
+    __arm_cp.1_3                             0x08008278   Number         4  mem.o(.text.mem_free)
+    __arm_cp.1_8                             0x080082dc   Number         4  mem.o(.text.mem_free)
+    __arm_cp.1_9                             0x080082e0   Number         4  mem.o(.text.mem_free)
+    [Anonymous Symbol]                       0x080082e4   Section        0  mem.o(.text.mem_init)
+    __arm_cp.0_0                             0x08008310   Number         4  mem.o(.text.mem_init)
+    __arm_cp.0_2                             0x08008314   Number         4  mem.o(.text.mem_init)
+    [Anonymous Symbol]                       0x08008318   Section        0  mem.o(.text.mem_malloc)
+    __arm_cp.3_0                             0x0800840c   Number         4  mem.o(.text.mem_malloc)
+    __arm_cp.3_1                             0x08008410   Number         4  mem.o(.text.mem_malloc)
+    __arm_cp.3_3                             0x08008430   Number         4  mem.o(.text.mem_malloc)
+    __arm_cp.3_6                             0x08008494   Number         4  mem.o(.text.mem_malloc)
+    [Anonymous Symbol]                       0x08008498   Section        0  mem.o(.text.mem_trim)
+    __arm_cp.2_0                             0x08008590   Number         4  mem.o(.text.mem_trim)
+    __arm_cp.2_1                             0x08008594   Number         4  mem.o(.text.mem_trim)
+    __arm_cp.2_3                             0x080085b0   Number         4  mem.o(.text.mem_trim)
+    [Anonymous Symbol]                       0x080085d4   Section        0  memp.o(.text.memp_free)
+    __arm_cp.7_0                             0x080085f4   Number         4  memp.o(.text.memp_free)
+    [Anonymous Symbol]                       0x08008614   Section        0  memp.o(.text.memp_init)
+    [Anonymous Symbol]                       0x0800862c   Section        0  memp.o(.text.memp_init_pool)
+    [Anonymous Symbol]                       0x08008654   Section        0  memp.o(.text.memp_malloc)
+    __arm_cp.4_0                             0x0800867c   Number         4  memp.o(.text.memp_malloc)
+    __arm_cp.4_2                             0x080086a0   Number         4  memp.o(.text.memp_malloc)
+    __arm_cp.4_3                             0x080086a4   Number         4  memp.o(.text.memp_malloc)
+    [Anonymous Symbol]                       0x080086a8   Section        0  netif.o(.text.netif_add)
+    [Anonymous Symbol]                       0x08008788   Section        0  netif.o(.text.netif_init)
+    netif_issue_reports                      0x0800878b   Thumb Code    26  netif.o(.text.netif_issue_reports)
+    [Anonymous Symbol]                       0x0800878a   Section        0  netif.o(.text.netif_issue_reports)
+    [Anonymous Symbol]                       0x080087a4   Section        0  netif.o(.text.netif_set_addr)
+    [Anonymous Symbol]                       0x080087ec   Section        0  netif.o(.text.netif_set_default)
+    __arm_cp.9_0                             0x080087f4   Number         4  netif.o(.text.netif_set_default)
+    [Anonymous Symbol]                       0x080087f8   Section        0  netif.o(.text.netif_set_down)
+    [Anonymous Symbol]                       0x08008814   Section        0  netif.o(.text.netif_set_ipaddr)
+    __arm_cp.4_0                             0x0800884c   Number         4  netif.o(.text.netif_set_ipaddr)
+    [Anonymous Symbol]                       0x08008850   Section        0  netif.o(.text.netif_set_link_callback)
+    [Anonymous Symbol]                       0x08008856   Section        0  netif.o(.text.netif_set_up)
+    [Anonymous Symbol]                       0x08008874   Section        0  pbuf.o(.text.pbuf_alloc)
+    __arm_cp.0_0                             0x08008a04   Number         4  pbuf.o(.text.pbuf_alloc)
+    __arm_cp.0_2                             0x08008a24   Number         4  pbuf.o(.text.pbuf_alloc)
+    __arm_cp.0_4                             0x08008a3c   Number         4  pbuf.o(.text.pbuf_alloc)
+    [Anonymous Symbol]                       0x08008aa0   Section        0  pbuf.o(.text.pbuf_alloced_custom)
+    __arm_cp.2_0                             0x08008ae8   Number         4  pbuf.o(.text.pbuf_alloced_custom)
+    __arm_cp.2_2                             0x08008b10   Number         4  pbuf.o(.text.pbuf_alloced_custom)
+    [Anonymous Symbol]                       0x08008b28   Section        0  pbuf.o(.text.pbuf_cat)
+    __arm_cp.9_0                             0x08008b88   Number         4  pbuf.o(.text.pbuf_cat)
+    __arm_cp.9_2                             0x08008bc4   Number         4  pbuf.o(.text.pbuf_cat)
+    [Anonymous Symbol]                       0x08008c08   Section        0  pbuf.o(.text.pbuf_chain)
+    [Anonymous Symbol]                       0x08008c1a   Section        0  pbuf.o(.text.pbuf_clen)
+    [Anonymous Symbol]                       0x08008c28   Section        0  pbuf.o(.text.pbuf_copy)
+    __arm_cp.12_0                            0x08008d34   Number         4  pbuf.o(.text.pbuf_copy)
+    __arm_cp.12_2                            0x08008d50   Number         4  pbuf.o(.text.pbuf_copy)
+    __arm_cp.12_5                            0x08008d80   Number         4  pbuf.o(.text.pbuf_copy)
+    [Anonymous Symbol]                       0x08008db4   Section        0  pbuf.o(.text.pbuf_free)
+    __arm_cp.1_0                             0x08008e68   Number         4  pbuf.o(.text.pbuf_free)
+    __arm_cp.1_2                             0x08008e84   Number         4  pbuf.o(.text.pbuf_free)
+    [Anonymous Symbol]                       0x08008ec4   Section        0  pbuf.o(.text.pbuf_header)
+    [Anonymous Symbol]                       0x08008eca   Section        0  pbuf.o(.text.pbuf_header_force)
+    pbuf_header_impl                         0x08008ed1   Thumb Code   204  pbuf.o(.text.pbuf_header_impl)
+    [Anonymous Symbol]                       0x08008ed0   Section        0  pbuf.o(.text.pbuf_header_impl)
+    __arm_cp.5_0                             0x08008f60   Number         4  pbuf.o(.text.pbuf_header_impl)
+    __arm_cp.5_2                             0x08008f74   Number         4  pbuf.o(.text.pbuf_header_impl)
+    __arm_cp.5_4                             0x08008f98   Number         4  pbuf.o(.text.pbuf_header_impl)
+    [Anonymous Symbol]                       0x08008f9c   Section        0  pbuf.o(.text.pbuf_realloc)
+    __arm_cp.3_0                             0x0800905c   Number         4  pbuf.o(.text.pbuf_realloc)
+    __arm_cp.3_2                             0x08009078   Number         4  pbuf.o(.text.pbuf_realloc)
+    [Anonymous Symbol]                       0x080090e0   Section        0  pbuf.o(.text.pbuf_ref)
+    __arm_cp.8_0                             0x08009100   Number         4  pbuf.o(.text.pbuf_ref)
+    __arm_cp.8_2                             0x08009118   Number         4  pbuf.o(.text.pbuf_ref)
+    [Anonymous Symbol]                       0x0800911c   Section        0  timeouts.o(.text.sys_check_timeouts)
+    [Anonymous Symbol]                       0x0800916c   Section        0  ethernetif.o(.text.sys_now)
+    [Anonymous Symbol]                       0x08009170   Section        0  timeouts.o(.text.sys_timeout)
+    __arm_cp.1_0                             0x080091f0   Number         4  timeouts.o(.text.sys_timeout)
+    __arm_cp.1_1                             0x080091f4   Number         4  timeouts.o(.text.sys_timeout)
+    [Anonymous Symbol]                       0x0800926c   Section        0  timeouts.o(.text.sys_timeouts_init)
+    __arm_cp.0_0                             0x08009290   Number         4  timeouts.o(.text.sys_timeouts_init)
+    __arm_cp.0_1                             0x08009294   Number         4  timeouts.o(.text.sys_timeouts_init)
+    __arm_cp.0_2                             0x08009298   Number         4  timeouts.o(.text.sys_timeouts_init)
+    [Anonymous Symbol]                       0x0800929c   Section        0  udp.o(.text.udp_bind)
+    __arm_cp.6_2                             0x08009348   Number         4  udp.o(.text.udp_bind)
+    [Anonymous Symbol]                       0x0800934c   Section        0  udp.o(.text.udp_connect)
+    [Anonymous Symbol]                       0x08009398   Section        0  udp.o(.text.udp_disconnect)
+    [Anonymous Symbol]                       0x080093a8   Section        0  udp_echoserver.o(.text.udp_echoserver_init)
+    __arm_cp.0_0                             0x080093d4   Number         4  udp_echoserver.o(.text.udp_echoserver_init)
+    __arm_cp.0_1                             0x080093d8   Number         4  udp_echoserver.o(.text.udp_echoserver_init)
+    [Anonymous Symbol]                       0x080093dc   Section        0  udp_echoserver.o(.text.udp_echoserver_receive_callback)
+    __arm_cp.1_0                             0x08009424   Number         4  udp_echoserver.o(.text.udp_echoserver_receive_callback)
+    [Anonymous Symbol]                       0x08009428   Section        0  udp.o(.text.udp_init)
+    [Anonymous Symbol]                       0x0800942c   Section        0  udp.o(.text.udp_input)
+    __arm_cp.1_0                             0x08009544   Number         4  udp.o(.text.udp_input)
+    __arm_cp.1_1                             0x08009548   Number         4  udp.o(.text.udp_input)
+    __arm_cp.1_2                             0x0800954c   Number         4  udp.o(.text.udp_input)
+    [Anonymous Symbol]                       0x08009564   Section        0  udp.o(.text.udp_netif_ip_addr_changed)
+    __arm_cp.13_0                            0x0800958c   Number         4  udp.o(.text.udp_netif_ip_addr_changed)
+    [Anonymous Symbol]                       0x08009590   Section        0  udp.o(.text.udp_new)
+    [Anonymous Symbol]                       0x080095ac   Section        0  udp.o(.text.udp_recv)
+    [Anonymous Symbol]                       0x080095b2   Section        0  udp.o(.text.udp_send)
+    [Anonymous Symbol]                       0x080095c2   Section        0  udp.o(.text.udp_sendto)
+    [Anonymous Symbol]                       0x080095f0   Section        0  udp.o(.text.udp_sendto_if)
+    [Anonymous Symbol]                       0x08009620   Section        0  udp.o(.text.udp_sendto_if_src)
+    __arm_cp.5_0                             0x080096d0   Number         4  udp.o(.text.udp_sendto_if_src)
+    __arm_cp.5_2                             0x08009704   Number         4  udp.o(.text.udp_sendto_if_src)
+    __arm_cp.5_3                             0x08009708   Number         4  udp.o(.text.udp_sendto_if_src)
+    i.__0printf$6                            0x0800970c   Section        0  printf6.o(i.__0printf$6)
+    i.__0sprintf$6                           0x0800972c   Section        0  printf6.o(i.__0sprintf$6)
+    i.__aeabi_errno_addr                     0x08009754   Section        0  errno.o(i.__aeabi_errno_addr)
+    i.__scatterload_copy                     0x0800975c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x0800976a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x0800976c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    _printf_core                             0x0800977d   Thumb Code   748  printf6.o(i._printf_core)
+    i._printf_core                           0x0800977c   Section        0  printf6.o(i._printf_core)
+    _printf_post_padding                     0x08009a6d   Thumb Code    36  printf6.o(i._printf_post_padding)
+    i._printf_post_padding                   0x08009a6c   Section        0  printf6.o(i._printf_post_padding)
+    _printf_pre_padding                      0x08009a91   Thumb Code    46  printf6.o(i._printf_pre_padding)
+    i._printf_pre_padding                    0x08009a90   Section        0  printf6.o(i._printf_pre_padding)
+    _sputc                                   0x08009abf   Thumb Code    10  printf6.o(i._sputc)
+    i._sputc                                 0x08009abe   Section        0  printf6.o(i._sputc)
+    i.fputc                                  0x08009ac8   Section        0  fputc.o(i.fputc)
+    i.free                                   0x08009adc   Section        0  malloc.o(i.free)
+    i.malloc                                 0x08009b2c   Section        0  malloc.o(i.malloc)
+    .constdata                               0x08009b98   Section      129  ctype_o.o(.constdata)
+    table                                    0x08009c1c   Data           4  ctype_o.o(.constdata)
+    .constdata                               0x08009c1c   Section        4  ctype_o.o(.constdata)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    .L.str                                   0x08009ccc   Data          40  ethernet.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009ccc   Section        0  ethernet.o(.rodata.str1.1)
+    .L.str.13                                0x08009cf4   Data          27  mem.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009cf4   Section        0  mem.o(.rodata.str1.1)
+    .L.str.14                                0x08009d0f   Data          42  mem.o(.rodata.str1.1)
+    .L.str.2                                 0x08009d39   Data          47  mem.o(.rodata.str1.1)
+    .L.str.10                                0x08009d68   Data          35  mem.o(.rodata.str1.1)
+    .L.str.2                                 0x08009d8b   Data          48  memp.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009d8b   Section        0  memp.o(.rodata.str1.1)
+    .L.str.1                                 0x08009db3   Data          18  memp.o(.rodata.str1.1)
+    .L.str.30                                0x08009dbb   Data          42  pbuf.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009dbb   Section        0  pbuf.o(.rodata.str1.1)
+    .L.str.16                                0x08009de5   Data          10  pbuf.o(.rodata.str1.1)
+    .L.str.2                                 0x08009def   Data          48  pbuf.o(.rodata.str1.1)
+    .L.str.4                                 0x08009e1f   Data          49  pbuf.o(.rodata.str1.1)
+    .L.str.2                                 0x08009e50   Data          47  udp.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009e50   Section        0  udp.o(.rodata.str1.1)
+    .L.str.16                                0x08009e7f   Data          65  etharp.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009e7f   Section        0  etharp.o(.rodata.str1.1)
+    .L.str.11                                0x08009ec0   Data          19  etharp.o(.rodata.str1.1)
+    .L.str.4                                 0x08009ed3   Data          14  etharp.o(.rodata.str1.1)
+    .L.str.3                                 0x08009ee1   Data          15  etharp.o(.rodata.str1.1)
+    .L.str.2                                 0x08009ef0   Data          55  etharp.o(.rodata.str1.1)
+    .L.str.2                                 0x08009f27   Data          53  icmp.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009f27   Section        0  icmp.o(.rodata.str1.1)
+    .L.str.1                                 0x08009f5c   Data          12  ip4.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009f5c   Section        0  ip4.o(.rodata.str1.1)
+    .L.str.2                                 0x08009f68   Data          52  ip4.o(.rodata.str1.1)
+    .L.str.2                                 0x08009f9c   Data          57  ip4_frag.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08009f9c   Section        0  ip4_frag.o(.rodata.str1.1)
     .data                                    0x20000000   Section        4  stdout.o(.data)
     .data                                    0x20000004   Section        4  mvars.o(.data)
     .data                                    0x20000008   Section        4  mvars.o(.data)
@@ -6011,45 +6012,45 @@ Image Symbol Table
     [Anonymous Symbol]                       0x2000017c   Section        0  usbd_cdc.o(.data.USBD_CDC_DeviceQualifierDesc)
     udp_port                                 0x20000214   Data           2  udp.o(.data.udp_port)
     [Anonymous Symbol]                       0x20000214   Section        0  udp.o(.data.udp_port)
-    [Anonymous Symbol]                       0x20000218   Section        0  main.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000274   Section        0  udp_echoserver.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000276   Section        0  fatfs.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x2000027c   Section        0  ethernetif.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x200002c8   Section        0  lwip.o(.bss..L_MergedGlobals)
-    ram                                      0x20000314   Data           4  mem.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000314   Section        0  mem.o(.bss..L_MergedGlobals)
-    ram_end                                  0x20000318   Data           4  mem.o(.bss..L_MergedGlobals)
-    lfree                                    0x2000031c   Data           4  mem.o(.bss..L_MergedGlobals)
-    netif_num                                0x20000320   Data           1  netif.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000320   Section        0  netif.o(.bss..L_MergedGlobals)
-    timeouts_last_time                       0x2000032c   Data           4  timeouts.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x2000032c   Section        0  timeouts.o(.bss..L_MergedGlobals)
-    next_timeout                             0x20000330   Data           4  timeouts.o(.bss..L_MergedGlobals)
-    ip_reass_pbufcount                       0x20000334   Data           2  ip4_frag.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000334   Section        0  ip4_frag.o(.bss..L_MergedGlobals)
-    reassdatagrams                           0x20000338   Data           4  ip4_frag.o(.bss..L_MergedGlobals)
-    USBD_SetConfig.cfgidx                    0x200034a8   Data           1  usbd_ctlreq.o(.bss.USBD_SetConfig.cfgidx)
-    [Anonymous Symbol]                       0x200034a8   Section        0  usbd_ctlreq.o(.bss.USBD_SetConfig.cfgidx)
-    arp_table                                0x200039cc   Data         240  etharp.o(.bss.arp_table)
-    [Anonymous Symbol]                       0x200039cc   Section        0  etharp.o(.bss.arp_table)
-    etharp_cached_entry                      0x20003acc   Data           1  etharp.o(.bss.etharp_cached_entry)
-    [Anonymous Symbol]                       0x20003acc   Section        0  etharp.o(.bss.etharp_cached_entry)
-    ip_id                                    0x200044f0   Data           2  ip4.o(.bss.ip_id)
-    [Anonymous Symbol]                       0x200044f0   Section        0  ip4.o(.bss.ip_id)
-    memp_tab_FRAG_PBUF                       0x20006eac   Data           4  memp.o(.bss.memp_tab_FRAG_PBUF)
-    [Anonymous Symbol]                       0x20006eac   Section        0  memp.o(.bss.memp_tab_FRAG_PBUF)
-    memp_tab_PBUF                            0x20006eb0   Data           4  memp.o(.bss.memp_tab_PBUF)
-    [Anonymous Symbol]                       0x20006eb0   Section        0  memp.o(.bss.memp_tab_PBUF)
-    memp_tab_PBUF_POOL                       0x20006eb4   Data           4  memp.o(.bss.memp_tab_PBUF_POOL)
-    [Anonymous Symbol]                       0x20006eb4   Section        0  memp.o(.bss.memp_tab_PBUF_POOL)
-    memp_tab_REASSDATA                       0x20006eb8   Data           4  memp.o(.bss.memp_tab_REASSDATA)
-    [Anonymous Symbol]                       0x20006eb8   Section        0  memp.o(.bss.memp_tab_REASSDATA)
-    memp_tab_SYS_TIMEOUT                     0x20006ebc   Data           4  memp.o(.bss.memp_tab_SYS_TIMEOUT)
-    [Anonymous Symbol]                       0x20006ebc   Section        0  memp.o(.bss.memp_tab_SYS_TIMEOUT)
-    memp_tab_UDP_PCB                         0x20006ec0   Data           4  memp.o(.bss.memp_tab_UDP_PCB)
-    [Anonymous Symbol]                       0x20006ec0   Section        0  memp.o(.bss.memp_tab_UDP_PCB)
-    HEAP                                     0x20007520   Section     1024  startup_stm32f207xx.o(HEAP)
-    STACK                                    0x20007920   Section     1024  startup_stm32f207xx.o(STACK)
+    [Anonymous Symbol]                       0x20000218   Section        0  udp_echoserver.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x2000021c   Section        0  main.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000278   Section        0  fatfs.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000280   Section        0  ethernetif.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x200002cc   Section        0  lwip.o(.bss..L_MergedGlobals)
+    ram                                      0x20000318   Data           4  mem.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000318   Section        0  mem.o(.bss..L_MergedGlobals)
+    ram_end                                  0x2000031c   Data           4  mem.o(.bss..L_MergedGlobals)
+    lfree                                    0x20000320   Data           4  mem.o(.bss..L_MergedGlobals)
+    netif_num                                0x20000324   Data           1  netif.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000324   Section        0  netif.o(.bss..L_MergedGlobals)
+    timeouts_last_time                       0x20000330   Data           4  timeouts.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000330   Section        0  timeouts.o(.bss..L_MergedGlobals)
+    next_timeout                             0x20000334   Data           4  timeouts.o(.bss..L_MergedGlobals)
+    ip_reass_pbufcount                       0x20000338   Data           2  ip4_frag.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000338   Section        0  ip4_frag.o(.bss..L_MergedGlobals)
+    reassdatagrams                           0x2000033c   Data           4  ip4_frag.o(.bss..L_MergedGlobals)
+    USBD_SetConfig.cfgidx                    0x200034ac   Data           1  usbd_ctlreq.o(.bss.USBD_SetConfig.cfgidx)
+    [Anonymous Symbol]                       0x200034ac   Section        0  usbd_ctlreq.o(.bss.USBD_SetConfig.cfgidx)
+    arp_table                                0x200039d0   Data         240  etharp.o(.bss.arp_table)
+    [Anonymous Symbol]                       0x200039d0   Section        0  etharp.o(.bss.arp_table)
+    etharp_cached_entry                      0x20003ad0   Data           1  etharp.o(.bss.etharp_cached_entry)
+    [Anonymous Symbol]                       0x20003ad0   Section        0  etharp.o(.bss.etharp_cached_entry)
+    ip_id                                    0x200044f4   Data           2  ip4.o(.bss.ip_id)
+    [Anonymous Symbol]                       0x200044f4   Section        0  ip4.o(.bss.ip_id)
+    memp_tab_FRAG_PBUF                       0x20006eb0   Data           4  memp.o(.bss.memp_tab_FRAG_PBUF)
+    [Anonymous Symbol]                       0x20006eb0   Section        0  memp.o(.bss.memp_tab_FRAG_PBUF)
+    memp_tab_PBUF                            0x20006eb4   Data           4  memp.o(.bss.memp_tab_PBUF)
+    [Anonymous Symbol]                       0x20006eb4   Section        0  memp.o(.bss.memp_tab_PBUF)
+    memp_tab_PBUF_POOL                       0x20006eb8   Data           4  memp.o(.bss.memp_tab_PBUF_POOL)
+    [Anonymous Symbol]                       0x20006eb8   Section        0  memp.o(.bss.memp_tab_PBUF_POOL)
+    memp_tab_REASSDATA                       0x20006ebc   Data           4  memp.o(.bss.memp_tab_REASSDATA)
+    [Anonymous Symbol]                       0x20006ebc   Section        0  memp.o(.bss.memp_tab_REASSDATA)
+    memp_tab_SYS_TIMEOUT                     0x20006ec0   Data           4  memp.o(.bss.memp_tab_SYS_TIMEOUT)
+    [Anonymous Symbol]                       0x20006ec0   Section        0  memp.o(.bss.memp_tab_SYS_TIMEOUT)
+    memp_tab_UDP_PCB                         0x20006ec4   Data           4  memp.o(.bss.memp_tab_UDP_PCB)
+    [Anonymous Symbol]                       0x20006ec4   Section        0  memp.o(.bss.memp_tab_UDP_PCB)
+    HEAP                                     0x20007528   Section     1024  startup_stm32f207xx.o(HEAP)
+    STACK                                    0x20007928   Section     1024  startup_stm32f207xx.o(STACK)
 
     Global Symbols
 
@@ -6490,83 +6491,83 @@ Image Symbol Table
     ip_reass_tmr                             0x08007a49   Thumb Code    44  ip4_frag.o(.text.ip_reass_tmr)
     lwip_htons                               0x08007b51   Thumb Code     4  def.o(.text.lwip_htons)
     lwip_init                                0x08007b55   Thumb Code    26  init.o(.text.lwip_init)
-    main                                     0x08007b71   Thumb Code  1424  main.o(.text.main)
-    mem_free                                 0x08008101   Thumb Code   412  mem.o(.text.mem_free)
-    mem_init                                 0x0800829d   Thumb Code    52  mem.o(.text.mem_init)
-    mem_malloc                               0x080082d1   Thumb Code   384  mem.o(.text.mem_malloc)
-    mem_trim                                 0x08008451   Thumb Code   316  mem.o(.text.mem_trim)
-    memp_free                                0x0800858d   Thumb Code    64  memp.o(.text.memp_free)
-    memp_init                                0x080085cd   Thumb Code    24  memp.o(.text.memp_init)
-    memp_init_pool                           0x080085e5   Thumb Code    38  memp.o(.text.memp_init_pool)
-    memp_malloc                              0x0800860d   Thumb Code    84  memp.o(.text.memp_malloc)
-    netif_add                                0x08008661   Thumb Code   224  netif.o(.text.netif_add)
-    netif_init                               0x08008741   Thumb Code     2  netif.o(.text.netif_init)
-    netif_set_addr                           0x0800875d   Thumb Code    72  netif.o(.text.netif_set_addr)
-    netif_set_default                        0x080087a5   Thumb Code    12  netif.o(.text.netif_set_default)
-    netif_set_down                           0x080087b1   Thumb Code    26  netif.o(.text.netif_set_down)
-    netif_set_ipaddr                         0x080087cd   Thumb Code    60  netif.o(.text.netif_set_ipaddr)
-    netif_set_link_callback                  0x08008809   Thumb Code     6  netif.o(.text.netif_set_link_callback)
-    netif_set_up                             0x0800880f   Thumb Code    28  netif.o(.text.netif_set_up)
-    pbuf_alloc                               0x0800882d   Thumb Code   556  pbuf.o(.text.pbuf_alloc)
-    pbuf_alloced_custom                      0x08008a59   Thumb Code   136  pbuf.o(.text.pbuf_alloced_custom)
-    pbuf_cat                                 0x08008ae1   Thumb Code   224  pbuf.o(.text.pbuf_cat)
-    pbuf_chain                               0x08008bc1   Thumb Code    18  pbuf.o(.text.pbuf_chain)
-    pbuf_clen                                0x08008bd3   Thumb Code    14  pbuf.o(.text.pbuf_clen)
-    pbuf_copy                                0x08008be1   Thumb Code   396  pbuf.o(.text.pbuf_copy)
-    pbuf_free                                0x08008d6d   Thumb Code   272  pbuf.o(.text.pbuf_free)
-    pbuf_header                              0x08008e7d   Thumb Code     6  pbuf.o(.text.pbuf_header)
-    pbuf_header_force                        0x08008e83   Thumb Code     6  pbuf.o(.text.pbuf_header_force)
-    pbuf_realloc                             0x08008f55   Thumb Code   324  pbuf.o(.text.pbuf_realloc)
-    pbuf_ref                                 0x08009099   Thumb Code    60  pbuf.o(.text.pbuf_ref)
-    sys_check_timeouts                       0x080090d5   Thumb Code    80  timeouts.o(.text.sys_check_timeouts)
-    sys_now                                  0x08009125   Thumb Code     4  ethernetif.o(.text.sys_now)
-    sys_timeout                              0x08009129   Thumb Code   252  timeouts.o(.text.sys_timeout)
-    sys_timeouts_init                        0x08009225   Thumb Code    48  timeouts.o(.text.sys_timeouts_init)
-    udp_bind                                 0x08009255   Thumb Code   176  udp.o(.text.udp_bind)
-    udp_connect                              0x08009305   Thumb Code    76  udp.o(.text.udp_connect)
-    udp_disconnect                           0x08009351   Thumb Code    16  udp.o(.text.udp_disconnect)
-    udp_echoserver_init                      0x08009361   Thumb Code    52  udp_echoserver.o(.text.udp_echoserver_init)
-    udp_echoserver_receive_callback          0x08009395   Thumb Code    76  udp_echoserver.o(.text.udp_echoserver_receive_callback)
-    udp_init                                 0x080093e1   Thumb Code     2  udp.o(.text.udp_init)
-    udp_input                                0x080093e5   Thumb Code   312  udp.o(.text.udp_input)
-    udp_netif_ip_addr_changed                0x0800951d   Thumb Code    44  udp.o(.text.udp_netif_ip_addr_changed)
-    udp_new                                  0x08009549   Thumb Code    28  udp.o(.text.udp_new)
-    udp_recv                                 0x08009565   Thumb Code     6  udp.o(.text.udp_recv)
-    udp_send                                 0x0800956b   Thumb Code    16  udp.o(.text.udp_send)
-    udp_sendto                               0x0800957b   Thumb Code    46  udp.o(.text.udp_sendto)
-    udp_sendto_if                            0x080095a9   Thumb Code    48  udp.o(.text.udp_sendto_if)
-    udp_sendto_if_src                        0x080095d9   Thumb Code   236  udp.o(.text.udp_sendto_if_src)
-    __0printf$6                              0x080096c5   Thumb Code    22  printf6.o(i.__0printf$6)
-    __1printf$6                              0x080096c5   Thumb Code     0  printf6.o(i.__0printf$6)
-    __2printf                                0x080096c5   Thumb Code     0  printf6.o(i.__0printf$6)
-    __0sprintf$6                             0x080096e5   Thumb Code    34  printf6.o(i.__0sprintf$6)
-    __1sprintf$6                             0x080096e5   Thumb Code     0  printf6.o(i.__0sprintf$6)
-    __2sprintf                               0x080096e5   Thumb Code     0  printf6.o(i.__0sprintf$6)
-    __aeabi_errno_addr                       0x0800970d   Thumb Code     4  errno.o(i.__aeabi_errno_addr)
-    __rt_errno_addr                          0x0800970d   Thumb Code     0  errno.o(i.__aeabi_errno_addr)
-    __scatterload_copy                       0x08009715   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x08009723   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08009725   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    fputc                                    0x08009a81   Thumb Code    18  fputc.o(i.fputc)
-    free                                     0x08009a95   Thumb Code    76  malloc.o(i.free)
-    malloc                                   0x08009ae5   Thumb Code    92  malloc.o(i.malloc)
-    __ctype_table                            0x08009b50   Data         129  ctype_o.o(.constdata)
-    AHBPrescTable                            0x08009bd8   Data          16  system_stm32f2xx.o(.rodata.AHBPrescTable)
-    APBPrescTable                            0x08009be8   Data           8  system_stm32f2xx.o(.rodata.APBPrescTable)
-    SD_Driver                                0x08009bf0   Data          20  sd_diskio.o(.rodata.SD_Driver)
-    ethbroadcast                             0x08009c04   Data           6  ethernet.o(.rodata.ethbroadcast)
-    ethzero                                  0x08009c0a   Data           6  ethernet.o(.rodata.ethzero)
-    ip_addr_any                              0x08009c10   Data           4  ip4_addr.o(.rodata.ip_addr_any)
-    lwip_cyclic_timers                       0x08009c14   Data          16  timeouts.o(.rodata.lwip_cyclic_timers)
-    memp_FRAG_PBUF                           0x08009c24   Data          12  memp.o(.rodata.memp_FRAG_PBUF)
-    memp_PBUF                                0x08009c30   Data          12  memp.o(.rodata.memp_PBUF)
-    memp_PBUF_POOL                           0x08009c3c   Data          12  memp.o(.rodata.memp_PBUF_POOL)
-    memp_REASSDATA                           0x08009c48   Data          12  memp.o(.rodata.memp_REASSDATA)
-    memp_SYS_TIMEOUT                         0x08009c54   Data          12  memp.o(.rodata.memp_SYS_TIMEOUT)
-    memp_UDP_PCB                             0x08009c60   Data          12  memp.o(.rodata.memp_UDP_PCB)
-    memp_pools                               0x08009c6c   Data          24  memp.o(.rodata.memp_pools)
-    Region$$Table$$Base                      0x08009f90   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08009fb0   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08007b71   Thumb Code  1496  main.o(.text.main)
+    mem_free                                 0x08008149   Thumb Code   412  mem.o(.text.mem_free)
+    mem_init                                 0x080082e5   Thumb Code    52  mem.o(.text.mem_init)
+    mem_malloc                               0x08008319   Thumb Code   384  mem.o(.text.mem_malloc)
+    mem_trim                                 0x08008499   Thumb Code   316  mem.o(.text.mem_trim)
+    memp_free                                0x080085d5   Thumb Code    64  memp.o(.text.memp_free)
+    memp_init                                0x08008615   Thumb Code    24  memp.o(.text.memp_init)
+    memp_init_pool                           0x0800862d   Thumb Code    38  memp.o(.text.memp_init_pool)
+    memp_malloc                              0x08008655   Thumb Code    84  memp.o(.text.memp_malloc)
+    netif_add                                0x080086a9   Thumb Code   224  netif.o(.text.netif_add)
+    netif_init                               0x08008789   Thumb Code     2  netif.o(.text.netif_init)
+    netif_set_addr                           0x080087a5   Thumb Code    72  netif.o(.text.netif_set_addr)
+    netif_set_default                        0x080087ed   Thumb Code    12  netif.o(.text.netif_set_default)
+    netif_set_down                           0x080087f9   Thumb Code    26  netif.o(.text.netif_set_down)
+    netif_set_ipaddr                         0x08008815   Thumb Code    60  netif.o(.text.netif_set_ipaddr)
+    netif_set_link_callback                  0x08008851   Thumb Code     6  netif.o(.text.netif_set_link_callback)
+    netif_set_up                             0x08008857   Thumb Code    28  netif.o(.text.netif_set_up)
+    pbuf_alloc                               0x08008875   Thumb Code   556  pbuf.o(.text.pbuf_alloc)
+    pbuf_alloced_custom                      0x08008aa1   Thumb Code   136  pbuf.o(.text.pbuf_alloced_custom)
+    pbuf_cat                                 0x08008b29   Thumb Code   224  pbuf.o(.text.pbuf_cat)
+    pbuf_chain                               0x08008c09   Thumb Code    18  pbuf.o(.text.pbuf_chain)
+    pbuf_clen                                0x08008c1b   Thumb Code    14  pbuf.o(.text.pbuf_clen)
+    pbuf_copy                                0x08008c29   Thumb Code   396  pbuf.o(.text.pbuf_copy)
+    pbuf_free                                0x08008db5   Thumb Code   272  pbuf.o(.text.pbuf_free)
+    pbuf_header                              0x08008ec5   Thumb Code     6  pbuf.o(.text.pbuf_header)
+    pbuf_header_force                        0x08008ecb   Thumb Code     6  pbuf.o(.text.pbuf_header_force)
+    pbuf_realloc                             0x08008f9d   Thumb Code   324  pbuf.o(.text.pbuf_realloc)
+    pbuf_ref                                 0x080090e1   Thumb Code    60  pbuf.o(.text.pbuf_ref)
+    sys_check_timeouts                       0x0800911d   Thumb Code    80  timeouts.o(.text.sys_check_timeouts)
+    sys_now                                  0x0800916d   Thumb Code     4  ethernetif.o(.text.sys_now)
+    sys_timeout                              0x08009171   Thumb Code   252  timeouts.o(.text.sys_timeout)
+    sys_timeouts_init                        0x0800926d   Thumb Code    48  timeouts.o(.text.sys_timeouts_init)
+    udp_bind                                 0x0800929d   Thumb Code   176  udp.o(.text.udp_bind)
+    udp_connect                              0x0800934d   Thumb Code    76  udp.o(.text.udp_connect)
+    udp_disconnect                           0x08009399   Thumb Code    16  udp.o(.text.udp_disconnect)
+    udp_echoserver_init                      0x080093a9   Thumb Code    52  udp_echoserver.o(.text.udp_echoserver_init)
+    udp_echoserver_receive_callback          0x080093dd   Thumb Code    76  udp_echoserver.o(.text.udp_echoserver_receive_callback)
+    udp_init                                 0x08009429   Thumb Code     2  udp.o(.text.udp_init)
+    udp_input                                0x0800942d   Thumb Code   312  udp.o(.text.udp_input)
+    udp_netif_ip_addr_changed                0x08009565   Thumb Code    44  udp.o(.text.udp_netif_ip_addr_changed)
+    udp_new                                  0x08009591   Thumb Code    28  udp.o(.text.udp_new)
+    udp_recv                                 0x080095ad   Thumb Code     6  udp.o(.text.udp_recv)
+    udp_send                                 0x080095b3   Thumb Code    16  udp.o(.text.udp_send)
+    udp_sendto                               0x080095c3   Thumb Code    46  udp.o(.text.udp_sendto)
+    udp_sendto_if                            0x080095f1   Thumb Code    48  udp.o(.text.udp_sendto_if)
+    udp_sendto_if_src                        0x08009621   Thumb Code   236  udp.o(.text.udp_sendto_if_src)
+    __0printf$6                              0x0800970d   Thumb Code    22  printf6.o(i.__0printf$6)
+    __1printf$6                              0x0800970d   Thumb Code     0  printf6.o(i.__0printf$6)
+    __2printf                                0x0800970d   Thumb Code     0  printf6.o(i.__0printf$6)
+    __0sprintf$6                             0x0800972d   Thumb Code    34  printf6.o(i.__0sprintf$6)
+    __1sprintf$6                             0x0800972d   Thumb Code     0  printf6.o(i.__0sprintf$6)
+    __2sprintf                               0x0800972d   Thumb Code     0  printf6.o(i.__0sprintf$6)
+    __aeabi_errno_addr                       0x08009755   Thumb Code     4  errno.o(i.__aeabi_errno_addr)
+    __rt_errno_addr                          0x08009755   Thumb Code     0  errno.o(i.__aeabi_errno_addr)
+    __scatterload_copy                       0x0800975d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x0800976b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x0800976d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    fputc                                    0x08009ac9   Thumb Code    18  fputc.o(i.fputc)
+    free                                     0x08009add   Thumb Code    76  malloc.o(i.free)
+    malloc                                   0x08009b2d   Thumb Code    92  malloc.o(i.malloc)
+    __ctype_table                            0x08009b98   Data         129  ctype_o.o(.constdata)
+    AHBPrescTable                            0x08009c20   Data          16  system_stm32f2xx.o(.rodata.AHBPrescTable)
+    APBPrescTable                            0x08009c30   Data           8  system_stm32f2xx.o(.rodata.APBPrescTable)
+    SD_Driver                                0x08009c38   Data          20  sd_diskio.o(.rodata.SD_Driver)
+    ethbroadcast                             0x08009c4c   Data           6  ethernet.o(.rodata.ethbroadcast)
+    ethzero                                  0x08009c52   Data           6  ethernet.o(.rodata.ethzero)
+    ip_addr_any                              0x08009c58   Data           4  ip4_addr.o(.rodata.ip_addr_any)
+    lwip_cyclic_timers                       0x08009c5c   Data          16  timeouts.o(.rodata.lwip_cyclic_timers)
+    memp_FRAG_PBUF                           0x08009c6c   Data          12  memp.o(.rodata.memp_FRAG_PBUF)
+    memp_PBUF                                0x08009c78   Data          12  memp.o(.rodata.memp_PBUF)
+    memp_PBUF_POOL                           0x08009c84   Data          12  memp.o(.rodata.memp_PBUF_POOL)
+    memp_REASSDATA                           0x08009c90   Data          12  memp.o(.rodata.memp_REASSDATA)
+    memp_SYS_TIMEOUT                         0x08009c9c   Data          12  memp.o(.rodata.memp_SYS_TIMEOUT)
+    memp_UDP_PCB                             0x08009ca8   Data          12  memp.o(.rodata.memp_UDP_PCB)
+    memp_pools                               0x08009cb4   Data          24  memp.o(.rodata.memp_pools)
+    Region$$Table$$Base                      0x08009fd8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08009ff8   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000000   Data           4  stdout.o(.data)
     __microlib_freelist                      0x20000004   Data           4  mvars.o(.data)
     __microlib_freelist_initialised          0x20000008   Data           4  mvars.o(.data)
@@ -6584,67 +6585,67 @@ Image Symbol Table
     USBD_LangIDDesc                          0x200001f0   Data           4  usbd_desc.o(.data.USBD_LangIDDesc)
     USBD_StringSerial                        0x200001f4   Data          26  usbd_desc.o(.data.USBD_StringSerial)
     encoderTargetCount                       0x20000210   Data           4  main.o(.data.encoderTargetCount)
-    bFlag                                    0x20000218   Data           1  main.o(.bss..L_MergedGlobals)
-    UFlag                                    0x20000219   Data           1  main.o(.bss..L_MergedGlobals)
-    EnterFlag                                0x2000021a   Data           1  main.o(.bss..L_MergedGlobals)
-    stb0                                     0x2000021b   Data           1  main.o(.bss..L_MergedGlobals)
-    stb1                                     0x2000021c   Data           1  main.o(.bss..L_MergedGlobals)
-    stb_all                                  0x2000021d   Data           1  main.o(.bss..L_MergedGlobals)
-    udpIntput                                0x2000021e   Data           1  main.o(.bss..L_MergedGlobals)
-    A_PLS_CNT                                0x20000220   Data           2  main.o(.bss..L_MergedGlobals)
-    adcValue                                 0x20000224   Data          16  main.o(.bss..L_MergedGlobals)
-    htim8                                    0x20000234   Data          64  main.o(.bss..L_MergedGlobals)
-    udp_data                                 0x20000274   Data           1  udp_echoserver.o(.bss..L_MergedGlobals)
-    udp_flag                                 0x20000275   Data           1  udp_echoserver.o(.bss..L_MergedGlobals)
-    retSD                                    0x20000276   Data           1  fatfs.o(.bss..L_MergedGlobals)
-    SDPath                                   0x20000277   Data           4  fatfs.o(.bss..L_MergedGlobals)
-    EthernetLinkTimer                        0x2000027c   Data           4  ethernetif.o(.bss..L_MergedGlobals)
-    heth                                     0x20000280   Data          72  ethernetif.o(.bss..L_MergedGlobals)
-    IP_ADDRESS                               0x200002c8   Data           4  lwip.o(.bss..L_MergedGlobals)
-    NETMASK_ADDRESS                          0x200002cc   Data           4  lwip.o(.bss..L_MergedGlobals)
-    GATEWAY_ADDRESS                          0x200002d0   Data           4  lwip.o(.bss..L_MergedGlobals)
-    ipaddr                                   0x200002d4   Data           4  lwip.o(.bss..L_MergedGlobals)
-    netmask                                  0x200002d8   Data           4  lwip.o(.bss..L_MergedGlobals)
-    gw                                       0x200002dc   Data           4  lwip.o(.bss..L_MergedGlobals)
-    gnetif                                   0x200002e0   Data          52  lwip.o(.bss..L_MergedGlobals)
-    netif_list                               0x20000324   Data           4  netif.o(.bss..L_MergedGlobals)
-    netif_default                            0x20000328   Data           4  netif.o(.bss..L_MergedGlobals)
-    B_PLS_CNT                                0x2000033c   Data           2  main.o(.bss.B_PLS_CNT)
-    DMARxDscrTab                             0x20000340   Data         128  ethernetif.o(.bss.DMARxDscrTab)
-    DMATxDscrTab                             0x200003c0   Data         128  ethernetif.o(.bss.DMATxDscrTab)
-    Rx_Buff                                  0x20000440   Data        6096  ethernetif.o(.bss.Rx_Buff)
-    Tx_Buff                                  0x20001c10   Data        6096  ethernetif.o(.bss.Tx_Buff)
-    URxbuf                                   0x200033e0   Data         200  usbd_cdc_if.o(.bss.URxbuf)
-    USBD_StrDesc                             0x200034ac   Data         512  usbd_desc.o(.bss.USBD_StrDesc)
-    UTxbuf                                   0x200036ac   Data         200  main.o(.bss.UTxbuf)
-    UserRxBufferFS                           0x20003774   Data         300  usbd_cdc_if.o(.bss.UserRxBufferFS)
-    UserTxBufferFS                           0x200038a0   Data         300  usbd_cdc_if.o(.bss.UserTxBufferFS)
-    bufptr                                   0x20003abc   Data           4  usbd_cdc_if.o(.bss.bufptr)
-    disk                                     0x20003ac0   Data          12  ff_gen_drv.o(.bss.disk)
-    hUsbDeviceFS                             0x20003ad0   Data         708  usb_device.o(.bss.hUsbDeviceFS)
-    hadc1                                    0x20003d94   Data          72  main.o(.bss.hadc1)
-    hdma_adc1                                0x20003ddc   Data          96  main.o(.bss.hdma_adc1)
-    hdma_sdio_rx                             0x20003e3c   Data          96  main.o(.bss.hdma_sdio_rx)
-    hdma_sdio_tx                             0x20003e9c   Data          96  main.o(.bss.hdma_sdio_tx)
-    hdma_spi2_rx                             0x20003efc   Data          96  main.o(.bss.hdma_spi2_rx)
-    hdma_spi2_tx                             0x20003f5c   Data          96  main.o(.bss.hdma_spi2_tx)
-    hpcd_USB_OTG_FS                          0x20003fbc   Data        1024  usbd_conf.o(.bss.hpcd_USB_OTG_FS)
-    hsd                                      0x200043bc   Data         132  main.o(.bss.hsd)
-    hspi2                                    0x20004440   Data          88  main.o(.bss.hspi2)
-    huart3                                   0x20004498   Data          64  main.o(.bss.huart3)
-    ip_data                                  0x200044d8   Data          24  ip.o(.bss.ip_data)
-    memp_memory_FRAG_PBUF_base               0x200044f2   Data         363  memp.o(.bss.memp_memory_FRAG_PBUF_base)
-    memp_memory_PBUF_POOL_base               0x2000465d   Data        9731  memp.o(.bss.memp_memory_PBUF_POOL_base)
-    memp_memory_PBUF_base                    0x20006c60   Data         259  memp.o(.bss.memp_memory_PBUF_base)
-    memp_memory_REASSDATA_base               0x20006d63   Data         163  memp.o(.bss.memp_memory_REASSDATA_base)
-    memp_memory_SYS_TIMEOUT_base             0x20006e06   Data          35  memp.o(.bss.memp_memory_SYS_TIMEOUT_base)
-    memp_memory_UDP_PCB_base                 0x20006e29   Data         131  memp.o(.bss.memp_memory_UDP_PCB_base)
-    ram_heap                                 0x20006ec4   Data        1619  mem.o(.bss.ram_heap)
-    udp_pcbs                                 0x20007518   Data           4  udp.o(.bss.udp_pcbs)
-    uwTick                                   0x2000751c   Data           4  stm32f2xx_hal.o(.bss.uwTick)
-    __heap_base                              0x20007520   Data           0  startup_stm32f207xx.o(HEAP)
-    __heap_limit                             0x20007920   Data           0  startup_stm32f207xx.o(HEAP)
-    __initial_sp                             0x20007d20   Data           0  startup_stm32f207xx.o(STACK)
+    udp_data                                 0x20000218   Data           1  udp_echoserver.o(.bss..L_MergedGlobals)
+    udp_flag                                 0x20000219   Data           1  udp_echoserver.o(.bss..L_MergedGlobals)
+    bFlag                                    0x2000021c   Data           1  main.o(.bss..L_MergedGlobals)
+    UFlag                                    0x2000021d   Data           1  main.o(.bss..L_MergedGlobals)
+    EnterFlag                                0x2000021e   Data           1  main.o(.bss..L_MergedGlobals)
+    stb0                                     0x2000021f   Data           1  main.o(.bss..L_MergedGlobals)
+    stb1                                     0x20000220   Data           1  main.o(.bss..L_MergedGlobals)
+    stb_all                                  0x20000221   Data           1  main.o(.bss..L_MergedGlobals)
+    udpIntput                                0x20000222   Data           1  main.o(.bss..L_MergedGlobals)
+    A_PLS_CNT                                0x20000224   Data           2  main.o(.bss..L_MergedGlobals)
+    adcValue                                 0x20000228   Data          16  main.o(.bss..L_MergedGlobals)
+    htim8                                    0x20000238   Data          64  main.o(.bss..L_MergedGlobals)
+    retSD                                    0x20000278   Data           1  fatfs.o(.bss..L_MergedGlobals)
+    SDPath                                   0x20000279   Data           4  fatfs.o(.bss..L_MergedGlobals)
+    EthernetLinkTimer                        0x20000280   Data           4  ethernetif.o(.bss..L_MergedGlobals)
+    heth                                     0x20000284   Data          72  ethernetif.o(.bss..L_MergedGlobals)
+    IP_ADDRESS                               0x200002cc   Data           4  lwip.o(.bss..L_MergedGlobals)
+    NETMASK_ADDRESS                          0x200002d0   Data           4  lwip.o(.bss..L_MergedGlobals)
+    GATEWAY_ADDRESS                          0x200002d4   Data           4  lwip.o(.bss..L_MergedGlobals)
+    ipaddr                                   0x200002d8   Data           4  lwip.o(.bss..L_MergedGlobals)
+    netmask                                  0x200002dc   Data           4  lwip.o(.bss..L_MergedGlobals)
+    gw                                       0x200002e0   Data           4  lwip.o(.bss..L_MergedGlobals)
+    gnetif                                   0x200002e4   Data          52  lwip.o(.bss..L_MergedGlobals)
+    netif_list                               0x20000328   Data           4  netif.o(.bss..L_MergedGlobals)
+    netif_default                            0x2000032c   Data           4  netif.o(.bss..L_MergedGlobals)
+    B_PLS_CNT                                0x20000340   Data           2  main.o(.bss.B_PLS_CNT)
+    DMARxDscrTab                             0x20000344   Data         128  ethernetif.o(.bss.DMARxDscrTab)
+    DMATxDscrTab                             0x200003c4   Data         128  ethernetif.o(.bss.DMATxDscrTab)
+    Rx_Buff                                  0x20000444   Data        6096  ethernetif.o(.bss.Rx_Buff)
+    Tx_Buff                                  0x20001c14   Data        6096  ethernetif.o(.bss.Tx_Buff)
+    URxbuf                                   0x200033e4   Data         200  usbd_cdc_if.o(.bss.URxbuf)
+    USBD_StrDesc                             0x200034b0   Data         512  usbd_desc.o(.bss.USBD_StrDesc)
+    UTxbuf                                   0x200036b0   Data         200  main.o(.bss.UTxbuf)
+    UserRxBufferFS                           0x20003778   Data         300  usbd_cdc_if.o(.bss.UserRxBufferFS)
+    UserTxBufferFS                           0x200038a4   Data         300  usbd_cdc_if.o(.bss.UserTxBufferFS)
+    bufptr                                   0x20003ac0   Data           4  usbd_cdc_if.o(.bss.bufptr)
+    disk                                     0x20003ac4   Data          12  ff_gen_drv.o(.bss.disk)
+    hUsbDeviceFS                             0x20003ad4   Data         708  usb_device.o(.bss.hUsbDeviceFS)
+    hadc1                                    0x20003d98   Data          72  main.o(.bss.hadc1)
+    hdma_adc1                                0x20003de0   Data          96  main.o(.bss.hdma_adc1)
+    hdma_sdio_rx                             0x20003e40   Data          96  main.o(.bss.hdma_sdio_rx)
+    hdma_sdio_tx                             0x20003ea0   Data          96  main.o(.bss.hdma_sdio_tx)
+    hdma_spi2_rx                             0x20003f00   Data          96  main.o(.bss.hdma_spi2_rx)
+    hdma_spi2_tx                             0x20003f60   Data          96  main.o(.bss.hdma_spi2_tx)
+    hpcd_USB_OTG_FS                          0x20003fc0   Data        1024  usbd_conf.o(.bss.hpcd_USB_OTG_FS)
+    hsd                                      0x200043c0   Data         132  main.o(.bss.hsd)
+    hspi2                                    0x20004444   Data          88  main.o(.bss.hspi2)
+    huart3                                   0x2000449c   Data          64  main.o(.bss.huart3)
+    ip_data                                  0x200044dc   Data          24  ip.o(.bss.ip_data)
+    memp_memory_FRAG_PBUF_base               0x200044f6   Data         363  memp.o(.bss.memp_memory_FRAG_PBUF_base)
+    memp_memory_PBUF_POOL_base               0x20004661   Data        9731  memp.o(.bss.memp_memory_PBUF_POOL_base)
+    memp_memory_PBUF_base                    0x20006c64   Data         259  memp.o(.bss.memp_memory_PBUF_base)
+    memp_memory_REASSDATA_base               0x20006d67   Data         163  memp.o(.bss.memp_memory_REASSDATA_base)
+    memp_memory_SYS_TIMEOUT_base             0x20006e0a   Data          35  memp.o(.bss.memp_memory_SYS_TIMEOUT_base)
+    memp_memory_UDP_PCB_base                 0x20006e2d   Data         131  memp.o(.bss.memp_memory_UDP_PCB_base)
+    ram_heap                                 0x20006ec8   Data        1619  mem.o(.bss.ram_heap)
+    udp_pcbs                                 0x2000751c   Data           4  udp.o(.bss.udp_pcbs)
+    uwTick                                   0x20007520   Data           4  stm32f2xx_hal.o(.bss.uwTick)
+    __heap_base                              0x20007528   Data           0  startup_stm32f207xx.o(HEAP)
+    __heap_limit                             0x20007928   Data           0  startup_stm32f207xx.o(HEAP)
+    __initial_sp                             0x20007d28   Data           0  startup_stm32f207xx.o(STACK)
 
 
 
@@ -6654,9 +6655,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000185
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000a1c8, Max: 0x00100000, ABSOLUTE, COMPRESSED[0x0000a0d8])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000a210, Max: 0x00100000, ABSOLUTE, COMPRESSED[0x0000a120])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00009fb0, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00009ff8, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -6689,7 +6690,7 @@ Memory Map of the image
     0x0800044e   0x0800044e   0x00000000   Code   RO         3167    .text               mc_w.l(iusesemip.o)
     0x0800044e   0x0800044e   0x0000001c   Code   RO         3170    .text               mc_w.l(_chval.o)
     0x0800046a   0x0800046a   0x00000056   Code   RO         3180    .text               mc_w.l(__dczerorl2.o)
-    0x080004c0   0x080004c0   0x0000000c   Code   RO           71    .text.ADC_IRQHandler  stm32f2xx_it.o
+    0x080004c0   0x080004c0   0x0000000c   Code   RO           84    .text.ADC_IRQHandler  stm32f2xx_it.o
     0x080004cc   0x080004cc   0x00000018   Code   RO          185    .text.BSP_PlatformIsDetected  fatfs_platform.o
     0x080004e4   0x080004e4   0x00000002   Code   RO          167    .text.BSP_SD_AbortCallback  bsp_driver_sd.o
     0x080004e6   0x080004e6   0x00000002   PAD
@@ -6703,28 +6704,28 @@ Memory Map of the image
     0x08000566   0x08000566   0x00000002   PAD
     0x08000568   0x08000568   0x00000020   Code   RO          153    .text.BSP_SD_WriteBlocks  bsp_driver_sd.o
     0x08000588   0x08000588   0x00000002   Code   RO          171    .text.BSP_SD_WriteCpltCallback  bsp_driver_sd.o
-    0x0800058a   0x0800058a   0x00000002   Code   RO           55    .text.BusFault_Handler  stm32f2xx_it.o
+    0x0800058a   0x0800058a   0x00000002   Code   RO           68    .text.BusFault_Handler  stm32f2xx_it.o
     0x0800058c   0x0800058c   0x00000004   Code   RO          250    .text.CDC_Control_FS  usbd_cdc_if.o
     0x08000590   0x08000590   0x00000004   Code   RO          248    .text.CDC_DeInit_FS  usbd_cdc_if.o
     0x08000594   0x08000594   0x00000024   Code   RO          246    .text.CDC_Init_FS   usbd_cdc_if.o
     0x080005b8   0x080005b8   0x00000198   Code   RO          252    .text.CDC_Receive_FS  usbd_cdc_if.o
     0x08000750   0x08000750   0x0000002c   Code   RO          254    .text.CDC_Transmit_FS  usbd_cdc_if.o
-    0x0800077c   0x0800077c   0x0000000c   Code   RO           67    .text.DMA1_Stream3_IRQHandler  stm32f2xx_it.o
-    0x08000788   0x08000788   0x0000000c   Code   RO           69    .text.DMA1_Stream4_IRQHandler  stm32f2xx_it.o
-    0x08000794   0x08000794   0x0000000c   Code   RO           81    .text.DMA2_Stream0_IRQHandler  stm32f2xx_it.o
-    0x080007a0   0x080007a0   0x0000000c   Code   RO           83    .text.DMA2_Stream3_IRQHandler  stm32f2xx_it.o
-    0x080007ac   0x080007ac   0x0000000c   Code   RO           91    .text.DMA2_Stream6_IRQHandler  stm32f2xx_it.o
+    0x0800077c   0x0800077c   0x0000000c   Code   RO           80    .text.DMA1_Stream3_IRQHandler  stm32f2xx_it.o
+    0x08000788   0x08000788   0x0000000c   Code   RO           82    .text.DMA1_Stream4_IRQHandler  stm32f2xx_it.o
+    0x08000794   0x08000794   0x0000000c   Code   RO           94    .text.DMA2_Stream0_IRQHandler  stm32f2xx_it.o
+    0x080007a0   0x080007a0   0x0000000c   Code   RO           96    .text.DMA2_Stream3_IRQHandler  stm32f2xx_it.o
+    0x080007ac   0x080007ac   0x0000000c   Code   RO          104    .text.DMA2_Stream6_IRQHandler  stm32f2xx_it.o
     0x080007b8   0x080007b8   0x00000030   Code   RO          754    .text.DMA_CalcBaseAndBitshift  stm32f2xx_hal_dma.o
-    0x080007e8   0x080007e8   0x00000002   Code   RO           61    .text.DebugMon_Handler  stm32f2xx_it.o
+    0x080007e8   0x080007e8   0x00000002   Code   RO           74    .text.DebugMon_Handler  stm32f2xx_it.o
     0x080007ea   0x080007ea   0x00000002   PAD
     0x080007ec   0x080007ec   0x00000020   Code   RO          435    .text.ETH_Delay     stm32f2xx_hal_eth.o
     0x0800080c   0x0800080c   0x00000026   Code   RO          425    .text.ETH_FlushTransmitFIFO  stm32f2xx_hal_eth.o
     0x08000832   0x08000832   0x00000002   PAD
-    0x08000834   0x08000834   0x00000008   Code   RO           85    .text.ETH_IRQHandler  stm32f2xx_it.o
+    0x08000834   0x08000834   0x00000008   Code   RO           98    .text.ETH_IRQHandler  stm32f2xx_it.o
     0x0800083c   0x0800083c   0x000000e8   Code   RO          397    .text.ETH_MACDMAConfig  stm32f2xx_hal_eth.o
-    0x08000924   0x08000924   0x0000000c   Code   RO           87    .text.ETH_WKUP_IRQHandler  stm32f2xx_it.o
-    0x08000930   0x08000930   0x0000002c   Code   RO           77    .text.EXTI15_10_IRQHandler  stm32f2xx_it.o
-    0x0800095c   0x0800095c   0x00000002   Code   RO           21    .text.Error_Handler  main.o
+    0x08000924   0x08000924   0x0000000c   Code   RO          100    .text.ETH_WKUP_IRQHandler  stm32f2xx_it.o
+    0x08000930   0x08000930   0x0000002c   Code   RO           90    .text.EXTI15_10_IRQHandler  stm32f2xx_it.o
+    0x0800095c   0x0800095c   0x00000002   Code   RO           34    .text.Error_Handler  main.o
     0x0800095e   0x0800095e   0x00000006   Code   RO         2113    .text.FATFS_LinkDriver  ff_gen_drv.o
     0x08000964   0x08000964   0x00000040   Code   RO         2111    .text.FATFS_LinkDriverEx  ff_gen_drv.o
     0x080009a4   0x080009a4   0x00000002   Code   RO         1171    .text.HAL_ADCEx_InjectedConvCpltCallback  stm32f2xx_hal_adc_ex.o
@@ -6737,7 +6738,7 @@ Memory Map of the image
     0x08000bd4   0x08000bd4   0x00000140   Code   RO         1089    .text.HAL_ADC_Init  stm32f2xx_hal_adc.o
     0x08000d14   0x08000d14   0x00000002   Code   RO         1113    .text.HAL_ADC_LevelOutOfWindowCallback  stm32f2xx_hal_adc.o
     0x08000d16   0x08000d16   0x00000002   PAD
-    0x08000d18   0x08000d18   0x000000b4   Code   RO          102    .text.HAL_ADC_MspInit  stm32f2xx_hal_msp.o
+    0x08000d18   0x08000d18   0x000000b4   Code   RO          115    .text.HAL_ADC_MspInit  stm32f2xx_hal_msp.o
     0x08000dcc   0x08000dcc   0x00000024   Code   RO          766    .text.HAL_DMA_Abort_IT  stm32f2xx_hal_dma.o
     0x08000df0   0x08000df0   0x00000170   Code   RO          770    .text.HAL_DMA_IRQHandler  stm32f2xx_hal_dma.o
     0x08000f60   0x08000f60   0x00000118   Code   RO          752    .text.HAL_DMA_Init  stm32f2xx_hal_dma.o
@@ -6758,7 +6759,7 @@ Memory Map of the image
     0x080017f8   0x080017f8   0x000000e0   Code   RO          409    .text.HAL_ETH_TransmitFrame  stm32f2xx_hal_eth.o
     0x080018d8   0x080018d8   0x00000002   Code   RO          419    .text.HAL_ETH_TxCpltCallback  stm32f2xx_hal_eth.o
     0x080018da   0x080018da   0x0000006a   Code   RO          395    .text.HAL_ETH_WritePHYRegister  stm32f2xx_hal_eth.o
-    0x08001944   0x08001944   0x0000005c   Code   RO           15    .text.HAL_GPIO_EXTI_Callback  main.o
+    0x08001944   0x08001944   0x0000005c   Code   RO           28    .text.HAL_GPIO_EXTI_Callback  main.o
     0x080019a0   0x080019a0   0x00000014   Code   RO          740    .text.HAL_GPIO_EXTI_IRQHandler  stm32f2xx_hal_gpio.o
     0x080019b4   0x080019b4   0x00000184   Code   RO          728    .text.HAL_GPIO_Init  stm32f2xx_hal_gpio.o
     0x08001b38   0x08001b38   0x0000000a   Code   RO          732    .text.HAL_GPIO_ReadPin  stm32f2xx_hal_gpio.o
@@ -6768,7 +6769,7 @@ Memory Map of the image
     0x08001b60   0x08001b60   0x00000014   Code   RO          455    .text.HAL_IncTick   stm32f2xx_hal.o
     0x08001b74   0x08001b74   0x00000034   Code   RO          445    .text.HAL_Init      stm32f2xx_hal.o
     0x08001ba8   0x08001ba8   0x00000040   Code   RO          447    .text.HAL_InitTick  stm32f2xx_hal.o
-    0x08001be8   0x08001be8   0x00000038   Code   RO          100    .text.HAL_MspInit   stm32f2xx_hal_msp.o
+    0x08001be8   0x08001be8   0x00000038   Code   RO          113    .text.HAL_MspInit   stm32f2xx_hal_msp.o
     0x08001c20   0x08001c20   0x0000001c   Code   RO          563    .text.HAL_NVIC_EnableIRQ  stm32f2xx_hal_cortex.o
     0x08001c3c   0x08001c3c   0x00000038   Code   RO          559    .text.HAL_NVIC_SetPriority  stm32f2xx_hal_cortex.o
     0x08001c74   0x08001c74   0x00000020   Code   RO          557    .text.HAL_NVIC_SetPriorityGrouping  stm32f2xx_hal_cortex.o
@@ -6815,7 +6816,7 @@ Memory Map of the image
     0x08002ee0   0x08002ee0   0x00000210   Code   RO         1305    .text.HAL_SD_IRQHandler  stm32f2xx_hal_sd.o
     0x080030f0   0x080030f0   0x0000003c   Code   RO         1275    .text.HAL_SD_Init   stm32f2xx_hal_sd.o
     0x0800312c   0x0800312c   0x000001b8   Code   RO         1279    .text.HAL_SD_InitCard  stm32f2xx_hal_sd.o
-    0x080032e4   0x080032e4   0x00000180   Code   RO          106    .text.HAL_SD_MspInit  stm32f2xx_hal_msp.o
+    0x080032e4   0x080032e4   0x00000180   Code   RO          119    .text.HAL_SD_MspInit  stm32f2xx_hal_msp.o
     0x08003464   0x08003464   0x000001f4   Code   RO         1285    .text.HAL_SD_ReadBlocks  stm32f2xx_hal_sd.o
     0x08003658   0x08003658   0x00000004   Code   RO          173    .text.HAL_SD_RxCpltCallback  bsp_driver_sd.o
     0x0800365c   0x0800365c   0x00000004   Code   RO          169    .text.HAL_SD_TxCpltCallback  bsp_driver_sd.o
@@ -6824,15 +6825,15 @@ Memory Map of the image
     0x08003836   0x08003836   0x00000002   PAD
     0x08003838   0x08003838   0x00000108   Code   RO         1429    .text.HAL_SPI_IRQHandler  stm32f2xx_hal_spi.o
     0x08003940   0x08003940   0x00000078   Code   RO         1349    .text.HAL_SPI_Init  stm32f2xx_hal_spi.o
-    0x080039b8   0x080039b8   0x00000118   Code   RO          110    .text.HAL_SPI_MspInit  stm32f2xx_hal_msp.o
+    0x080039b8   0x080039b8   0x00000118   Code   RO          123    .text.HAL_SPI_MspInit  stm32f2xx_hal_msp.o
     0x08003ad0   0x08003ad0   0x00000028   Code   RO          571    .text.HAL_SYSTICK_Config  stm32f2xx_hal_cortex.o
     0x08003af8   0x08003af8   0x0000003a   Code   RO         1761    .text.HAL_TIMEx_MasterConfigSynchronization  stm32f2xx_hal_tim_ex.o
     0x08003b32   0x08003b32   0x00000092   Code   RO         1581    .text.HAL_TIM_Encoder_Init  stm32f2xx_hal_tim.o
-    0x08003bc4   0x08003bc4   0x00000060   Code   RO          114    .text.HAL_TIM_Encoder_MspInit  stm32f2xx_hal_msp.o
+    0x08003bc4   0x08003bc4   0x00000060   Code   RO          127    .text.HAL_TIM_Encoder_MspInit  stm32f2xx_hal_msp.o
     0x08003c24   0x08003c24   0x00000030   Code   RO         1589    .text.HAL_TIM_Encoder_Start  stm32f2xx_hal_tim.o
     0x08003c54   0x08003c54   0x0000005c   Code   RO         1846    .text.HAL_UART_Init  stm32f2xx_hal_uart.o
-    0x08003cb0   0x08003cb0   0x0000006c   Code   RO          118    .text.HAL_UART_MspInit  stm32f2xx_hal_msp.o
-    0x08003d1c   0x08003d1c   0x00000002   Code   RO           51    .text.HardFault_Handler  stm32f2xx_it.o
+    0x08003cb0   0x08003cb0   0x0000006c   Code   RO          131    .text.HAL_UART_MspInit  stm32f2xx_hal_msp.o
+    0x08003d1c   0x08003d1c   0x00000002   Code   RO           64    .text.HardFault_Handler  stm32f2xx_it.o
     0x08003d1e   0x08003d1e   0x00000030   Code   RO          231    .text.IntToUnicode  usbd_desc.o
     0x08003d4e   0x08003d4e   0x00000002   PAD
     0x08003d50   0x08003d50   0x000000d0   Code   RO         1787    .text.LL_TIM_Init   stm32f2xx_ll_tim.o
@@ -6840,14 +6841,14 @@ Memory Map of the image
     0x08003e38   0x08003e38   0x00000080   Code   RO          370    .text.MX_LWIP_Init  lwip.o
     0x08003eb8   0x08003eb8   0x00000018   Code   RO          372    .text.MX_LWIP_Process  lwip.o
     0x08003ed0   0x08003ed0   0x00000050   Code   RO          208    .text.MX_USB_DEVICE_Init  usb_device.o
-    0x08003f20   0x08003f20   0x00000002   Code   RO           53    .text.MemManage_Handler  stm32f2xx_it.o
-    0x08003f22   0x08003f22   0x00000002   Code   RO           49    .text.NMI_Handler   stm32f2xx_it.o
-    0x08003f24   0x08003f24   0x0000000c   Code   RO           89    .text.OTG_FS_IRQHandler  stm32f2xx_it.o
-    0x08003f30   0x08003f30   0x00000002   Code   RO           63    .text.PendSV_Handler  stm32f2xx_it.o
+    0x08003f20   0x08003f20   0x00000002   Code   RO           66    .text.MemManage_Handler  stm32f2xx_it.o
+    0x08003f22   0x08003f22   0x00000002   Code   RO           62    .text.NMI_Handler   stm32f2xx_it.o
+    0x08003f24   0x08003f24   0x0000000c   Code   RO          102    .text.OTG_FS_IRQHandler  stm32f2xx_it.o
+    0x08003f30   0x08003f30   0x00000002   Code   RO           76    .text.PendSV_Handler  stm32f2xx_it.o
     0x08003f32   0x08003f32   0x00000024   Code   RO         1203    .text.SDIO_ConfigData  stm32f2xx_ll_sdmmc.o
     0x08003f56   0x08003f56   0x00000008   Code   RO         1195    .text.SDIO_GetPowerState  stm32f2xx_ll_sdmmc.o
     0x08003f5e   0x08003f5e   0x00000006   Code   RO         1201    .text.SDIO_GetResponse  stm32f2xx_ll_sdmmc.o
-    0x08003f64   0x08003f64   0x0000000c   Code   RO           79    .text.SDIO_IRQHandler  stm32f2xx_it.o
+    0x08003f64   0x08003f64   0x0000000c   Code   RO           92    .text.SDIO_IRQHandler  stm32f2xx_it.o
     0x08003f70   0x08003f70   0x00000022   Code   RO         1185    .text.SDIO_Init     stm32f2xx_ll_sdmmc.o
     0x08003f92   0x08003f92   0x00000010   Code   RO         1191    .text.SDIO_PowerState_ON  stm32f2xx_ll_sdmmc.o
     0x08003fa2   0x08003fa2   0x00000006   Code   RO         1187    .text.SDIO_ReadFIFO  stm32f2xx_ll_sdmmc.o
@@ -6882,14 +6883,14 @@ Memory Map of the image
     0x08004768   0x08004768   0x00000028   Code   RO         2135    .text.SD_read       sd_diskio.o
     0x08004790   0x08004790   0x00000020   Code   RO         2133    .text.SD_status     sd_diskio.o
     0x080047b0   0x080047b0   0x00000030   Code   RO         2137    .text.SD_write      sd_diskio.o
-    0x080047e0   0x080047e0   0x0000000c   Code   RO           75    .text.SPI2_IRQHandler  stm32f2xx_it.o
+    0x080047e0   0x080047e0   0x0000000c   Code   RO           88    .text.SPI2_IRQHandler  stm32f2xx_it.o
     0x080047ec   0x080047ec   0x0000000c   Code   RO         1431    .text.SPI_DMAAbortOnError  stm32f2xx_hal_spi.o
-    0x080047f8   0x080047f8   0x00000002   Code   RO           59    .text.SVC_Handler   stm32f2xx_it.o
-    0x080047fa   0x080047fa   0x00000004   Code   RO           65    .text.SysTick_Handler  stm32f2xx_it.o
-    0x080047fe   0x080047fe   0x00000054   Code   RO           19    .text.SystemClock_Config  main.o
+    0x080047f8   0x080047f8   0x00000002   Code   RO           72    .text.SVC_Handler   stm32f2xx_it.o
+    0x080047fa   0x080047fa   0x00000004   Code   RO           78    .text.SysTick_Handler  stm32f2xx_it.o
+    0x080047fe   0x080047fe   0x00000054   Code   RO           32    .text.SystemClock_Config  main.o
     0x08004852   0x08004852   0x00000002   PAD
     0x08004854   0x08004854   0x00000040   Code   RO         1958    .text.SystemInit    system_stm32f2xx.o
-    0x08004894   0x08004894   0x00000020   Code   RO           73    .text.TIM3_IRQHandler  stm32f2xx_it.o
+    0x08004894   0x08004894   0x00000020   Code   RO           86    .text.TIM3_IRQHandler  stm32f2xx_it.o
     0x080048b4   0x080048b4   0x000000d4   Code   RO         1471    .text.TIM_Base_SetConfig  stm32f2xx_hal_tim.o
     0x08004988   0x08004988   0x0000001e   Code   RO         1505    .text.TIM_CCxChannelCmd  stm32f2xx_hal_tim.o
     0x080049a6   0x080049a6   0x00000002   PAD
@@ -6991,7 +6992,7 @@ Memory Map of the image
     0x08005ea8   0x08005ea8   0x00000020   Code   RO         1028    .text.USB_SetDevAddress  stm32f2xx_ll_usb.o
     0x08005ec8   0x08005ec8   0x000000f0   Code   RO          988    .text.USB_SetTurnaroundTime  stm32f2xx_ll_usb.o
     0x08005fb8   0x08005fb8   0x00000022   Code   RO         1016    .text.USB_WritePacket  stm32f2xx_ll_usb.o
-    0x08005fda   0x08005fda   0x00000002   Code   RO           57    .text.UsageFault_Handler  stm32f2xx_it.o
+    0x08005fda   0x08005fda   0x00000002   Code   RO           70    .text.UsageFault_Handler  stm32f2xx_it.o
     0x08005fdc   0x08005fdc   0x00000024   Code   RO          561    .text.__NVIC_SetPriority  stm32f2xx_hal_cortex.o
     0x08006000   0x08006000   0x0000001c   Code   RO         2448    .text.cyclic_timer  timeouts.o
     0x0800601c   0x0800601c   0x00000048   Code   RO         2306    .text.do_memp_free_pool  memp.o
@@ -7036,104 +7037,104 @@ Memory Map of the image
     0x08007b50   0x08007b50   0x00000004   Code   RO         2215    .text.lwip_htons    def.o
     0x08007b54   0x08007b54   0x0000001a   Code   RO         2259    .text.lwip_init     init.o
     0x08007b6e   0x08007b6e   0x00000002   PAD
-    0x08007b70   0x08007b70   0x00000590   Code   RO           17    .text.main          main.o
-    0x08008100   0x08008100   0x0000019c   Code   RO         2275    .text.mem_free      mem.o
-    0x0800829c   0x0800829c   0x00000034   Code   RO         2273    .text.mem_init      mem.o
-    0x080082d0   0x080082d0   0x00000180   Code   RO         2279    .text.mem_malloc    mem.o
-    0x08008450   0x08008450   0x0000013c   Code   RO         2277    .text.mem_trim      mem.o
-    0x0800858c   0x0800858c   0x00000040   Code   RO         2308    .text.memp_free     memp.o
-    0x080085cc   0x080085cc   0x00000018   Code   RO         2296    .text.memp_init     memp.o
-    0x080085e4   0x080085e4   0x00000026   Code   RO         2294    .text.memp_init_pool  memp.o
-    0x0800860a   0x0800860a   0x00000002   PAD
-    0x0800860c   0x0800860c   0x00000054   Code   RO         2302    .text.memp_malloc   memp.o
-    0x08008660   0x08008660   0x000000e0   Code   RO         2342    .text.netif_add     netif.o
-    0x08008740   0x08008740   0x00000002   Code   RO         2338    .text.netif_init    netif.o
-    0x08008742   0x08008742   0x0000001a   Code   RO         2360    .text.netif_issue_reports  netif.o
-    0x0800875c   0x0800875c   0x00000048   Code   RO         2344    .text.netif_set_addr  netif.o
-    0x080087a4   0x080087a4   0x0000000c   Code   RO         2356    .text.netif_set_default  netif.o
-    0x080087b0   0x080087b0   0x0000001a   Code   RO         2354    .text.netif_set_down  netif.o
-    0x080087ca   0x080087ca   0x00000002   PAD
-    0x080087cc   0x080087cc   0x0000003c   Code   RO         2346    .text.netif_set_ipaddr  netif.o
-    0x08008808   0x08008808   0x00000006   Code   RO         2368    .text.netif_set_link_callback  netif.o
-    0x0800880e   0x0800880e   0x0000001c   Code   RO         2362    .text.netif_set_up  netif.o
-    0x0800882a   0x0800882a   0x00000002   PAD
-    0x0800882c   0x0800882c   0x0000022c   Code   RO         2379    .text.pbuf_alloc    pbuf.o
-    0x08008a58   0x08008a58   0x00000088   Code   RO         2383    .text.pbuf_alloced_custom  pbuf.o
-    0x08008ae0   0x08008ae0   0x000000e0   Code   RO         2397    .text.pbuf_cat      pbuf.o
-    0x08008bc0   0x08008bc0   0x00000012   Code   RO         2399    .text.pbuf_chain    pbuf.o
-    0x08008bd2   0x08008bd2   0x0000000e   Code   RO         2393    .text.pbuf_clen     pbuf.o
-    0x08008be0   0x08008be0   0x0000018c   Code   RO         2403    .text.pbuf_copy     pbuf.o
-    0x08008d6c   0x08008d6c   0x00000110   Code   RO         2381    .text.pbuf_free     pbuf.o
-    0x08008e7c   0x08008e7c   0x00000006   Code   RO         2387    .text.pbuf_header   pbuf.o
-    0x08008e82   0x08008e82   0x00000006   Code   RO         2391    .text.pbuf_header_force  pbuf.o
-    0x08008e88   0x08008e88   0x000000cc   Code   RO         2389    .text.pbuf_header_impl  pbuf.o
-    0x08008f54   0x08008f54   0x00000144   Code   RO         2385    .text.pbuf_realloc  pbuf.o
-    0x08009098   0x08009098   0x0000003c   Code   RO         2395    .text.pbuf_ref      pbuf.o
-    0x080090d4   0x080090d4   0x00000050   Code   RO         2452    .text.sys_check_timeouts  timeouts.o
-    0x08009124   0x08009124   0x00000004   Code   RO          349    .text.sys_now       ethernetif.o
-    0x08009128   0x08009128   0x000000fc   Code   RO         2446    .text.sys_timeout   timeouts.o
-    0x08009224   0x08009224   0x00000030   Code   RO         2444    .text.sys_timeouts_init  timeouts.o
-    0x08009254   0x08009254   0x000000b0   Code   RO         2481    .text.udp_bind      udp.o
-    0x08009304   0x08009304   0x0000004c   Code   RO         2483    .text.udp_connect   udp.o
-    0x08009350   0x08009350   0x00000010   Code   RO         2485    .text.udp_disconnect  udp.o
-    0x08009360   0x08009360   0x00000034   Code   RO          130    .text.udp_echoserver_init  udp_echoserver.o
-    0x08009394   0x08009394   0x0000004c   Code   RO          132    .text.udp_echoserver_receive_callback  udp_echoserver.o
-    0x080093e0   0x080093e0   0x00000002   Code   RO         2469    .text.udp_init      udp.o
-    0x080093e2   0x080093e2   0x00000002   PAD
-    0x080093e4   0x080093e4   0x00000138   Code   RO         2471    .text.udp_input     udp.o
-    0x0800951c   0x0800951c   0x0000002c   Code   RO         2495    .text.udp_netif_ip_addr_changed  udp.o
-    0x08009548   0x08009548   0x0000001c   Code   RO         2491    .text.udp_new       udp.o
-    0x08009564   0x08009564   0x00000006   Code   RO         2487    .text.udp_recv      udp.o
-    0x0800956a   0x0800956a   0x00000010   Code   RO         2473    .text.udp_send      udp.o
-    0x0800957a   0x0800957a   0x0000002e   Code   RO         2475    .text.udp_sendto    udp.o
-    0x080095a8   0x080095a8   0x00000030   Code   RO         2477    .text.udp_sendto_if  udp.o
-    0x080095d8   0x080095d8   0x000000ec   Code   RO         2479    .text.udp_sendto_if_src  udp.o
-    0x080096c4   0x080096c4   0x00000020   Code   RO         2949    i.__0printf$6       mc_w.l(printf6.o)
-    0x080096e4   0x080096e4   0x00000028   Code   RO         2951    i.__0sprintf$6      mc_w.l(printf6.o)
-    0x0800970c   0x0800970c   0x00000008   Code   RO         3112    i.__aeabi_errno_addr  mc_w.l(errno.o)
-    0x08009714   0x08009714   0x0000000e   Code   RO         3174    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08009722   0x08009722   0x00000002   Code   RO         3175    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08009724   0x08009724   0x0000000e   Code   RO         3176    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x08009732   0x08009732   0x00000002   PAD
-    0x08009734   0x08009734   0x000002f0   Code   RO         2956    i._printf_core      mc_w.l(printf6.o)
-    0x08009a24   0x08009a24   0x00000024   Code   RO         2957    i._printf_post_padding  mc_w.l(printf6.o)
-    0x08009a48   0x08009a48   0x0000002e   Code   RO         2958    i._printf_pre_padding  mc_w.l(printf6.o)
-    0x08009a76   0x08009a76   0x0000000a   Code   RO         2960    i._sputc            mc_w.l(printf6.o)
-    0x08009a80   0x08009a80   0x00000012   Code   RO         3099    i.fputc             mc_w.l(fputc.o)
-    0x08009a92   0x08009a92   0x00000002   PAD
-    0x08009a94   0x08009a94   0x00000050   Code   RO         3055    i.free              mc_w.l(malloc.o)
-    0x08009ae4   0x08009ae4   0x0000006c   Code   RO         3056    i.malloc            mc_w.l(malloc.o)
-    0x08009b50   0x08009b50   0x00000081   Data   RO         3138    .constdata          mc_w.l(ctype_o.o)
-    0x08009bd1   0x08009bd1   0x00000003   PAD
-    0x08009bd4   0x08009bd4   0x00000004   Data   RO         3139    .constdata          mc_w.l(ctype_o.o)
-    0x08009bd8   0x08009bd8   0x00000010   Data   RO         1963    .rodata.AHBPrescTable  system_stm32f2xx.o
-    0x08009be8   0x08009be8   0x00000008   Data   RO         1964    .rodata.APBPrescTable  system_stm32f2xx.o
-    0x08009bf0   0x08009bf0   0x00000014   Data   RO         2141    .rodata.SD_Driver   sd_diskio.o
-    0x08009c04   0x08009c04   0x00000006   Data   RO         2179    .rodata.ethbroadcast  ethernet.o
-    0x08009c0a   0x08009c0a   0x00000006   Data   RO         2180    .rodata.ethzero     ethernet.o
-    0x08009c10   0x08009c10   0x00000004   Data   RO         2597    .rodata.ip_addr_any  ip4_addr.o
-    0x08009c14   0x08009c14   0x00000010   Data   RO         2458    .rodata.lwip_cyclic_timers  timeouts.o
-    0x08009c24   0x08009c24   0x0000000c   Data   RO         2318    .rodata.memp_FRAG_PBUF  memp.o
-    0x08009c30   0x08009c30   0x0000000c   Data   RO         2324    .rodata.memp_PBUF   memp.o
-    0x08009c3c   0x08009c3c   0x0000000c   Data   RO         2327    .rodata.memp_PBUF_POOL  memp.o
-    0x08009c48   0x08009c48   0x0000000c   Data   RO         2315    .rodata.memp_REASSDATA  memp.o
-    0x08009c54   0x08009c54   0x0000000c   Data   RO         2321    .rodata.memp_SYS_TIMEOUT  memp.o
-    0x08009c60   0x08009c60   0x0000000c   Data   RO         2312    .rodata.memp_UDP_PCB  memp.o
-    0x08009c6c   0x08009c6c   0x00000018   Data   RO         2328    .rodata.memp_pools  memp.o
-    0x08009c84   0x08009c84   0x00000028   Data   RO         2181    .rodata.str1.1      ethernet.o
-    0x08009cac   0x08009cac   0x00000097   Data   RO         2284    .rodata.str1.1      mem.o
-    0x08009d43   0x08009d43   0x00000030   Data   RO         2329    .rodata.str1.1      memp.o
-    0x08009d73   0x08009d73   0x00000095   Data   RO         2429    .rodata.str1.1      pbuf.o
-    0x08009e08   0x08009e08   0x0000002f   Data   RO         2498    .rodata.str1.1      udp.o
-    0x08009e37   0x08009e37   0x000000a8   Data   RO         2537    .rodata.str1.1      etharp.o
-    0x08009edf   0x08009edf   0x00000035   Data   RO         2555    .rodata.str1.1      icmp.o
-    0x08009f14   0x08009f14   0x00000040   Data   RO         2575    .rodata.str1.1      ip4.o
-    0x08009f54   0x08009f54   0x00000039   Data   RO         2624    .rodata.str1.1      ip4_frag.o
-    0x08009f8d   0x08009f8d   0x00000003   PAD
-    0x08009f90   0x08009f90   0x00000020   Data   RO         3173    Region$$Table       anon$$obj.o
+    0x08007b70   0x08007b70   0x000005d8   Code   RO           30    .text.main          main.o
+    0x08008148   0x08008148   0x0000019c   Code   RO         2275    .text.mem_free      mem.o
+    0x080082e4   0x080082e4   0x00000034   Code   RO         2273    .text.mem_init      mem.o
+    0x08008318   0x08008318   0x00000180   Code   RO         2279    .text.mem_malloc    mem.o
+    0x08008498   0x08008498   0x0000013c   Code   RO         2277    .text.mem_trim      mem.o
+    0x080085d4   0x080085d4   0x00000040   Code   RO         2308    .text.memp_free     memp.o
+    0x08008614   0x08008614   0x00000018   Code   RO         2296    .text.memp_init     memp.o
+    0x0800862c   0x0800862c   0x00000026   Code   RO         2294    .text.memp_init_pool  memp.o
+    0x08008652   0x08008652   0x00000002   PAD
+    0x08008654   0x08008654   0x00000054   Code   RO         2302    .text.memp_malloc   memp.o
+    0x080086a8   0x080086a8   0x000000e0   Code   RO         2342    .text.netif_add     netif.o
+    0x08008788   0x08008788   0x00000002   Code   RO         2338    .text.netif_init    netif.o
+    0x0800878a   0x0800878a   0x0000001a   Code   RO         2360    .text.netif_issue_reports  netif.o
+    0x080087a4   0x080087a4   0x00000048   Code   RO         2344    .text.netif_set_addr  netif.o
+    0x080087ec   0x080087ec   0x0000000c   Code   RO         2356    .text.netif_set_default  netif.o
+    0x080087f8   0x080087f8   0x0000001a   Code   RO         2354    .text.netif_set_down  netif.o
+    0x08008812   0x08008812   0x00000002   PAD
+    0x08008814   0x08008814   0x0000003c   Code   RO         2346    .text.netif_set_ipaddr  netif.o
+    0x08008850   0x08008850   0x00000006   Code   RO         2368    .text.netif_set_link_callback  netif.o
+    0x08008856   0x08008856   0x0000001c   Code   RO         2362    .text.netif_set_up  netif.o
+    0x08008872   0x08008872   0x00000002   PAD
+    0x08008874   0x08008874   0x0000022c   Code   RO         2379    .text.pbuf_alloc    pbuf.o
+    0x08008aa0   0x08008aa0   0x00000088   Code   RO         2383    .text.pbuf_alloced_custom  pbuf.o
+    0x08008b28   0x08008b28   0x000000e0   Code   RO         2397    .text.pbuf_cat      pbuf.o
+    0x08008c08   0x08008c08   0x00000012   Code   RO         2399    .text.pbuf_chain    pbuf.o
+    0x08008c1a   0x08008c1a   0x0000000e   Code   RO         2393    .text.pbuf_clen     pbuf.o
+    0x08008c28   0x08008c28   0x0000018c   Code   RO         2403    .text.pbuf_copy     pbuf.o
+    0x08008db4   0x08008db4   0x00000110   Code   RO         2381    .text.pbuf_free     pbuf.o
+    0x08008ec4   0x08008ec4   0x00000006   Code   RO         2387    .text.pbuf_header   pbuf.o
+    0x08008eca   0x08008eca   0x00000006   Code   RO         2391    .text.pbuf_header_force  pbuf.o
+    0x08008ed0   0x08008ed0   0x000000cc   Code   RO         2389    .text.pbuf_header_impl  pbuf.o
+    0x08008f9c   0x08008f9c   0x00000144   Code   RO         2385    .text.pbuf_realloc  pbuf.o
+    0x080090e0   0x080090e0   0x0000003c   Code   RO         2395    .text.pbuf_ref      pbuf.o
+    0x0800911c   0x0800911c   0x00000050   Code   RO         2452    .text.sys_check_timeouts  timeouts.o
+    0x0800916c   0x0800916c   0x00000004   Code   RO          349    .text.sys_now       ethernetif.o
+    0x08009170   0x08009170   0x000000fc   Code   RO         2446    .text.sys_timeout   timeouts.o
+    0x0800926c   0x0800926c   0x00000030   Code   RO         2444    .text.sys_timeouts_init  timeouts.o
+    0x0800929c   0x0800929c   0x000000b0   Code   RO         2481    .text.udp_bind      udp.o
+    0x0800934c   0x0800934c   0x0000004c   Code   RO         2483    .text.udp_connect   udp.o
+    0x08009398   0x08009398   0x00000010   Code   RO         2485    .text.udp_disconnect  udp.o
+    0x080093a8   0x080093a8   0x00000034   Code   RO           11    .text.udp_echoserver_init  udp_echoserver.o
+    0x080093dc   0x080093dc   0x0000004c   Code   RO           13    .text.udp_echoserver_receive_callback  udp_echoserver.o
+    0x08009428   0x08009428   0x00000002   Code   RO         2469    .text.udp_init      udp.o
+    0x0800942a   0x0800942a   0x00000002   PAD
+    0x0800942c   0x0800942c   0x00000138   Code   RO         2471    .text.udp_input     udp.o
+    0x08009564   0x08009564   0x0000002c   Code   RO         2495    .text.udp_netif_ip_addr_changed  udp.o
+    0x08009590   0x08009590   0x0000001c   Code   RO         2491    .text.udp_new       udp.o
+    0x080095ac   0x080095ac   0x00000006   Code   RO         2487    .text.udp_recv      udp.o
+    0x080095b2   0x080095b2   0x00000010   Code   RO         2473    .text.udp_send      udp.o
+    0x080095c2   0x080095c2   0x0000002e   Code   RO         2475    .text.udp_sendto    udp.o
+    0x080095f0   0x080095f0   0x00000030   Code   RO         2477    .text.udp_sendto_if  udp.o
+    0x08009620   0x08009620   0x000000ec   Code   RO         2479    .text.udp_sendto_if_src  udp.o
+    0x0800970c   0x0800970c   0x00000020   Code   RO         2949    i.__0printf$6       mc_w.l(printf6.o)
+    0x0800972c   0x0800972c   0x00000028   Code   RO         2951    i.__0sprintf$6      mc_w.l(printf6.o)
+    0x08009754   0x08009754   0x00000008   Code   RO         3112    i.__aeabi_errno_addr  mc_w.l(errno.o)
+    0x0800975c   0x0800975c   0x0000000e   Code   RO         3174    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0800976a   0x0800976a   0x00000002   Code   RO         3175    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0800976c   0x0800976c   0x0000000e   Code   RO         3176    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0800977a   0x0800977a   0x00000002   PAD
+    0x0800977c   0x0800977c   0x000002f0   Code   RO         2956    i._printf_core      mc_w.l(printf6.o)
+    0x08009a6c   0x08009a6c   0x00000024   Code   RO         2957    i._printf_post_padding  mc_w.l(printf6.o)
+    0x08009a90   0x08009a90   0x0000002e   Code   RO         2958    i._printf_pre_padding  mc_w.l(printf6.o)
+    0x08009abe   0x08009abe   0x0000000a   Code   RO         2960    i._sputc            mc_w.l(printf6.o)
+    0x08009ac8   0x08009ac8   0x00000012   Code   RO         3099    i.fputc             mc_w.l(fputc.o)
+    0x08009ada   0x08009ada   0x00000002   PAD
+    0x08009adc   0x08009adc   0x00000050   Code   RO         3055    i.free              mc_w.l(malloc.o)
+    0x08009b2c   0x08009b2c   0x0000006c   Code   RO         3056    i.malloc            mc_w.l(malloc.o)
+    0x08009b98   0x08009b98   0x00000081   Data   RO         3138    .constdata          mc_w.l(ctype_o.o)
+    0x08009c19   0x08009c19   0x00000003   PAD
+    0x08009c1c   0x08009c1c   0x00000004   Data   RO         3139    .constdata          mc_w.l(ctype_o.o)
+    0x08009c20   0x08009c20   0x00000010   Data   RO         1963    .rodata.AHBPrescTable  system_stm32f2xx.o
+    0x08009c30   0x08009c30   0x00000008   Data   RO         1964    .rodata.APBPrescTable  system_stm32f2xx.o
+    0x08009c38   0x08009c38   0x00000014   Data   RO         2141    .rodata.SD_Driver   sd_diskio.o
+    0x08009c4c   0x08009c4c   0x00000006   Data   RO         2179    .rodata.ethbroadcast  ethernet.o
+    0x08009c52   0x08009c52   0x00000006   Data   RO         2180    .rodata.ethzero     ethernet.o
+    0x08009c58   0x08009c58   0x00000004   Data   RO         2597    .rodata.ip_addr_any  ip4_addr.o
+    0x08009c5c   0x08009c5c   0x00000010   Data   RO         2458    .rodata.lwip_cyclic_timers  timeouts.o
+    0x08009c6c   0x08009c6c   0x0000000c   Data   RO         2318    .rodata.memp_FRAG_PBUF  memp.o
+    0x08009c78   0x08009c78   0x0000000c   Data   RO         2324    .rodata.memp_PBUF   memp.o
+    0x08009c84   0x08009c84   0x0000000c   Data   RO         2327    .rodata.memp_PBUF_POOL  memp.o
+    0x08009c90   0x08009c90   0x0000000c   Data   RO         2315    .rodata.memp_REASSDATA  memp.o
+    0x08009c9c   0x08009c9c   0x0000000c   Data   RO         2321    .rodata.memp_SYS_TIMEOUT  memp.o
+    0x08009ca8   0x08009ca8   0x0000000c   Data   RO         2312    .rodata.memp_UDP_PCB  memp.o
+    0x08009cb4   0x08009cb4   0x00000018   Data   RO         2328    .rodata.memp_pools  memp.o
+    0x08009ccc   0x08009ccc   0x00000028   Data   RO         2181    .rodata.str1.1      ethernet.o
+    0x08009cf4   0x08009cf4   0x00000097   Data   RO         2284    .rodata.str1.1      mem.o
+    0x08009d8b   0x08009d8b   0x00000030   Data   RO         2329    .rodata.str1.1      memp.o
+    0x08009dbb   0x08009dbb   0x00000095   Data   RO         2429    .rodata.str1.1      pbuf.o
+    0x08009e50   0x08009e50   0x0000002f   Data   RO         2498    .rodata.str1.1      udp.o
+    0x08009e7f   0x08009e7f   0x000000a8   Data   RO         2537    .rodata.str1.1      etharp.o
+    0x08009f27   0x08009f27   0x00000035   Data   RO         2555    .rodata.str1.1      icmp.o
+    0x08009f5c   0x08009f5c   0x00000040   Data   RO         2575    .rodata.str1.1      ip4.o
+    0x08009f9c   0x08009f9c   0x00000039   Data   RO         2624    .rodata.str1.1      ip4_frag.o
+    0x08009fd5   0x08009fd5   0x00000003   PAD
+    0x08009fd8   0x08009fd8   0x00000020   Data   RO         3173    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08009fb0, Size: 0x00007d20, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x00000128])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08009ff8, Size: 0x00007d28, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x00000128])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -7161,68 +7162,70 @@ Memory Map of the image
     0x200001f0   COMPRESSED   0x00000004   Data   RW          235    .data.USBD_LangIDDesc  usbd_desc.o
     0x200001f4   COMPRESSED   0x0000001a   Data   RW          236    .data.USBD_StringSerial  usbd_desc.o
     0x2000020e   COMPRESSED   0x00000002   PAD
-    0x20000210   COMPRESSED   0x00000004   Data   RW           24    .data.encoderTargetCount  main.o
+    0x20000210   COMPRESSED   0x00000004   Data   RW           37    .data.encoderTargetCount  main.o
     0x20000214   COMPRESSED   0x00000002   Data   RW         2499    .data.udp_port      udp.o
     0x20000216   COMPRESSED   0x00000002   PAD
-    0x20000218        -       0x0000005c   Zero   RW           40    .bss..L_MergedGlobals  main.o
-    0x20000274        -       0x00000002   Zero   RW          134    .bss..L_MergedGlobals  udp_echoserver.o
-    0x20000276        -       0x00000005   Zero   RW          200    .bss..L_MergedGlobals  fatfs.o
-    0x2000027b   COMPRESSED   0x00000001   PAD
-    0x2000027c        -       0x0000004c   Zero   RW          361    .bss..L_MergedGlobals  ethernetif.o
-    0x200002c8        -       0x0000004c   Zero   RW          382    .bss..L_MergedGlobals  lwip.o
-    0x20000314        -       0x0000000c   Zero   RW         2285    .bss..L_MergedGlobals  mem.o
-    0x20000320        -       0x0000000c   Zero   RW         2370    .bss..L_MergedGlobals  netif.o
-    0x2000032c        -       0x00000008   Zero   RW         2460    .bss..L_MergedGlobals  timeouts.o
-    0x20000334        -       0x00000008   Zero   RW         2625    .bss..L_MergedGlobals  ip4_frag.o
-    0x2000033c        -       0x00000002   Zero   RW           23    .bss.B_PLS_CNT      main.o
-    0x2000033e   COMPRESSED   0x00000002   PAD
-    0x20000340        -       0x00000080   Zero   RW          357    .bss.DMARxDscrTab   ethernetif.o
-    0x200003c0        -       0x00000080   Zero   RW          358    .bss.DMATxDscrTab   ethernetif.o
-    0x20000440        -       0x000017d0   Zero   RW          359    .bss.Rx_Buff        ethernetif.o
-    0x20001c10        -       0x000017d0   Zero   RW          360    .bss.Tx_Buff        ethernetif.o
-    0x200033e0        -       0x000000c8   Zero   RW          258    .bss.URxbuf         usbd_cdc_if.o
-    0x200034a8        -       0x00000001   Zero   RW         2704    .bss.USBD_SetConfig.cfgidx  usbd_ctlreq.o
-    0x200034a9   COMPRESSED   0x00000003   PAD
-    0x200034ac        -       0x00000200   Zero   RW          237    .bss.USBD_StrDesc   usbd_desc.o
-    0x200036ac        -       0x000000c8   Zero   RW           31    .bss.UTxbuf         main.o
-    0x20003774        -       0x0000012c   Zero   RW          260    .bss.UserRxBufferFS  usbd_cdc_if.o
-    0x200038a0        -       0x0000012c   Zero   RW          261    .bss.UserTxBufferFS  usbd_cdc_if.o
-    0x200039cc        -       0x000000f0   Zero   RW         2536    .bss.arp_table      etharp.o
-    0x20003abc        -       0x00000004   Zero   RW          259    .bss.bufptr         usbd_cdc_if.o
-    0x20003ac0        -       0x0000000c   Zero   RW         2121    .bss.disk           ff_gen_drv.o
-    0x20003acc        -       0x00000001   Zero   RW         2538    .bss.etharp_cached_entry  etharp.o
-    0x20003acd   COMPRESSED   0x00000003   PAD
-    0x20003ad0        -       0x000002c4   Zero   RW          210    .bss.hUsbDeviceFS   usb_device.o
-    0x20003d94        -       0x00000048   Zero   RW           28    .bss.hadc1          main.o
-    0x20003ddc        -       0x00000060   Zero   RW           29    .bss.hdma_adc1      main.o
-    0x20003e3c        -       0x00000060   Zero   RW           33    .bss.hdma_sdio_rx   main.o
-    0x20003e9c        -       0x00000060   Zero   RW           34    .bss.hdma_sdio_tx   main.o
-    0x20003efc        -       0x00000060   Zero   RW           36    .bss.hdma_spi2_rx   main.o
-    0x20003f5c        -       0x00000060   Zero   RW           37    .bss.hdma_spi2_tx   main.o
-    0x20003fbc        -       0x00000400   Zero   RW          328    .bss.hpcd_USB_OTG_FS  usbd_conf.o
-    0x200043bc        -       0x00000084   Zero   RW           32    .bss.hsd            main.o
-    0x20004440        -       0x00000058   Zero   RW           35    .bss.hspi2          main.o
-    0x20004498        -       0x00000040   Zero   RW           38    .bss.huart3         main.o
-    0x200044d8        -       0x00000018   Zero   RW         2267    .bss.ip_data        ip.o
-    0x200044f0        -       0x00000002   Zero   RW         2576    .bss.ip_id          ip4.o
-    0x200044f2        -       0x0000016b   Zero   RW         2316    .bss.memp_memory_FRAG_PBUF_base  memp.o
-    0x2000465d        -       0x00002603   Zero   RW         2325    .bss.memp_memory_PBUF_POOL_base  memp.o
-    0x20006c60        -       0x00000103   Zero   RW         2322    .bss.memp_memory_PBUF_base  memp.o
-    0x20006d63        -       0x000000a3   Zero   RW         2313    .bss.memp_memory_REASSDATA_base  memp.o
-    0x20006e06        -       0x00000023   Zero   RW         2319    .bss.memp_memory_SYS_TIMEOUT_base  memp.o
-    0x20006e29        -       0x00000083   Zero   RW         2310    .bss.memp_memory_UDP_PCB_base  memp.o
-    0x20006eac        -       0x00000004   Zero   RW         2317    .bss.memp_tab_FRAG_PBUF  memp.o
-    0x20006eb0        -       0x00000004   Zero   RW         2323    .bss.memp_tab_PBUF  memp.o
-    0x20006eb4        -       0x00000004   Zero   RW         2326    .bss.memp_tab_PBUF_POOL  memp.o
-    0x20006eb8        -       0x00000004   Zero   RW         2314    .bss.memp_tab_REASSDATA  memp.o
-    0x20006ebc        -       0x00000004   Zero   RW         2320    .bss.memp_tab_SYS_TIMEOUT  memp.o
-    0x20006ec0        -       0x00000004   Zero   RW         2311    .bss.memp_tab_UDP_PCB  memp.o
-    0x20006ec4        -       0x00000653   Zero   RW         2283    .bss.ram_heap       mem.o
-    0x20007517   COMPRESSED   0x00000001   PAD
-    0x20007518        -       0x00000004   Zero   RW         2497    .bss.udp_pcbs       udp.o
-    0x2000751c        -       0x00000004   Zero   RW          499    .bss.uwTick         stm32f2xx_hal.o
-    0x20007520        -       0x00000400   Zero   RW            2    HEAP                startup_stm32f207xx.o
-    0x20007920        -       0x00000400   Zero   RW            1    STACK               startup_stm32f207xx.o
+    0x20000218        -       0x00000002   Zero   RW           15    .bss..L_MergedGlobals  udp_echoserver.o
+    0x2000021a   COMPRESSED   0x00000002   PAD
+    0x2000021c        -       0x0000005c   Zero   RW           53    .bss..L_MergedGlobals  main.o
+    0x20000278        -       0x00000005   Zero   RW          200    .bss..L_MergedGlobals  fatfs.o
+    0x2000027d   COMPRESSED   0x00000003   PAD
+    0x20000280        -       0x0000004c   Zero   RW          361    .bss..L_MergedGlobals  ethernetif.o
+    0x200002cc        -       0x0000004c   Zero   RW          382    .bss..L_MergedGlobals  lwip.o
+    0x20000318        -       0x0000000c   Zero   RW         2285    .bss..L_MergedGlobals  mem.o
+    0x20000324        -       0x0000000c   Zero   RW         2370    .bss..L_MergedGlobals  netif.o
+    0x20000330        -       0x00000008   Zero   RW         2460    .bss..L_MergedGlobals  timeouts.o
+    0x20000338        -       0x00000008   Zero   RW         2625    .bss..L_MergedGlobals  ip4_frag.o
+    0x20000340        -       0x00000002   Zero   RW           36    .bss.B_PLS_CNT      main.o
+    0x20000342   COMPRESSED   0x00000002   PAD
+    0x20000344        -       0x00000080   Zero   RW          357    .bss.DMARxDscrTab   ethernetif.o
+    0x200003c4        -       0x00000080   Zero   RW          358    .bss.DMATxDscrTab   ethernetif.o
+    0x20000444        -       0x000017d0   Zero   RW          359    .bss.Rx_Buff        ethernetif.o
+    0x20001c14        -       0x000017d0   Zero   RW          360    .bss.Tx_Buff        ethernetif.o
+    0x200033e4        -       0x000000c8   Zero   RW          258    .bss.URxbuf         usbd_cdc_if.o
+    0x200034ac        -       0x00000001   Zero   RW         2704    .bss.USBD_SetConfig.cfgidx  usbd_ctlreq.o
+    0x200034ad   COMPRESSED   0x00000003   PAD
+    0x200034b0        -       0x00000200   Zero   RW          237    .bss.USBD_StrDesc   usbd_desc.o
+    0x200036b0        -       0x000000c8   Zero   RW           44    .bss.UTxbuf         main.o
+    0x20003778        -       0x0000012c   Zero   RW          260    .bss.UserRxBufferFS  usbd_cdc_if.o
+    0x200038a4        -       0x0000012c   Zero   RW          261    .bss.UserTxBufferFS  usbd_cdc_if.o
+    0x200039d0        -       0x000000f0   Zero   RW         2536    .bss.arp_table      etharp.o
+    0x20003ac0        -       0x00000004   Zero   RW          259    .bss.bufptr         usbd_cdc_if.o
+    0x20003ac4        -       0x0000000c   Zero   RW         2121    .bss.disk           ff_gen_drv.o
+    0x20003ad0        -       0x00000001   Zero   RW         2538    .bss.etharp_cached_entry  etharp.o
+    0x20003ad1   COMPRESSED   0x00000003   PAD
+    0x20003ad4        -       0x000002c4   Zero   RW          210    .bss.hUsbDeviceFS   usb_device.o
+    0x20003d98        -       0x00000048   Zero   RW           41    .bss.hadc1          main.o
+    0x20003de0        -       0x00000060   Zero   RW           42    .bss.hdma_adc1      main.o
+    0x20003e40        -       0x00000060   Zero   RW           46    .bss.hdma_sdio_rx   main.o
+    0x20003ea0        -       0x00000060   Zero   RW           47    .bss.hdma_sdio_tx   main.o
+    0x20003f00        -       0x00000060   Zero   RW           49    .bss.hdma_spi2_rx   main.o
+    0x20003f60        -       0x00000060   Zero   RW           50    .bss.hdma_spi2_tx   main.o
+    0x20003fc0        -       0x00000400   Zero   RW          328    .bss.hpcd_USB_OTG_FS  usbd_conf.o
+    0x200043c0        -       0x00000084   Zero   RW           45    .bss.hsd            main.o
+    0x20004444        -       0x00000058   Zero   RW           48    .bss.hspi2          main.o
+    0x2000449c        -       0x00000040   Zero   RW           51    .bss.huart3         main.o
+    0x200044dc        -       0x00000018   Zero   RW         2267    .bss.ip_data        ip.o
+    0x200044f4        -       0x00000002   Zero   RW         2576    .bss.ip_id          ip4.o
+    0x200044f6        -       0x0000016b   Zero   RW         2316    .bss.memp_memory_FRAG_PBUF_base  memp.o
+    0x20004661        -       0x00002603   Zero   RW         2325    .bss.memp_memory_PBUF_POOL_base  memp.o
+    0x20006c64        -       0x00000103   Zero   RW         2322    .bss.memp_memory_PBUF_base  memp.o
+    0x20006d67        -       0x000000a3   Zero   RW         2313    .bss.memp_memory_REASSDATA_base  memp.o
+    0x20006e0a        -       0x00000023   Zero   RW         2319    .bss.memp_memory_SYS_TIMEOUT_base  memp.o
+    0x20006e2d        -       0x00000083   Zero   RW         2310    .bss.memp_memory_UDP_PCB_base  memp.o
+    0x20006eb0        -       0x00000004   Zero   RW         2317    .bss.memp_tab_FRAG_PBUF  memp.o
+    0x20006eb4        -       0x00000004   Zero   RW         2323    .bss.memp_tab_PBUF  memp.o
+    0x20006eb8        -       0x00000004   Zero   RW         2326    .bss.memp_tab_PBUF_POOL  memp.o
+    0x20006ebc        -       0x00000004   Zero   RW         2314    .bss.memp_tab_REASSDATA  memp.o
+    0x20006ec0        -       0x00000004   Zero   RW         2320    .bss.memp_tab_SYS_TIMEOUT  memp.o
+    0x20006ec4        -       0x00000004   Zero   RW         2311    .bss.memp_tab_UDP_PCB  memp.o
+    0x20006ec8        -       0x00000653   Zero   RW         2283    .bss.ram_heap       mem.o
+    0x2000751b   COMPRESSED   0x00000001   PAD
+    0x2000751c        -       0x00000004   Zero   RW         2497    .bss.udp_pcbs       udp.o
+    0x20007520        -       0x00000004   Zero   RW          499    .bss.uwTick         stm32f2xx_hal.o
+    0x20007524   COMPRESSED   0x00000004   PAD
+    0x20007528        -       0x00000400   Zero   RW            2    HEAP                startup_stm32f207xx.o
+    0x20007928        -       0x00000400   Zero   RW            1    STACK               startup_stm32f207xx.o
 
 
 ==============================================================================
@@ -7232,65 +7235,65 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       172          4          0          0          0       6721   bsp_driver_sd.o
-         4          0          0          0          0       2775   def.o
-      2000        344        168          0        241      10924   etharp.o
-       356        116         52          0          0       3427   ethernet.o
-      1226        140          0          0      12524      14354   ethernetif.o
-        24          8          0          0          5       1816   fatfs.o
-        24          4          0          0          0       1169   fatfs_platform.o
-        70          4          0          0         12       2488   ff_gen_drv.o
-       588        172         53          0          0       4919   icmp.o
-        26          0          0          0          0        457   init.o
-         0          0          0          0         24       2217   ip.o
-       758         80         64          0          2       5671   ip4.o
-        44          0          4          0          0       4656   ip4_addr.o
-      2164        448         57          0          8      10722   ip4_frag.o
-       152         24          0          0         76       2793   lwip.o
-      1602        228          0          4       1130      17188   main.o
-      1164        368        151          0       1631       3556   mem.o
-       366        156        144          0      10706       3867   memp.o
-       456        124          0          0         12       6380   netif.o
-      2216        788        149          0          0      13330   pbuf.o
-       224         16         20          1          0       3206   sd_diskio.o
-        36          8        388          0       2048        764   startup_stm32f207xx.o
-       184         20          0          8          4       7326   stm32f2xx_hal.o
-       876         24          0          0          0      10075   stm32f2xx_hal_adc.o
-         2          0          0          0          0       8487   stm32f2xx_hal_adc_ex.o
-       192         28          0          0          0      10267   stm32f2xx_hal_cortex.o
-       732         20          0          0          0       8901   stm32f2xx_hal_dma.o
-      2184         72          0          0          0      15920   stm32f2xx_hal_eth.o
-       440         28          0          0          0       4965   stm32f2xx_hal_gpio.o
-      1104         68          0          0          0      13307   stm32f2xx_hal_msp.o
-      2434          4          0          0          0      13505   stm32f2xx_hal_pcd.o
-        72          0          0          0          0       4093   stm32f2xx_hal_pcd_ex.o
-      1152         48          0          0          0       7609   stm32f2xx_hal_rcc.o
-      2998         28          0          0          0      23509   stm32f2xx_hal_sd.o
-       398          4          0          0          0      20258   stm32f2xx_hal_spi.o
-       436         44          0          0          0      37850   stm32f2xx_hal_tim.o
-        58          0          0          0          0      14396   stm32f2xx_hal_tim_ex.o
-       304          4          0          0          0      16974   stm32f2xx_hal_uart.o
-       224         44          0          0          0       3577   stm32f2xx_it.o
-      1656         20          0          0          0      13135   stm32f2xx_ll_sdmmc.o
-       208         44          0          0          0      12880   stm32f2xx_ll_tim.o
-      2278        124          0          0          0      21775   stm32f2xx_ll_usb.o
-        64         16         24          4          0       2633   system_stm32f2xx.o
-       408        140         16          0          8       3796   timeouts.o
-      1006        100         47          2          4       8744   udp.o
-       128         12          0          0          2       2312   udp_echoserver.o
-        80         16          0          0        708       2805   usb_device.o
-       718         24          0        267          0       9696   usbd_cdc.o
-       496        112          0        147        804       3930   usbd_cdc_if.o
-       652         20          0          0       1024      14631   usbd_conf.o
-       690          0          0          0          0       7003   usbd_core.o
-      1124         38          0          0          1       7664   usbd_ctlreq.o
-       260         72          0         76        512       3362   usbd_desc.o
-       128          0          0          0          0       4203   usbd_ioreq.o
+       172          4          0          0          0       6731   bsp_driver_sd.o
+         4          0          0          0          0       2785   def.o
+      2000        344        168          0        241      10934   etharp.o
+       356        116         52          0          0       3437   ethernet.o
+      1226        140          0          0      12524      14364   ethernetif.o
+        24          8          0          0          5       1826   fatfs.o
+        24          4          0          0          0       1179   fatfs_platform.o
+        70          4          0          0         12       2498   ff_gen_drv.o
+       588        172         53          0          0       4929   icmp.o
+        26          0          0          0          0        467   init.o
+         0          0          0          0         24       2227   ip.o
+       758         80         64          0          2       5681   ip4.o
+        44          0          4          0          0       4666   ip4_addr.o
+      2164        448         57          0          8      10732   ip4_frag.o
+       152         24          0          0         76       2803   lwip.o
+      1674        232          0          4       1130      17236   main.o
+      1164        368        151          0       1631       3566   mem.o
+       366        156        144          0      10706       3877   memp.o
+       456        124          0          0         12       6390   netif.o
+      2216        788        149          0          0      13340   pbuf.o
+       224         16         20          1          0       3216   sd_diskio.o
+        36          8        388          0       2048        776   startup_stm32f207xx.o
+       184         20          0          8          4       7336   stm32f2xx_hal.o
+       876         24          0          0          0      10085   stm32f2xx_hal_adc.o
+         2          0          0          0          0       8497   stm32f2xx_hal_adc_ex.o
+       192         28          0          0          0      10277   stm32f2xx_hal_cortex.o
+       732         20          0          0          0       8911   stm32f2xx_hal_dma.o
+      2184         72          0          0          0      15930   stm32f2xx_hal_eth.o
+       440         28          0          0          0       4975   stm32f2xx_hal_gpio.o
+      1104         68          0          0          0      13317   stm32f2xx_hal_msp.o
+      2434          4          0          0          0      13515   stm32f2xx_hal_pcd.o
+        72          0          0          0          0       4103   stm32f2xx_hal_pcd_ex.o
+      1152         48          0          0          0       7619   stm32f2xx_hal_rcc.o
+      2998         28          0          0          0      23519   stm32f2xx_hal_sd.o
+       398          4          0          0          0      20268   stm32f2xx_hal_spi.o
+       436         44          0          0          0      37860   stm32f2xx_hal_tim.o
+        58          0          0          0          0      14406   stm32f2xx_hal_tim_ex.o
+       304          4          0          0          0      16984   stm32f2xx_hal_uart.o
+       224         44          0          0          0       3587   stm32f2xx_it.o
+      1656         20          0          0          0      13145   stm32f2xx_ll_sdmmc.o
+       208         44          0          0          0      12890   stm32f2xx_ll_tim.o
+      2278        124          0          0          0      21785   stm32f2xx_ll_usb.o
+        64         16         24          4          0       2643   system_stm32f2xx.o
+       408        140         16          0          8       3806   timeouts.o
+      1006        100         47          2          4       8754   udp.o
+       128         12          0          0          2       2322   udp_echoserver.o
+        80         16          0          0        708       2815   usb_device.o
+       718         24          0        267          0       9706   usbd_cdc.o
+       496        112          0        147        804       3940   usbd_cdc_if.o
+       652         20          0          0       1024      14641   usbd_conf.o
+       690          0          0          0          0       7013   usbd_core.o
+      1124         38          0          0          1       7674   usbd_ctlreq.o
+       260         72          0         76        512       3372   usbd_desc.o
+       128          0          0          0          0       4213   usbd_ioreq.o
 
     ----------------------------------------------------------------------
-     37416       4206       1372        520      31496     462988   Object Totals
+     37488       4210       1372        520      31504     463568   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        58          0          3         11         10          0   (incl. Padding)
+        58          0          3         11         18          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -7349,15 +7352,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     39372       4270       1508        536      31496     463324   Grand Totals
-     39372       4270       1508        296      31496     463324   ELF Image Totals (compressed)
-     39372       4270       1508        296          0          0   ROM Totals
+     39444       4274       1508        536      31504     463904   Grand Totals
+     39444       4274       1508        296      31504     463904   ELF Image Totals (compressed)
+     39444       4274       1508        296          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                40880 (  39.92kB)
-    Total RW  Size (RW Data + ZI Data)             32032 (  31.28kB)
-    Total ROM Size (Code + RO Data + RW Data)      41176 (  40.21kB)
+    Total RO  Size (Code + RO Data)                40952 (  39.99kB)
+    Total RW  Size (RW Data + ZI Data)             32040 (  31.29kB)
+    Total ROM Size (Code + RO Data + RW Data)      41248 (  40.28kB)
 
 ==============================================================================
 

@@ -64,8 +64,8 @@ Web_MMS_1.bin \
 all: Web_MMS_1.elf secondary-outputs
 
 # Tool invocations
-Web_MMS_1.elf: $(OBJS) $(USER_OBJS) C:\Users\nexse\STM32CubeIDE\workspace_1.4.0\Web_MMS_1\STM32F207ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "Web_MMS_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\nexse\STM32CubeIDE\workspace_1.4.0\Web_MMS_1\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Web_MMS_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Web_MMS_1.elf: $(OBJS) $(USER_OBJS) C:\Users\nexse\STM32CubeIDE\workspace_1.4.2\Web_MMS_1\STM32F207ZGTX_FLASH.ld
+	arm-none-eabi-gcc -o "Web_MMS_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\nexse\STM32CubeIDE\workspace_1.4.2\Web_MMS_1\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Web_MMS_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
