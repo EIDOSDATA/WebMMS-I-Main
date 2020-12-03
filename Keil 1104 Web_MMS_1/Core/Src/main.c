@@ -277,7 +277,8 @@ void UDP_INPUT()
 	}
 	if (udp_flag)
 	{
-		encoderTargetCount = atoi(&udp_data);
+		WheelParam wP;
+		wP.encoderTargetCount = atoi(&udp_data);
 		udp_flag = 0;
 	}
 }
@@ -446,7 +447,6 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 	UFlag = 0;
 	bFlag = 0;
-	// I version Block PLZ
 	/*
 	 encoderTargetCount = targetPulseCount(
 	 rotationForShoot(TARGET_DISTANCE, diameter(wP.wheelRadius)),
@@ -463,28 +463,28 @@ int main(void)
 		//Camera_Configuration(cameraSelect, cameraValue);
 		switch (UFlag)
 		{
-			/* I version */
-			case 1:
-				sprintf(UTxbuf, "EncoderTargetCount= %d\r\n"
-						"Chip 0 ~ 3 Value= %d %d %d %d\r\n\r\n"
-						"USB Select= %d.0 (default : 2.0)\r\n"
-						"Auto triggering= %s\r\n", wP.encoderTargetCount, wP.cv[0],
-						wP.cv[1], wP.cv[2], wP.cv[3], usbselect,
-						(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
-				CDC_Transmit_FS(UTxbuf, strlen(UTxbuf));
-				UFlag = 0;
-				bFlag = 0;
-				break;
-			case 2:
-				CDC_Transmit_FS((uint8_t*) "Input EncoderTargetCount\r\n", 26);
-				while (!EnterFlag)
-				{
-				}
-				EnterFlag = 0;
-				wP.encoderTargetCount = atoi(URxbuf);
-				UFlag = 0;
-				bFlag = 0;
-				break;
+		/* I version */
+		case 1:
+			sprintf(UTxbuf, "EncoderTargetCount= %d\r\n"
+					"Chip 0 ~ 3 Value= %d %d %d %d\r\n\r\n"
+					"USB Select= %d.0 (default : 2.0)\r\n"
+					"Auto triggering= %s\r\n", wP.encoderTargetCount, wP.cv[0],
+					wP.cv[1], wP.cv[2], wP.cv[3], usbselect,
+					(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
+			CDC_Transmit_FS(UTxbuf, strlen(UTxbuf));
+			UFlag = 0;
+			bFlag = 0;
+			break;
+		case 2:
+			CDC_Transmit_FS((uint8_t*) "Input EncoderTargetCount\r\n", 26);
+			while (!EnterFlag)
+			{
+			}
+			EnterFlag = 0;
+			wP.encoderTargetCount = atoi(URxbuf);
+			UFlag = 0;
+			bFlag = 0;
+			break;
 
 			/*
 			 * S version
@@ -515,7 +515,7 @@ int main(void)
 			 UFlag = 0;
 			 break;
 			 */
-			 
+
 			/*
 			 case 3:	//set encoder pulse count;
 			 CDC_Transmit_FS("Input encoder pulse cnt.. > ", 28);
@@ -586,14 +586,14 @@ int main(void)
 		{
 			A_PLS_CNT = TIM8->CNT;
 
-			if (A_PLS_CNT >= encoderTargetCount)
+			if (A_PLS_CNT >= wP.encoderTargetCount)
 			{
 				TIM8->CNT = 0;
 				//DSLR_Action(); // Driver Control
-				//FLIR_Action(); // Driver Control
+				FLIR_Action(); // Driver Control
 				ADC_Print();
 			}
-			else if (A_PLS_CNT <= 0)	//else if (flag == 1)
+			else if (A_PLS_CNT <= 0)
 			{
 				A_PLS_CNT = 0;
 				//B_PLS_CNT = 0;

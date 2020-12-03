@@ -46,6 +46,11 @@ endif
 
 -include ../makefile.defs
 
+BUILD_ARTIFACT_NAME := Web_MMS_1
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX := 
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
+
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 Web_MMS_1.elf \
@@ -61,11 +66,14 @@ Web_MMS_1.bin \
 
 
 # All Target
-all: Web_MMS_1.elf secondary-outputs
+all: main-build
+
+# Main-build Target
+main-build: Web_MMS_1.elf secondary-outputs
 
 # Tool invocations
-Web_MMS_1.elf: $(OBJS) $(USER_OBJS) C:\Users\nexse\STM32CubeIDE\workspace_1.4.2\Web_MMS_1\STM32F207ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "Web_MMS_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\nexse\STM32CubeIDE\workspace_1.4.2\Web_MMS_1\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Web_MMS_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Web_MMS_1.elf: $(OBJS) $(USER_OBJS) C:\Users\nexse\STM32CubeIDE\workspace\ 1.5.0\Web_MMS_1\STM32F207ZGTX_FLASH.ld
+	arm-none-eabi-gcc -o "Web_MMS_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\nexse\STM32CubeIDE\workspace 1.5.0\Web_MMS_1\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Web_MMS_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -91,7 +99,14 @@ clean:
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
-.PHONY: all clean dependents
+fail-specified-linker-script-missing:
+	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+	@exit 2
+
+warn-no-linker-script-specified:
+	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+
+.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
 .SECONDARY:
 
 -include ../makefile.targets

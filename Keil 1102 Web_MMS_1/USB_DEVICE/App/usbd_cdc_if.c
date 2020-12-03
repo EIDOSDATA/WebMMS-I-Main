@@ -315,6 +315,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 			}
 			else
 			{
+				TIM8->CNT = 0;
 				A_PLS_CNT = 0;
 				B_PLS_CNT = 0;
 				bFlag = 1;
