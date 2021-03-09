@@ -72,8 +72,8 @@ all: main-build
 main-build: ArgosV2_I_Save.elf secondary-outputs
 
 # Tool invocations
-ArgosV2_I_Save.elf: $(OBJS) $(USER_OBJS) C:\Users\eidos\Desktop\ST\ ArgosV2_I_Save_1.1.0\STM32F207ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "ArgosV2_I_Save.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\eidos\Desktop\ST ArgosV2_I_Save_1.1.0\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ArgosV2_I_Save.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+ArgosV2_I_Save.elf: $(OBJS) $(USER_OBJS) C:\Users\eidos\GitHub\ArgosV2-I_FW\ST\ ArgosV2_I&S1.1.0\STM32F207ZGTX_FLASH.ld
+	arm-none-eabi-gcc -o "ArgosV2_I_Save.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\eidos\GitHub\ArgosV2-I_FW\ST ArgosV2_I&S1.1.0\STM32F207ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ArgosV2_I_Save.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

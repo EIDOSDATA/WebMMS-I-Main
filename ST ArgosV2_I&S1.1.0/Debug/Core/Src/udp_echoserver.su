@@ -1,2 +1,2 @@
+udp_echoserver.c:47:6:udp_echoserver_init	16	static
 udp_echoserver.c:82:6:udp_echoserver_receive_callback	24	static
-udp_echoserver.c:47:6:udp_echoserver_init	8	static

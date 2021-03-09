@@ -312,132 +312,119 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 	USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 	WheelParam wP;
 	memcpy(&wP, (void*) (BACKUP_FLASH_ADDR), sizeof(WheelParam));
-
-	// Manual
-	if (strncmp((const char*) Buf, "m", 1) == 0)
-	{
-		CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));
-		bufptr = URxbuf;
-	}
-
-	// Print Status
-	else if (strncmp((const char*) Buf, "p", 1) == 0)
-	{
-		sprintf(UTxbuf, "EncoderTargetCount= %d\r\n"
-				"USB Select= %d.0 (default : 2.0)\r\n"
-				"Auto triggering= %s\r\n", wP.encoderTargetCount, usbselect,
-				(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
-		CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
-	}
-
-	/*
-	 // Input Data
-	 if (strncmp((const char*) Buf, "i", 1) == 0)
-	 {
-	 UFlag = 1;
-	 }
-	 */
-
-	// Save
-	else if (strncmp((const char*) Buf, "h", 1) == 0)
-	{
-
-		HAL_StatusTypeDef FlashStatus = HAL_OK;
-		HAL_FLASH_Unlock();
-		{
-			wP.encoderTargetCount = encoderval;
-
-			FLASH_EraseInitTypeDef fler;
-			uint32_t perr;
-			fler.TypeErase = FLASH_TYPEERASE_SECTORS;
-			fler.Banks = FLASH_BANK_1;
-			fler.Sector = FLASH_SECTOR_11;
-			fler.NbSectors = 1;
-
-			HAL_FLASHEx_Erase(&fler, &perr);
-			register uint32_t *_targetAddr = (uint32_t*) (&wP);
-			for (uint8_t i = 0; i <= (sizeof(WheelParam) * 2); i +=
-					sizeof(uint32_t))
-			{
-				FlashStatus = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
-				BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]);
-
-				/*
-				 while (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
-				 BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]) != HAL_OK)
-				 ;
-				 */
-			}
-		}
-		HAL_FLASH_Lock();
-		sprintf(UTxbuf, "Save %s",
-				(FlashStatus == HAL_OK) ? ("Complete\r\n") : ("Fail\r\n"));
-
-		CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
-	}
-
-	// USB 2.0
-	else if (strncmp((const char*) Buf, "2", 1) == 0)
-	{
-		CDC_Transmit_FS((uint8_t*) "USB Select 2.0\r\n", 16);
-		usbselect = 2;
-		CAN_Transmit(usbselect);
-	}
-	// USB 3.0
-	else if (strncmp((const char*) Buf, "3", 1) == 0)
-	{
-		CDC_Transmit_FS((uint8_t*) "USB Select 3.0\r\n", 16);
-		usbselect = 3;
-		CAN_Transmit(usbselect);
-	}
-
-	// Force Trigger
-	else if (strncmp((const char*) Buf, "f", 1) == 0)
-	{
-		HAL_GPIO_WritePin(SIG_AUTOFOCUS_GPIO_Port, SIG_AUTOFOCUS_Pin,
-				GPIO_PIN_SET);
-		HAL_GPIO_WritePin(SIG_SHUTTER_GPIO_Port, SIG_SHUTTER_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_RESET);
-		LL_TIM_ClearFlag_UPDATE(TIM3);
-		LL_TIM_EnableCounter(TIM3);
-	}
-
-	// Auto Trigger
-	else if (strncmp((const char*) Buf, "a", 1) == 0)
-	{
-		TIM8->CNT = 0;
-		A_PLS_CNT = 0;
-		B_PLS_CNT = 0;
-		bFlag = 1;
-		CDC_Transmit_FS((uint8_t*) "AutoTrigger Started!\r\n", 22); // ACK
-	}
-	// Stop
-	else if (strncmp((const char*) Buf, "t", 1) == 0)
-	{
-		bFlag = 0;
-		CDC_Transmit_FS((uint8_t*) "Stopped!\r\n", 10); // ACK
-	}
-
 	if (UFlag == 0)
 	{
-		// UI INPUT DATA
-		switch (Buf[0])
+		// Manual
+		if (strncmp((const char*) Buf, "m", 1) == 0)
+		{
+			CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));
+			bufptr = URxbuf;
+		}
+
+		// Print Status
+		else if (strncmp((const char*) Buf, "p", 1) == 0)
+		{
+			sprintf(UTxbuf, "Input : EncoderTargetCount= %d\r\n"
+					"Memory : EncoderTargetCount= %d\r\n"
+					"USB Select= %d.0 (default : 2.0)\r\n"
+					"Auto triggering= %s\r\n", encoderval,
+					wP.encoderTargetCount, usbselect,
+					(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
+			CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
+		}
+
+		// Input Data
+		if (strncmp((const char*) Buf, "i", 1) == 0)
+		{
+			UFlag = 1;
+		}
+
+		// Save
+		else if (strncmp((const char*) Buf, "h", 1) == 0)
 		{
 
-		case 'I':
-		case 'i':
-			UFlag = 1;
-			break;
-			/*
-			 case 'H': // Save
-			 case 'h':
-			 UFlag = 3;
-			 break;
-			 */
-		default:
-			CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));
-			break;
+			HAL_StatusTypeDef FlashStatus = HAL_OK;
+			HAL_FLASH_Unlock();
+			{
+				wP.encoderTargetCount = encoderval;
+
+				FLASH_EraseInitTypeDef fler;
+				uint32_t perr;
+				fler.TypeErase = FLASH_TYPEERASE_SECTORS;
+				fler.Banks = FLASH_BANK_1;
+				fler.Sector = FLASH_SECTOR_11;
+				fler.NbSectors = 1;
+
+				HAL_FLASHEx_Erase(&fler, &perr);
+				register uint32_t *_targetAddr = (uint32_t*) (&wP);
+				for (uint8_t i = 0; i <= (sizeof(WheelParam) * 2); i +=
+						sizeof(uint32_t))
+				{
+					FlashStatus = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
+					BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]);
+
+					/*
+					 while (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
+					 BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]) != HAL_OK)
+					 ;
+					 */
+				}
+			}
+			HAL_FLASH_Lock();
+			sprintf(UTxbuf, "Save %s",
+					(FlashStatus == HAL_OK) ? ("Complete\r\n") : ("Fail\r\n"));
+
+			CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
 		}
+
+		// USB 2.0
+		else if (strncmp((const char*) Buf, "2", 1) == 0)
+		{
+			CDC_Transmit_FS((uint8_t*) "USB Select 2.0\r\n", 16);
+			usbselect = 2;
+			CAN_Transmit(usbselect);
+		}
+		// USB 3.0
+		else if (strncmp((const char*) Buf, "3", 1) == 0)
+		{
+			CDC_Transmit_FS((uint8_t*) "USB Select 3.0\r\n", 16);
+			usbselect = 3;
+			CAN_Transmit(usbselect);
+		}
+
+		// Force Trigger
+		else if (strncmp((const char*) Buf, "f", 1) == 0)
+		{
+			HAL_GPIO_WritePin(SIG_AUTOFOCUS_GPIO_Port, SIG_AUTOFOCUS_Pin,
+					GPIO_PIN_SET);
+			HAL_GPIO_WritePin(SIG_SHUTTER_GPIO_Port, SIG_SHUTTER_Pin,
+					GPIO_PIN_SET);
+			HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin,
+					GPIO_PIN_RESET);
+			LL_TIM_ClearFlag_UPDATE(TIM3);
+			LL_TIM_EnableCounter(TIM3);
+		}
+
+		// Auto Trigger
+		else if (strncmp((const char*) Buf, "a", 1) == 0)
+		{
+			TIM8->CNT = 0;
+			A_PLS_CNT = 0;
+			B_PLS_CNT = 0;
+			bFlag = 1;
+			CDC_Transmit_FS((uint8_t*) "AutoTrigger Started!\r\n", 22); // ACK
+		}
+		// Stop
+		else if (strncmp((const char*) Buf, "t", 1) == 0)
+		{
+			bFlag = 0;
+			CDC_Transmit_FS((uint8_t*) "Stopped!\r\n", 10); // ACK
+		}
+		else
+		{
+			CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));
+		}
+
 	}
 
 	else

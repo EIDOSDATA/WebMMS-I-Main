@@ -371,7 +371,8 @@ int main(void)
 			if (A_PLS_CNT >= wP.encoderTargetCount)
 			{
 				TIM8->CNT = 0;
-				DSLR_Action(); // Driver Control
+				ADC_Print();
+				//DSLR_Action(); // Driver Control
 			}
 			else if (A_PLS_CNT <= 0)
 			{
