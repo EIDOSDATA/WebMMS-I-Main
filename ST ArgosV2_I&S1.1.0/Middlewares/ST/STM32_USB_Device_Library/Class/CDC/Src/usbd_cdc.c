@@ -195,7 +195,7 @@ __ALIGN_BEGIN uint8_t USBD_CDC_CfgHSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN_END =
   0x01,   /* bNumEndpoints: One endpoints used */
   0x02,   /* bInterfaceClass: Communication Interface Class */
   0x02,   /* bInterfaceSubClass: Abstract Control Model */
-  0x01,   /* bInterfaceProtocol: Common AT commands */
+  0x00,   /* bInterfaceProtocol: Common AT commands */
   0x00,   /* iInterface: */
 
   /*Header Functional Descriptor*/
@@ -291,7 +291,7 @@ __ALIGN_BEGIN uint8_t USBD_CDC_CfgFSDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIGN_END =
   0x01,   /* bNumEndpoints: One endpoints used */
   0x02,   /* bInterfaceClass: Communication Interface Class */
   0x02,   /* bInterfaceSubClass: Abstract Control Model */
-  0x01,   /* bInterfaceProtocol: Common AT commands */
+  0x00,   /* bInterfaceProtocol: Common AT commands */
   0x00,   /* iInterface: */
 
   /*Header Functional Descriptor*/
@@ -382,7 +382,7 @@ __ALIGN_BEGIN uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIG
   0x01,   /* bNumEndpoints: One endpoints used */
   0x02,   /* bInterfaceClass: Communication Interface Class */
   0x02,   /* bInterfaceSubClass: Abstract Control Model */
-  0x01,   /* bInterfaceProtocol: Common AT commands */
+  0x00,   /* bInterfaceProtocol: Common AT commands */
   0x00,   /* iInterface: */
 
   /*Header Functional Descriptor*/
@@ -507,7 +507,7 @@ static uint8_t  USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   pdev->ep_in[CDC_CMD_EP & 0xFU].is_used = 1U;
 
   pdev->pClassData = USBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
-
+  memset(pdev->pClassData, 0, sizeof(USBD_CDC_HandleTypeDef));
   if (pdev->pClassData == NULL)
   {
     ret = 1U;
@@ -522,6 +522,10 @@ static uint8_t  USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
     /* Init Xfer states */
     hcdc->TxState = 0U;
     hcdc->RxState = 0U;
+
+    /* Init Xfer Length */
+	hcdc->TxLength = 0U;
+	hcdc->RxLength = 0U;
 
     if (pdev->dev_speed == USBD_SPEED_HIGH)
     {
