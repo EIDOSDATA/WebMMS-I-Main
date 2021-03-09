@@ -315,14 +315,16 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 	if (UFlag == 0)
 	{
 		// Manual
-		if (strncmp((const char*) Buf, "m", 1) == 0)
+		if (strncmp((const char*) Buf, "m", 1) == 0
+				|| strncmp((const char*) Buf, "M", 1) == 0)
 		{
 			CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));
 			bufptr = URxbuf;
 		}
 
 		// Print Status
-		else if (strncmp((const char*) Buf, "p", 1) == 0)
+		else if (strncmp((const char*) Buf, "p", 1) == 0
+				|| strncmp((const char*) Buf, "P", 1) == 0)
 		{
 			sprintf(UTxbuf, "Input : EncoderTargetCount= %d\r\n"
 					"Memory : EncoderTargetCount= %d\r\n"
@@ -334,46 +336,107 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		}
 
 		// Input Data
-		if (strncmp((const char*) Buf, "i", 1) == 0)
+		if (strncmp((const char*) Buf, "i", 1) == 0
+				|| strncmp((const char*) Buf, "I", 1) == 0)
 		{
 			UFlag = 1;
 		}
 
 		// Save
-		else if (strncmp((const char*) Buf, "h", 1) == 0)
+		else if (strncmp((const char*) Buf, "h", 1) == 0
+				|| strncmp((const char*) Buf, "H", 1) == 0)
 		{
+			/*
+			 wP.encoderTargetCount = encoderval;
+			 HAL_StatusTypeDef FlashStatus = HAL_OK;
+			 HAL_FLASH_Unlock();
+			 {
+
+
+			 FLASH_EraseInitTypeDef fler;
+			 uint32_t perr;
+			 fler.TypeErase = FLASH_TYPEERASE_SECTORS;
+			 fler.Banks = FLASH_BANK_1;
+			 fler.Sector = FLASH_SECTOR_11;
+			 fler.NbSectors = 1;
+
+			 HAL_FLASHEx_Erase(&fler, &perr);
+			 register uint32_t *_targetAddr = (uint32_t*) (&wP);
+			 for (uint8_t i = 0; i <= (sizeof(WheelParam) * 2); i +=
+			 sizeof(uint32_t))
+			 {
+			 FlashStatus = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
+			 BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]);
+
+
+			 //while (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
+			 //BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]) != HAL_OK)
+			 //;
+
+			 }
+			 }
+			 HAL_FLASH_Lock();
+			 */
+			wP.encoderTargetCount = encoderval;
+			uint32_t SectorError = 0;
+			HAL_FLASH_Unlock();
+			FLASH_EraseInitTypeDef EraseInitStruct;
+			EraseInitStruct.TypeErase = FLASH_TYPEERASE_SECTORS;
+			EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+			EraseInitStruct.Banks = FLASH_BANK_1;
+			EraseInitStruct.Sector = FLASH_SECTOR_11;
+			EraseInitStruct.NbSectors = 1;
+			if (HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError) != HAL_OK)
+			{
+				int errorcode = HAL_FLASH_GetError();
+				sprintf(UTxbuf, "Error Code : %d\r\n", errorcode);
+				CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
+				return HAL_ERROR;
+			}
+
+			/* Clear cache for flash */
+			__HAL_FLASH_DATA_CACHE_DISABLE();
+			__HAL_FLASH_INSTRUCTION_CACHE_DISABLE();
+
+			__HAL_FLASH_DATA_CACHE_RESET();
+			__HAL_FLASH_INSTRUCTION_CACHE_RESET();
+
+			__HAL_FLASH_INSTRUCTION_CACHE_ENABLE();
+			__HAL_FLASH_DATA_CACHE_ENABLE();
 
 			HAL_StatusTypeDef FlashStatus = HAL_OK;
-			HAL_FLASH_Unlock();
+			register uint32_t *_targetAddr = (uint32_t*) (&wP);
+			/*
+			 uint32_t Address = FLASH_USER_START_ADDR;
+			 while (Address < FLASH_USER_END_ADDR)
+			 {
+			 if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, Address, _targetAddr)
+			 == HAL_OK)
+			 {
+			 Address += sizeof(uint32_t);
+			 _targetAddr += sizeof(uint32_t);
+			 }
+			 else
+			 {
+			 uint32_t errorcode = HAL_FLASH_GetError();
+			 return HAL_ERROR;
+			 }
+			 }
+			 */
+			for (uint8_t i = 0; i <= (sizeof(WheelParam) * 2); i +=
+					sizeof(uint32_t))
 			{
-				wP.encoderTargetCount = encoderval;
+				FlashStatus = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
+				BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]);
 
-				FLASH_EraseInitTypeDef fler;
-				uint32_t perr;
-				fler.TypeErase = FLASH_TYPEERASE_SECTORS;
-				fler.Banks = FLASH_BANK_1;
-				fler.Sector = FLASH_SECTOR_11;
-				fler.NbSectors = 1;
-
-				HAL_FLASHEx_Erase(&fler, &perr);
-				register uint32_t *_targetAddr = (uint32_t*) (&wP);
-				for (uint8_t i = 0; i <= (sizeof(WheelParam) * 2); i +=
-						sizeof(uint32_t))
-				{
-					FlashStatus = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
-					BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]);
-
-					/*
-					 while (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
-					 BACKUP_FLASH_ADDR + i, _targetAddr[i / sizeof(uint32_t)]) != HAL_OK)
-					 ;
-					 */
-				}
+				//while (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
+				//FLASH_USER_START_ADDR + i, _targetAddr[i / sizeof(uint32_t)])
+				//	!= HAL_OK)
+				//;
 			}
 			HAL_FLASH_Lock();
 			sprintf(UTxbuf, "Save %s",
 					(FlashStatus == HAL_OK) ? ("Complete\r\n") : ("Fail\r\n"));
-
 			CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
 		}
 
@@ -393,7 +456,8 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		}
 
 		// Force Trigger
-		else if (strncmp((const char*) Buf, "f", 1) == 0)
+		else if (strncmp((const char*) Buf, "f", 1) == 0
+				|| strncmp((const char*) Buf, "F", 1) == 0)
 		{
 			HAL_GPIO_WritePin(SIG_AUTOFOCUS_GPIO_Port, SIG_AUTOFOCUS_Pin,
 					GPIO_PIN_SET);
@@ -406,7 +470,8 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		}
 
 		// Auto Trigger
-		else if (strncmp((const char*) Buf, "a", 1) == 0)
+		else if (strncmp((const char*) Buf, "a", 1) == 0
+				|| strncmp((const char*) Buf, "A", 1) == 0)
 		{
 			TIM8->CNT = 0;
 			A_PLS_CNT = 0;
@@ -415,7 +480,8 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			CDC_Transmit_FS((uint8_t*) "AutoTrigger Started!\r\n", 22); // ACK
 		}
 		// Stop
-		else if (strncmp((const char*) Buf, "t", 1) == 0)
+		else if (strncmp((const char*) Buf, "t", 1) == 0
+				|| strncmp((const char*) Buf, "T", 1) == 0)
 		{
 			bFlag = 0;
 			CDC_Transmit_FS((uint8_t*) "Stopped!\r\n", 10); // ACK
