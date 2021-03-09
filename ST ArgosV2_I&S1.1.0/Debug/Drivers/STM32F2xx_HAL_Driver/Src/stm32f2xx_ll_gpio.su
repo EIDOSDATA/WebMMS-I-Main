@@ -1,0 +1,3 @@
+stm32f2xx_ll_gpio.c:121:13:LL_GPIO_DeInit	0	static
+stm32f2xx_ll_gpio.c:203:13:LL_GPIO_Init	16	static,ignoring_inline_asm
+stm32f2xx_ll_gpio.c:275:6:LL_GPIO_StructInit	0	static
