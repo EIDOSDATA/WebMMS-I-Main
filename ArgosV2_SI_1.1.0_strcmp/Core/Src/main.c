@@ -101,7 +101,7 @@ bool bFlag = false;
 uint8_t UFlag = 0, EnterFlag = 0; // USB Select Flag, Enter key input
 char UTxbuf[300], buf[130]; // USB Tx, ADC print buf
 extern uint8_t URxbuf[200]; // USB Rx
-int usbselect = 2;
+extern int usbselect;
 
 // ADC, STROBE
 uint8_t setcdsvalue;

@@ -56,7 +56,7 @@ extern uint8_t bFlag;
 extern uint8_t UFlag, EnterFlag; // USB Select Flag, Enter key input
 extern char UTxbuf[300], buf[130]; // USB Tx, ADC print buf
 uint8_t URxbuf[200]; // USB Rx
-extern int usbselect;
+int usbselect = 2;
 
 // ADC, STROBE
 extern uint8_t setcdsvalue;
