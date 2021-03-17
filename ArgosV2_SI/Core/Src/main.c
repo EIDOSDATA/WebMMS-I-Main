@@ -107,7 +107,7 @@ extern int usbselect;
 uint8_t setcdsvalue;
 int adcValue[4]; // ADC DATA SAVE
 uint16_t stb0, stb1, stb2, stb3, stb_all; // STROBE Count
-uint8_t stbchk0, stbchk1, stbchk2, stbchk3; // STROBE CHECK FLAG
+uint8_t stbchk0 = 0, stbchk1 = 0, stbchk2 = 0, stbchk3 = 0; // STROBE CHECK FLAG
 
 // UDP FLAG
 extern uint8_t udp_flag;
@@ -158,7 +158,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 	if (GPIO_Pin & STROBE2_Pin)
 	{
-		//HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+		HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
 		stbchk2 = 1;
 		stb2++;
 	}
@@ -167,22 +167,34 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		stbchk3 = 1;
 		stb3++;
 	}
+
+	if (GPIO_Pin & STROBE_CHK_Pin)
+	{
+		stb_all++;
+		HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, SET);
+	}
+
 	/*
-	 if (GPIO_Pin & STROBE_CHK_Pin)
+	 if ((stbchk0 == 1 && stbchk1) == 1 || (stbchk2 == 1 && stbchk3 == 1)) // if (stbchk0 == 1 && stbchk1 == 1 && stbchk2 == 1 && stbchk3 == 1)
 	 {
-	 stb_all++;
+	 HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+	 HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_SET);
+	 stbchk0 = 0;
+	 stbchk1 = 0;
+	 stbchk2 = 0;
+	 stbchk3 = 0;
+	 }*/
+	/*
+	 // OR GATE MARK DRIVE
+	 if (stbchk0 == 1 || stbchk1 == 1 || stbchk2 == 1 || stbchk3 == 1) // MARK DRIVE
+	 {
 	 HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, SET);
+	 stbchk0 = 0;
+	 stbchk1 = 0;
+	 stbchk2 = 0;
+	 stbchk3 = 0;
 	 }
 	 */
-	if ((stbchk0 == 1 && stbchk1) == 1 || (stbchk2 == 1 && stbchk3 == 1)) // if (stbchk0 == 1 && stbchk1 == 1 && stbchk2 == 1 && stbchk3 == 1)
-	{
-		HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-		HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_SET);
-		stbchk0 = 0;
-		stbchk1 = 0;
-		stbchk2 = 0;
-		stbchk3 = 0;
-	}
 }
 
 void CAN_Transmit(int data)
@@ -673,7 +685,7 @@ static void MX_TIM3_Init(void)
   /* USER CODE END TIM3_Init 1 */
   TIM_InitStruct.Prescaler = 5999;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  TIM_InitStruct.Autoreload = 44;
+  TIM_InitStruct.Autoreload = 99;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   LL_TIM_Init(TIM3, &TIM_InitStruct);
   LL_TIM_DisableARRPreload(TIM3);
