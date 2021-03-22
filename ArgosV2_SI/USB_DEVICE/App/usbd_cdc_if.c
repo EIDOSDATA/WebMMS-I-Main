@@ -56,7 +56,7 @@ extern uint8_t bFlag;
 extern uint8_t UFlag, EnterFlag; // USB Select Flag, Enter key input
 extern char UTxbuf[300], buf[130]; // USB Tx, ADC print buf
 uint8_t URxbuf[200]; // USB Rx
-int usbselect = 3;
+int usbselect = 2;
 
 // ADC, STROBE
 extern uint8_t setcdsvalue;
@@ -329,7 +329,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		{
 			sprintf(UTxbuf, "Input : EncoderTargetCount= %d\r\n"
 					"Memory : EncoderTargetCount= %d\r\n"
-					"USB Select= %d.0 (default : 3.0)\r\n"
+					"USB Select= %d.0 (default : 2.0)\r\n"
 					"Auto triggering= %s\r\n", encoderval,
 					wP.encoderTargetCount, usbselect,
 					(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
