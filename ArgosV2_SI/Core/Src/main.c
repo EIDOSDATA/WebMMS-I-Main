@@ -388,9 +388,10 @@ int main(void)
 			// CW CODE
 			if (A_PLS_CNT >= wP.encoderTargetCount && A_PLS_CNT < 65500)
 			{
-				TIM8->CNT = 0;
-				ADC_Print();
-				//DSLR_Action(); // Driver Control
+				TIM8->CNT = 0;				
+				ADC_Print(); // When Argos S >> PRINT ADC
+				//DSLR_Action(); // When Argos S >> 'F' Triggering
+							   // When Argos I >> FirmWare Auto Control
 			}
 			else if (A_PLS_CNT <= 0 || A_PLS_CNT > 65500)
 			{
