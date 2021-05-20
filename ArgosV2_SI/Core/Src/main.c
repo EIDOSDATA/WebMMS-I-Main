@@ -80,47 +80,43 @@ DMA_HandleTypeDef hdma_usart2_tx;
 extern struct netif gnetif;
 
 // CAN BUS
-CAN_FilterTypeDef sFilterConfig;
-CAN_RxHeaderTypeDef RxHeader;
-CAN_TxHeaderTypeDef TxHeader;
-uint8_t RxData[8];
-uint8_t TxData[8]; // uint8_t TxData[8];
-uint32_t TxMailBox;
+CAN_FilterTypeDef can_filter_cfg;
+CAN_RxHeaderTypeDef can_rx_header;
+CAN_TxHeaderTypeDef can_tx_header;
+uint8_t can_rx_data[8];
+uint8_t can_tx_data[8]; // uint8_t TxData[8];
+uint32_t can_tx_mail_box;
 
 //SD CARD
-FATFS SDFatFs; /* File system object for SD disk logical drive */
-FIL MyFile; /* File object */
-char SDPath[4]; /* SD disk logical drive path */
-static uint8_t buffer[_MAX_SS]; /* a work buffer for the f_mkfs() */
+FATFS sd_fatfs; /* File system object for SD disk logical drive */
+FIL sd_myfile; /* File object */
+char sd_path[4]; /* SD disk logical drive path */
+//static uint8_t buffer[_MAX_SS]; /* a work buffer for the f_mkfs() */
 
-// DMI
-int A_PLS_CNT = 0, B_PLS_CNT = 0;
+// Auto Trigger Flag
+uint8_t run_f = 0;
 
-// USB
-bool bFlag = false;
-uint8_t UFlag = 0, EnterFlag = 0; // USB Select Flag, Enter key input
-char UTxbuf[300], buf[130]; // USB Tx, ADC print buf
-extern uint8_t URxbuf[200]; // USB Rx
-extern int usbselect;
+// DMI variable, Encoder variable
+int a_pls_cnt = 0, b_pls_cnt = 0;
+int input_enc_val = 0;
 
-// ADC, STROBE
+// USB Flag, Buffer
+uint8_t usb_sel_f = 0, enterkey_f = 0; // USB Select Flag, Enter key input
+uint8_t usb_tx_buf[300]; // USB Tx, ADC print buf
+extern uint8_t usb_rx_buf[200]; // USB Rx
+int usbselect = 2;
+
+// ADC variable
 uint8_t setcdsvalue;
-int adcValue[4]; // ADC DATA SAVE
-uint16_t stb0, stb1, stb2, stb3, stb_all; // STROBE Count
-uint8_t stbchk0 = 0, stbchk1 = 0, stbchk2 = 0, stbchk3 = 0; // STROBE CHECK FLAG
+int adc_value[4]; // ADC DATA SAVE
 
-// UDP FLAG
-extern uint8_t udp_flag;
-extern uint8_t udp_data;
-uint8_t udpIntput = 0;
-uint8_t udpStop = 0;
+// Strobe Count, Check
+uint16_t stb_cnt0, stb_cnt1, stb_cnt2, stb_cnt3, stb_cnt_all; // STROBE Count
+uint8_t stb_chk0, stb_chk1, stb_chk2, stb_chk3; // STROBE CHECK FLAG
 
 // Camera
-uint8_t cameraSelect = 0;
-uint8_t cameraValue = 0;
-
-// value
-int encoderval = 0;
+uint8_t spi_cam_select = 0;
+uint8_t spi_cam_value = 0;
 
 /* USER CODE END PV */
 
@@ -147,30 +143,30 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if (GPIO_Pin & STROBE0_Pin)
 	{
 		HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-		stbchk0 = 1;
-		stb0++;
+		stb_chk0 = 1;
+		stb_cnt0++;
 	}
 	if (GPIO_Pin & STROBE1_Pin)
 	{
 		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-		stbchk1 = 1;
-		stb1++;
+		stb_chk1 = 1;
+		stb_cnt1++;
 	}
 	if (GPIO_Pin & STROBE2_Pin)
 	{
 		HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-		stbchk2 = 1;
-		stb2++;
+		stb_chk2 = 1;
+		stb_cnt2++;
 	}
 	if (GPIO_Pin & STROBE3_Pin)
 	{
-		stbchk3 = 1;
-		stb3++;
+		stb_chk3 = 1;
+		stb_cnt3++;
 	}
 
 	if (GPIO_Pin & STROBE_CHK_Pin)
 	{
-		stb_all++;
+		stb_cnt_all++;
 		// MARK DRIVE
 		HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_SET);
 
@@ -204,43 +200,43 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	 */
 }
 
-void CAN_Transmit(int data)
+void can_transmit(int data)
 {
-	TxMailBox = HAL_CAN_GetTxMailboxesFreeLevel(&hcan1);
-	TxData[0] = data;
-	HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailBox);
+	can_tx_mail_box = HAL_CAN_GetTxMailboxesFreeLevel(&hcan1);
+	can_tx_data[0] = data;
+	HAL_CAN_AddTxMessage(&hcan1, &can_tx_header, can_tx_data, &can_tx_mail_box);
 }
 
-void Camera_Configuration(uint8_t camera, uint16_t value)
+void cam_conf(uint8_t camera, uint16_t value)
 {
 	// SPI 1. CS pin reset >> SPI Transmit >> CS pin set
 	switch (camera)
 	{
 	case 0:
 		HAL_GPIO_WritePin(CS0_GPIO_Port, CS0_Pin, GPIO_PIN_RESET);
-		HAL_SPI_Transmit(&hspi2, &value, 2, 1000);
+		HAL_SPI_Transmit(&hspi2, (uint8_t*) &value, 2, 1000);
 		HAL_GPIO_WritePin(CS0_GPIO_Port, CS0_Pin, GPIO_PIN_SET);
 		break;
 	case 1:
 		HAL_GPIO_WritePin(CS1_GPIO_Port, CS1_Pin, GPIO_PIN_RESET);
-		HAL_SPI_Transmit(&hspi2, &value, 2, 1000);
+		HAL_SPI_Transmit(&hspi2, (uint8_t*) &value, 2, 1000);
 		HAL_GPIO_WritePin(CS1_GPIO_Port, CS1_Pin, GPIO_PIN_SET);
 		break;
 	case 2:
 		HAL_GPIO_WritePin(CS2_GPIO_Port, CS2_Pin, GPIO_PIN_RESET);
-		HAL_SPI_Transmit(&hspi2, &value, 2, 1000);
+		HAL_SPI_Transmit(&hspi2, (uint8_t*) &value, 2, 1000);
 		HAL_GPIO_WritePin(CS2_GPIO_Port, CS2_Pin, GPIO_PIN_SET);
 		break;
 	case 3:
 		HAL_GPIO_WritePin(CS3_GPIO_Port, CS3_Pin, GPIO_PIN_RESET);
-		HAL_SPI_Transmit(&hspi2, &value, 2, 1000);
+		HAL_SPI_Transmit(&hspi2, (uint8_t*) &value, 2, 1000);
 		HAL_GPIO_WritePin(CS3_GPIO_Port, CS3_Pin, GPIO_PIN_SET);
 		break;
 	default:
 		break;
 	}
 }
-void DSLR_Action()
+void cam_act()
 {
 	HAL_GPIO_WritePin(SIG_AUTOFOCUS_GPIO_Port, SIG_AUTOFOCUS_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(SIG_SHUTTER_GPIO_Port, SIG_SHUTTER_Pin, GPIO_PIN_SET);
@@ -249,9 +245,9 @@ void DSLR_Action()
 	LL_TIM_EnableCounter(TIM3);
 }
 
-void ADC_Print()
+void cds_print()
 {
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcValue, 4);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adc_value, 4);
 	for (int i = 0; i < 4; i++)
 	{
 		HAL_DMA_PollForTransfer(&hdma_adc1, HAL_DMA_FULL_TRANSFER, 1000);
@@ -261,23 +257,25 @@ void ADC_Print()
 	{
 	case 1:
 		break;
-		sprintf(buf, "#%04d\r\n", adcValue[0]);
+		sprintf((char*) usb_tx_buf, "#%04d\r\n", adc_value[0]);
 	case 2:
 		break;
-		sprintf(buf, "#%04d%04d\r\n", adcValue[0], adcValue[1]);
+		sprintf((char*) usb_tx_buf, "#%04d%04d\r\n", adc_value[0],
+				adc_value[1]);
 	case 3:
 		break;
-		sprintf(buf, "#%04d%04d%04d\r\n", adcValue[0], adcValue[1],
-				adcValue[2]);
+		sprintf((char*) usb_tx_buf, "#%04d%04d%04d\r\n", adc_value[0],
+				adc_value[1], adc_value[2]);
 	case 4:
 		break;
-		sprintf(buf, "#%04d%04d%04d%04d\r\n", adcValue[0], adcValue[1],
-				adcValue[2], adcValue[3]);
+		sprintf((char*) usb_tx_buf, "#%04d%04d%04d%04d\r\n", adc_value[0],
+				adc_value[1], adc_value[2], adc_value[3]);
 	default:
-		sprintf(buf, "#%04d%04d\r\n", adcValue[0], adcValue[1]);
+		sprintf((char*) usb_tx_buf, "#%04d%04d\r\n", adc_value[0],
+				adc_value[1]);
 		break;
 	}
-	CDC_Transmit_FS((uint8_t*) buf, strlen(buf));
+	CDC_Transmit_FS((uint8_t*) usb_tx_buf, strlen((const char*)usb_tx_buf));
 }
 
 float diameter(float radius)
@@ -285,12 +283,12 @@ float diameter(float radius)
 	return (2 * 3.1415 * radius);
 }
 
-float rotationForShoot(float targetDistance, float wheelDiameter)
+float rotation_for_shoot(float targetDistance, float wheelDiameter)
 {
 	return (targetDistance / wheelDiameter);
 }
 
-int targetPulseCount(float rotationCount, int encoderPulseCnt)
+int target_pulse_cnt(float rotationCount, int encoderPulseCnt)
 {
 	return (int) ((((rotationCount * encoderPulseCnt) / TARGET_PULSE_NUMBER)
 			/ DIVISOR));
@@ -305,14 +303,14 @@ int targetPulseCount(float rotationCount, int encoderPulseCnt)
 int main(void)
 {
 	/* USER CODE BEGIN 1 */
-	WheelParam wP;
-	memcpy(&wP, (void*) (BACKUP_FLASH_ADDR), sizeof(WheelParam));
+	wheel_param_t wp;
+	memcpy(&wp, (void*) (BACKUP_FLASH_ADDR), sizeof(wheel_param_t));
 
-	stb0 = 0;
-	stb1 = 0;
-	stb2 = 0;
-	stb3 = 0;
-	stb_all = 0;
+	stb_cnt0 = 0;
+	stb_cnt1 = 0;
+	stb_cnt2 = 0;
+	stb_cnt3 = 0;
+	stb_cnt_all = 0;
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
@@ -356,45 +354,45 @@ int main(void)
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-	UFlag = 0;
-	bFlag = 0;
+	usb_sel_f = 0;
+	run_f = 0;
 
 	while (1)
 	{
 		// MX_LWIP_Process();
 		// UDP_INPUT();
-		switch (UFlag)
+		switch (usb_sel_f)
 		{
 		/* Key board Input */
 		case 1:
 			CDC_Transmit_FS((uint8_t*) "Input EncoderTargetCount\r\n", 26);
-			while (!EnterFlag)
+			while (!enterkey_f)
 			{
 			}
-			EnterFlag = 0;
-			encoderval = atoi(URxbuf);
-			wP.encoderTargetCount = encoderval;
-			UFlag = 0;
-			bFlag = 0;
+			enterkey_f = 0;
+			input_enc_val = atoi((char*) usb_rx_buf);
+			wp.enc_t_cnt = input_enc_val;
+			usb_sel_f = 0;
+			run_f = 0;
 			break;
 		default:
-			UFlag = 0;
+			usb_sel_f = 0;
 		}
 
-		if (bFlag == 1)
+		if (run_f == 1)
 		{
-			A_PLS_CNT = TIM8->CNT;
+			a_pls_cnt = TIM8->CNT;
 
 			// CW CODE
-			if (A_PLS_CNT >= wP.encoderTargetCount && A_PLS_CNT < 65500)
+			if (a_pls_cnt >= wp.enc_t_cnt && a_pls_cnt < 65500)
 			{
 				TIM8->CNT = 0;
-				ADC_Print();
-				//DSLR_Action(); // Driver Control
+				cds_print();
+				//cam_act(); // Driver Control
 			}
-			else if (A_PLS_CNT <= 0 || A_PLS_CNT > 65500)
+			else if (a_pls_cnt <= 0 || a_pls_cnt > 65500)
 			{
-				A_PLS_CNT = 0;
+				a_pls_cnt = 0;
 				//B_PLS_CNT = 0;
 				TIM8->CNT = 0;
 			}
@@ -404,8 +402,8 @@ int main(void)
 			 if (A_PLS_CNT <= 65535 - wP.encoderTargetCount && A_PLS_CNT > 35)
 			 {
 			 TIM8->CNT = 65535;
-			 ADC_Print();
-			 //DSLR_Action(); // Driver Control
+			 cds_print();
+			 //cam_act(); // Driver Control
 			 }
 
 			 else if (A_PLS_CNT <= 0 || A_PLS_CNT < 35)
@@ -593,12 +591,12 @@ static void MX_CAN1_Init(void)
 	}
 
 	/*##-5- Configure Transmission process #####################################*/
-	TxHeader.StdId = 0x01;
-	TxHeader.ExtId = 0x01;
-	TxHeader.RTR = CAN_RTR_DATA;
-	TxHeader.IDE = CAN_ID_STD;
-	TxHeader.DLC = 8;
-	TxHeader.TransmitGlobalTime = DISABLE;
+	can_tx_header.StdId = 0x01;
+	can_tx_header.ExtId = 0x01;
+	can_tx_header.RTR = CAN_RTR_DATA;
+	can_tx_header.IDE = CAN_ID_STD;
+	can_tx_header.DLC = 8;
+	can_tx_header.TransmitGlobalTime = DISABLE;
 	/* USER CODE END CAN1_Init 2 */
 
 }

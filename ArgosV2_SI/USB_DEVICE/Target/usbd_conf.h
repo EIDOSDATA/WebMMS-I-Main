@@ -89,7 +89,6 @@
   * @brief Aliases.
   * @{
   */
-
 /* Memory management macros */
 
 /** Alias for memory allocation. */

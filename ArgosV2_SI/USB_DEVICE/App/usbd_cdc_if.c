@@ -46,33 +46,36 @@
 
 #define TARGET_DISTANCE			1.0f
 
-extern void CAN_Transmit(int data);
+extern void can_transmit(int data);
 
-// DMI
-extern int A_PLS_CNT, B_PLS_CNT;
+// Auto Trigger Flag
+extern uint8_t run_f;
 
-// USB
-extern uint8_t bFlag;
-extern uint8_t UFlag, EnterFlag; // USB Select Flag, Enter key input
-extern char UTxbuf[300], buf[130]; // USB Tx, ADC print buf
-uint8_t URxbuf[200]; // USB Rx
-int usbselect = 2;
+// DMI variable, Encoder variable
+extern int a_pls_cnt, b_pls_cnt;
+extern int input_enc_val;
 
-// ADC, STROBE
+// USB Flag, Buffer
+extern uint8_t usb_sel_f, enterkey_f; // USB Select Flag, Enter key input
+extern uint8_t usb_tx_buf[300]; // USB Tx, ADC print buf
+uint8_t usb_rx_buf[200]; // USB Rx
+extern int usbselect;
+
+// ADC variable
 extern uint8_t setcdsvalue;
-extern int adcValue[4]; // ADC DATA SAVE
-extern uint16_t stb0, stb1, stb2, stb3, stb_all; // STROBE Count
-extern uint8_t stbchk0, stbchk1, stbchk2, stbchk3; // STROBE CHECK FLAG
+extern int adc_value[4]; // ADC DATA SAVE
+
+// Strobe Count, Check
+extern uint16_t stb_cnt0, stb_cnt1, stb_cnt2, stb_cnt3, stb_cnt_all; // STROBE Count
+extern uint8_t stb_chk0, stb_chk1, stb_chk2, stb_chk3; // STROBE CHECK FLAG
 
 // Camera
-extern uint8_t cameraSelect;
-extern uint8_t cameraValue;
+extern uint8_t spi_cam_select;
+extern uint8_t spi_cam_value;
 
-// Value
-extern int encoderval;
-
+// buffer pointer
 char *bufptr;
-// WebMMS S Version
+// Manual Print
 char Manual[] = "M . Manual\r\n"
 		"P . Print Status\r\n" // >> Argos I version : V
 		"2 . USB 2.0 >> Default : 2.0 \r\n"
@@ -264,15 +267,15 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t *pbuf, uint16_t length)
 		/*                                        4 - Space                            */
 		/* 6      | bDataBits  |   1   | Number Data bits (5, 6, 7, 8 or 16).          */
 		/*******************************************************************************/
-		static uint8_t lineCoding[7] // 115200bps, 1stop, no parity, 8bit
+		static uint8_t line_coding[7] // 115200bps, 1stop, no parity, 8bit
 		=
 		{ 0x00, 0xC2, 0x01, 0x00, 0x00, 0x00, 0x08 }; // 0001c200 >> 115200 arr[3],arr[2],arr[1],arr[0]
 	case CDC_SET_LINE_CODING:
-		memcpy(lineCoding, pbuf, sizeof(lineCoding));
+		memcpy(line_coding, pbuf, sizeof(line_coding));
 		break;
 
 	case CDC_GET_LINE_CODING:
-		memcpy(pbuf, lineCoding, sizeof(lineCoding));
+		memcpy(pbuf, line_coding, sizeof(line_coding));
 		break;
 
 	case CDC_SET_CONTROL_LINE_STATE:
@@ -311,36 +314,37 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 	/* USER CODE BEGIN 6 */
 	USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
 	USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-	WheelParam wP;
-	memcpy(&wP, (void*) (BACKUP_FLASH_ADDR), sizeof(WheelParam));
-	if (UFlag == 0)
+	wheel_param_t wp;
+	memcpy(&wp, (void*) (BACKUP_FLASH_ADDR), sizeof(wheel_param_t));
+	if (usb_sel_f == 0)
 	{
 		// Manual
 		if (strncmp((const char*) Buf, "m", 1) == 0
 				|| strncmp((const char*) Buf, "M", 1) == 0)
 		{
 			CDC_Transmit_FS((uint8_t*) Manual, strlen(Manual));
-			bufptr = URxbuf;
+			bufptr = (char*) usb_rx_buf;
 		}
 
 		// Print Status
 		else if (strncmp((const char*) Buf, "p", 1) == 0
 				|| strncmp((const char*) Buf, "P", 1) == 0)
 		{
-			sprintf(UTxbuf, "Input : EncoderTargetCount= %d\r\n"
+			sprintf((char*) usb_tx_buf, "Input : EncoderTargetCount= %d\r\n"
 					"Memory : EncoderTargetCount= %d\r\n"
 					"USB Select= %d.0 (default : 2.0)\r\n"
-					"Auto triggering= %s\r\n", encoderval,
-					wP.encoderTargetCount, usbselect,
-					(bFlag == true) ? ("Started\r\n") : ("Disabled\r\n"));
-			CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
+					"Auto triggering= %s\r\n", input_enc_val, wp.enc_t_cnt,
+					usbselect,
+					(run_f == true) ? ("Started\r\n") : ("Disabled\r\n"));
+			CDC_Transmit_FS((uint8_t*) usb_tx_buf,
+					strlen((const char*) usb_tx_buf));
 		}
 
 		// Input Data
 		if (strncmp((const char*) Buf, "i", 1) == 0
 				|| strncmp((const char*) Buf, "I", 1) == 0)
 		{
-			UFlag = 1;
+			usb_sel_f = 1;
 		}
 
 		// Save
@@ -348,7 +352,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 				|| strncmp((const char*) Buf, "H", 1) == 0)
 		{
 			/*
-			 wP.encoderTargetCount = encoderval;
+			 wP.encoderTargetCount = input_enc_val;
 			 HAL_StatusTypeDef FlashStatus = HAL_OK;
 			 HAL_FLASH_Unlock();
 			 {
@@ -378,7 +382,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			 }
 			 HAL_FLASH_Lock();
 			 */
-			wP.encoderTargetCount = encoderval;
+			wp.enc_t_cnt = input_enc_val;
 			uint32_t SectorError = 0;
 			HAL_FLASH_Unlock();
 			FLASH_EraseInitTypeDef EraseInitStruct;
@@ -390,8 +394,9 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			if (HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError) != HAL_OK)
 			{
 				int errorcode = HAL_FLASH_GetError();
-				sprintf(UTxbuf, "Error Code : %d\r\n", errorcode);
-				CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
+				sprintf((char*) usb_tx_buf, "Error Code : %d\r\n", errorcode);
+				CDC_Transmit_FS((uint8_t*) usb_tx_buf,
+						strlen((const char*) usb_tx_buf));
 				return HAL_ERROR;
 			}
 
@@ -406,7 +411,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			__HAL_FLASH_DATA_CACHE_ENABLE();
 
 			HAL_StatusTypeDef FlashStatus = HAL_OK;
-			register uint32_t *_targetAddr = (uint32_t*) (&wP);
+			register uint32_t *_targetAddr = (uint32_t*) (&wp);
 			/*
 			 uint32_t Address = FLASH_USER_START_ADDR;
 			 while (Address < FLASH_USER_END_ADDR)
@@ -424,7 +429,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			 }
 			 }
 			 */
-			for (uint8_t i = 0; i <= (sizeof(WheelParam) * 2); i +=
+			for (uint8_t i = 0; i <= (sizeof(wheel_param_t) * 2); i +=
 					sizeof(uint32_t))
 			{
 				FlashStatus = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,
@@ -436,9 +441,10 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 				//;
 			}
 			HAL_FLASH_Lock();
-			sprintf(UTxbuf, "Save %s",
+			sprintf((char*) usb_tx_buf, "Save %s",
 					(FlashStatus == HAL_OK) ? ("Complete\r\n") : ("Fail\r\n"));
-			CDC_Transmit_FS((uint8_t*) UTxbuf, strlen(UTxbuf));
+			CDC_Transmit_FS((uint8_t*) usb_tx_buf,
+					strlen((const char*) usb_tx_buf));
 		}
 
 		// USB 2.0
@@ -446,14 +452,14 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		{
 			CDC_Transmit_FS((uint8_t*) "USB Select 2.0\r\n", 16);
 			usbselect = 2;
-			CAN_Transmit(usbselect);
+			can_transmit(usbselect);
 		}
 		// USB 3.0
 		else if (strncmp((const char*) Buf, "3", 1) == 0)
 		{
 			CDC_Transmit_FS((uint8_t*) "USB Select 3.0\r\n", 16);
 			usbselect = 3;
-			CAN_Transmit(usbselect);
+			can_transmit(usbselect);
 		}
 
 		// Force Trigger
@@ -476,8 +482,8 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		{
 			// CW
 			TIM8->CNT = 0;
-			A_PLS_CNT = 0;
-			B_PLS_CNT = 0;
+			a_pls_cnt = 0;
+			b_pls_cnt = 0;
 
 			// CCW
 			/*
@@ -485,14 +491,14 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			 A_PLS_CNT = 65535;
 			 B_PLS_CNT = 65535;
 			 */
-			bFlag = 1;
+			run_f = 1;
 			CDC_Transmit_FS((uint8_t*) "AutoTrigger Started!\r\n", 22); // ACK
 		}
 		// Stop
 		else if (strncmp((const char*) Buf, "t", 1) == 0
 				|| strncmp((const char*) Buf, "T", 1) == 0)
 		{
-			bFlag = 0;
+			run_f = 0;
 			CDC_Transmit_FS((uint8_t*) "Stopped!\r\n", 10); // ACK
 		}
 		else
@@ -511,12 +517,12 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			bufptr++;
 			if (Buf[i] == '\r' || Buf[i] == '\n')
 			{
-				EnterFlag = 1;
-				bufptr = URxbuf;
+				enterkey_f = 1;
+				bufptr = (char*) usb_rx_buf;
 			}
 			else if (Buf[i] == '\b')
 			{
-				if (bufptr != URxbuf)
+				if (bufptr != (char*) usb_rx_buf)
 				{
 					bufptr--;
 				}

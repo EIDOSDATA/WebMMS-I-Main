@@ -29,7 +29,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f2xx_hal.h"
-#include "stm32f2xx_hal.h"
+
 #include "stm32f2xx_ll_tim.h"
 #include "stm32f2xx_ll_bus.h"
 #include "stm32f2xx_ll_cortex.h"
@@ -49,10 +49,10 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-typedef struct _paramType
+typedef struct wheel_param
 {
-	int encoderTargetCount; // I version add
-} __attribute__((aligned(1), packed)) WheelParam;
+	int enc_t_cnt; // I version add
+} __attribute__((aligned(1), packed)) wheel_param_t;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
