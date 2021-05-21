@@ -371,23 +371,23 @@ int main(void)
 			else if (a_pls_cnt <= 0 || a_pls_cnt > 65500)
 			{
 				a_pls_cnt = 0;
-				//B_PLS_CNT = 0;
+				//b_pls_cnt = 0;
 				TIM8->CNT = 0;
 			}
 
 			/*
 			 // CCW CODE
-			 if (A_PLS_CNT <= 65535 - wp.enc_val_for_photo_dist && A_PLS_CNT > 35)
+			 if (a_pls_cnt <= 65535 - wp.enc_val_for_photo_dist && a_pls_cnt > 35)
 			 {
 			 TIM8->CNT = 65535;
 			 cds_print();
 			 //cam_act(); // Driver Control
 			 }
 
-			 else if (A_PLS_CNT <= 0 || A_PLS_CNT < 35)
+			 else if (a_pls_cnt <= 0 || a_pls_cnt < 35)
 			 {
-			 A_PLS_CNT = 65535;
-			 //B_PLS_CNT = 65535;
+			 a_pls_cnt = 65535;
+			 //b_pls_cnt = 65535;
 			 TIM8->CNT = 65535;
 			 }
 			 */
