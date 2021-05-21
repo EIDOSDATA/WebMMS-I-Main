@@ -330,10 +330,10 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 		else if (strncmp((const char*) Buf, "p", 1) == 0
 				|| strncmp((const char*) Buf, "P", 1) == 0)
 		{
-			sprintf((char*) usb_tx_buf, "Input : EncoderTargetCount= %d\r\n"
-					"Memory : EncoderTargetCount= %d\r\n"
+			sprintf((char*) usb_tx_buf, "Input : Encoder value for photo distance = %d\r\n"
+					"Memory : Encoder value for photo distance = %d\r\n"
 					"USB Select= %d.0 (default : 2.0)\r\n"
-					"Auto triggering= %s\r\n", input_enc_val, wp.enc_t_cnt,
+					"Auto triggering= %s\r\n", input_enc_val, wp.enc_val_for_photo_dist,
 					usbselect,
 					(run_f == true) ? ("Started\r\n") : ("Disabled\r\n"));
 			CDC_Transmit_FS((uint8_t*) usb_tx_buf,
@@ -382,7 +382,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
 			 }
 			 HAL_FLASH_Lock();
 			 */
-			wp.enc_t_cnt = input_enc_val;
+			wp.enc_val_for_photo_dist = input_enc_val;
 			uint32_t SectorError = 0;
 			HAL_FLASH_Unlock();
 			FLASH_EraseInitTypeDef EraseInitStruct;

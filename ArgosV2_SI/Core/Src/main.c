@@ -176,28 +176,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		HAL_GPIO_WritePin(SIG_SHUTTER_GPIO_Port, SIG_SHUTTER_Pin,
 				GPIO_PIN_RESET);
 	}
-
-	/*
-	 if ((stbchk0 == 1 && stbchk1) == 1 || (stbchk2 == 1 && stbchk3 == 1)) // if (stbchk0 == 1 && stbchk1 == 1 && stbchk2 == 1 && stbchk3 == 1)
-	 {
-	 HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-	 HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_SET);
-	 stbchk0 = 0;
-	 stbchk1 = 0;
-	 stbchk2 = 0;
-	 stbchk3 = 0;
-	 }*/
-	/*
-	 // OR GATE MARK DRIVE
-	 if (stbchk0 == 1 || stbchk1 == 1 || stbchk2 == 1 || stbchk3 == 1) // MARK DRIVE
-	 {
-	 HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, SET);
-	 stbchk0 = 0;
-	 stbchk1 = 0;
-	 stbchk2 = 0;
-	 stbchk3 = 0;
-	 }
-	 */
 }
 
 void can_transmit(int data)
@@ -275,7 +253,7 @@ void cds_print()
 				adc_value[1]);
 		break;
 	}
-	CDC_Transmit_FS((uint8_t*) usb_tx_buf, strlen((const char*)usb_tx_buf));
+	CDC_Transmit_FS((uint8_t*) usb_tx_buf, strlen((const char*) usb_tx_buf));
 }
 
 float diameter(float radius)
@@ -283,14 +261,14 @@ float diameter(float radius)
 	return (2 * 3.1415 * radius);
 }
 
-float rotation_for_shoot(float targetDistance, float wheelDiameter)
+float n_of_rot_to_photo_dist(float tgt_dist, float w_diameter)
 {
-	return (targetDistance / wheelDiameter);
+	return (tgt_dist / w_diameter);
 }
 
-int target_pulse_cnt(float rotationCount, int encoderPulseCnt)
+int tgt_pls_cnt(float w_turn_enc_pls, int enc_pls_f)
 {
-	return (int) ((((rotationCount * encoderPulseCnt) / TARGET_PULSE_NUMBER)
+	return (int) ((((w_turn_enc_pls * enc_pls_f) / TARGET_PULSE_NUMBER)
 			/ DIVISOR));
 }
 
@@ -371,7 +349,7 @@ int main(void)
 			}
 			enterkey_f = 0;
 			input_enc_val = atoi((char*) usb_rx_buf);
-			wp.enc_t_cnt = input_enc_val;
+			wp.enc_val_for_photo_dist = input_enc_val;
 			usb_sel_f = 0;
 			run_f = 0;
 			break;
@@ -384,7 +362,7 @@ int main(void)
 			a_pls_cnt = TIM8->CNT;
 
 			// CW CODE
-			if (a_pls_cnt >= wp.enc_t_cnt && a_pls_cnt < 65500)
+			if (a_pls_cnt >= wp.enc_val_for_photo_dist && a_pls_cnt < 65500)
 			{
 				TIM8->CNT = 0;
 				cds_print();
@@ -399,7 +377,7 @@ int main(void)
 
 			/*
 			 // CCW CODE
-			 if (A_PLS_CNT <= 65535 - wP.encoderTargetCount && A_PLS_CNT > 35)
+			 if (A_PLS_CNT <= 65535 - wp.enc_val_for_photo_dist && A_PLS_CNT > 35)
 			 {
 			 TIM8->CNT = 65535;
 			 cds_print();
