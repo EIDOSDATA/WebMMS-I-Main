@@ -51,7 +51,10 @@ extern "C" {
 /* USER CODE BEGIN ET */
 typedef struct wheel_param
 {
-	int enc_t_cnt; // I version add
+	float car_w_rad; // Car Wheel Radius >> 0.275(m)
+	float tgt_dist; // Target Distance (Camera Action) >> 5.0(m)
+	int one_rot_enc_pls; // 1 rotation encoder pulse value >> 2000
+	int enc_val_for_photo_dist; // Encoder value for photo distance
 } __attribute__((aligned(1), packed)) wheel_param_t;
 /* USER CODE END ET */
 
