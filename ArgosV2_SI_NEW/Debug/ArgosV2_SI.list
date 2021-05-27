@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00011e20  08000188  08000188  00010188  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000768  08011fa8  08011fa8  00021fa8  2**3
+  2 .rodata       000006e8  08011fa8  08011fa8  00021fa8  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08012710  08012710  0003052c  2**0
+  3 .ARM.extab    00000000  08012690  08012690  0003052c  2**0
                   CONTENTS
-  4 .ARM          00000008  08012710  08012710  00022710  2**2
+  4 .ARM          00000008  08012690  08012690  00022690  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08012718  08012718  0003052c  2**0
+  5 .preinit_array 00000000  08012698  08012698  0003052c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08012718  08012718  00022718  2**2
+  6 .init_array   00000004  08012698  08012698  00022698  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0801271c  0801271c  0002271c  2**2
+  7 .fini_array   00000004  0801269c  0801269c  0002269c  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         0000052c  20000000  08012720  00030000  2**2
+  8 .data         0000052c  20000000  080126a0  00030000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00001ba4  2000052c  08012c4c  0003052c  2**2
+  9 .bss          00001ba4  2000052c  08012bcc  0003052c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000800  200020d0  08012c4c  000320d0  2**0
+ 10 ._user_heap_stack 00000800  200020d0  08012bcc  000320d0  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0003052c  2**0
                   CONTENTS, READONLY
@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0002a281  00000000  00000000  000653f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000266bb  00000000  00000000  0008f671  2**0
+ 17 .debug_line   000266b9  00000000  00000000  0008f671  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000e45a9  00000000  00000000  000b5d2c  2**0
+ 18 .debug_str    000e45a9  00000000  00000000  000b5d2a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  0019a2d5  2**0
+ 19 .comment      00000053  00000000  00000000  0019a2d3  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00009ca0  00000000  00000000  0019a328  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -4066,7 +4066,7 @@ Disassembly of section .text:
  800277e:	f7fe fd1d 	bl	80011bc <main>
  8002782:	4770      	bx	lr
  8002784:	20020000 	.word	0x20020000
- 8002788:	08012720 	.word	0x08012720
+ 8002788:	080126a0 	.word	0x080126a0
  800278c:	20000000 	.word	0x20000000
  8002790:	2000052c 	.word	0x2000052c
  8002794:	2000052c 	.word	0x2000052c
@@ -8066,7 +8066,7 @@ Disassembly of section .text:
  80049a8:	bc80      	pop	{r7}
  80049aa:	4770      	bx	lr
  80049ac:	aaaaaaab 	.word	0xaaaaaaab
- 80049b0:	080122f4 	.word	0x080122f4
+ 80049b0:	08012278 	.word	0x08012278
 
 080049b4 <DMA_CheckFifoParam>:
  80049b4:	b480      	push	{r7}
@@ -12143,7 +12143,7 @@ Disassembly of section .text:
  8006d7a:	bf00      	nop
  8006d7c:	40023c00 	.word	0x40023c00
  8006d80:	40023800 	.word	0x40023800
- 8006d84:	080122dc 	.word	0x080122dc
+ 8006d84:	08012260 	.word	0x08012260
  8006d88:	20000004 	.word	0x20000004
  8006d8c:	20000008 	.word	0x20000008
 
@@ -12355,7 +12355,7 @@ Disassembly of section .text:
  8006fa0:	46bd      	mov	sp, r7
  8006fa2:	bd80      	pop	{r7, pc}
  8006fa4:	40023800 	.word	0x40023800
- 8006fa8:	080122ec 	.word	0x080122ec
+ 8006fa8:	08012270 	.word	0x08012270
 
 08006fac <HAL_RCC_GetPCLK2Freq>:
  8006fac:	b580      	push	{r7, lr}
@@ -12383,7 +12383,7 @@ Disassembly of section .text:
  8006fe4:	46bd      	mov	sp, r7
  8006fe6:	bd80      	pop	{r7, pc}
  8006fe8:	40023800 	.word	0x40023800
- 8006fec:	080122ec 	.word	0x080122ec
+ 8006fec:	08012270 	.word	0x08012270
 
 08006ff0 <HAL_SD_Init>:
  8006ff0:	b580      	push	{r7, lr}
@@ -20860,7 +20860,7 @@ Disassembly of section .text:
  800b980:	bf00      	nop
  800b982:	bd80      	pop	{r7, pc}
  800b984:	20000ed4 	.word	0x20000ed4
- 800b988:	080122fc 	.word	0x080122fc
+ 800b988:	08012280 	.word	0x08012280
  800b98c:	20001078 	.word	0x20001078
 
 0800b990 <BSP_SD_Init>:
@@ -24802,21 +24802,19 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
  800d9f8:	2b00      	cmp	r3, #0
  800d9fa:	d11c      	bne.n	800da36 <serial_cmd_func+0xaa>
 	{
-		sprintf((char*) usb_tx_buf,
+		sprintf((char*) usb_tx_buf, "#input,%d\n"
  800d9fc:	4b9e      	ldr	r3, [pc, #632]	; (800dc78 <serial_cmd_func+0x2ec>)
  800d9fe:	6819      	ldr	r1, [r3, #0]
  800da00:	6af8      	ldr	r0, [r7, #44]	; 0x2c
  800da02:	4b9e      	ldr	r3, [pc, #632]	; (800dc7c <serial_cmd_func+0x2f0>)
  800da04:	681b      	ldr	r3, [r3, #0]
-				"#Input : Encoder value for photo distance = %d\n"
-						"#Memory : Encoder value for photo distance = %d\n"
-						"#USB Select= %d.0 (default : 2.0)\n"
-						"#Auto triggering= %s\n", input_enc_val,
-				wp.enc_val_for_photo_dist, usbselect,
-				(run_f == true) ? ("#Started\n") : ("#Disabled\n"));
+				"#memory,%d\n"
+				"#usb,%d\n"
+				"#trigger,%s\n", input_enc_val, wp.enc_val_for_photo_dist,
+				usbselect, (run_f == true) ? ("1") : ("0"));
  800da06:	4a9e      	ldr	r2, [pc, #632]	; (800dc80 <serial_cmd_func+0x2f4>)
  800da08:	7812      	ldrb	r2, [r2, #0]
-		sprintf((char*) usb_tx_buf,
+		sprintf((char*) usb_tx_buf, "#input,%d\n"
  800da0a:	2a01      	cmp	r2, #1
  800da0c:	d101      	bne.n	800da12 <serial_cmd_func+0x86>
  800da0e:	4a9d      	ldr	r2, [pc, #628]	; (800dc84 <serial_cmd_func+0x2f8>)
@@ -25172,25 +25170,25 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
  800dc7c:	20000000 	.word	0x20000000
  800dc80:	20000548 	.word	0x20000548
  800dc84:	0801214c 	.word	0x0801214c
- 800dc88:	08012158 	.word	0x08012158
- 800dc8c:	08012164 	.word	0x08012164
+ 800dc88:	08012150 	.word	0x08012150
+ 800dc8c:	08012154 	.word	0x08012154
  800dc90:	200008dc 	.word	0x200008dc
- 800dc94:	080121fc 	.word	0x080121fc
- 800dc98:	08012200 	.word	0x08012200
- 800dc9c:	08012208 	.word	0x08012208
- 800dca0:	0801220c 	.word	0x0801220c
- 800dca4:	08012214 	.word	0x08012214
+ 800dc94:	08012180 	.word	0x08012180
+ 800dc98:	08012184 	.word	0x08012184
+ 800dc9c:	0801218c 	.word	0x0801218c
+ 800dca0:	08012190 	.word	0x08012190
+ 800dca4:	08012198 	.word	0x08012198
  800dca8:	080120a0 	.word	0x080120a0
  800dcac:	40023c00 	.word	0x40023c00
- 800dcb0:	08012218 	.word	0x08012218
- 800dcb4:	0801221c 	.word	0x0801221c
- 800dcb8:	08012220 	.word	0x08012220
- 800dcbc:	0801222c 	.word	0x0801222c
- 800dcc0:	08012230 	.word	0x08012230
- 800dcc4:	08012244 	.word	0x08012244
- 800dcc8:	08012248 	.word	0x08012248
- 800dccc:	0801225c 	.word	0x0801225c
- 800dcd0:	08012260 	.word	0x08012260
+ 800dcb0:	0801219c 	.word	0x0801219c
+ 800dcb4:	080121a0 	.word	0x080121a0
+ 800dcb8:	080121a4 	.word	0x080121a4
+ 800dcbc:	080121b0 	.word	0x080121b0
+ 800dcc0:	080121b4 	.word	0x080121b4
+ 800dcc4:	080121c8 	.word	0x080121c8
+ 800dcc8:	080121cc 	.word	0x080121cc
+ 800dccc:	080121e0 	.word	0x080121e0
+ 800dcd0:	080121e4 	.word	0x080121e4
  800dcd4:	40021800 	.word	0x40021800
  800dcd8:	40021000 	.word	0x40021000
 		//LL_TIM_ClearFlag_UPDATE(TIM3);
@@ -25290,16 +25288,16 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
  800dd62:	46bd      	mov	sp, r7
  800dd64:	bd90      	pop	{r4, r7, pc}
  800dd66:	bf00      	nop
- 800dd68:	08012264 	.word	0x08012264
- 800dd6c:	08012268 	.word	0x08012268
+ 800dd68:	080121e8 	.word	0x080121e8
+ 800dd6c:	080121ec 	.word	0x080121ec
  800dd70:	40010400 	.word	0x40010400
  800dd74:	2000054c 	.word	0x2000054c
  800dd78:	20000550 	.word	0x20000550
  800dd7c:	20000548 	.word	0x20000548
- 800dd80:	0801226c 	.word	0x0801226c
- 800dd84:	08012284 	.word	0x08012284
- 800dd88:	08012288 	.word	0x08012288
- 800dd8c:	0801228c 	.word	0x0801228c
+ 800dd80:	080121f0 	.word	0x080121f0
+ 800dd84:	08012208 	.word	0x08012208
+ 800dd88:	0801220c 	.word	0x0801220c
+ 800dd8c:	08012210 	.word	0x08012210
  800dd90:	20000204 	.word	0x20000204
 
 0800dd94 <CDC_Init_FS>:
@@ -25612,7 +25610,7 @@ static int8_t CDC_Receive_FS(uint8_t *Buf, uint32_t *Len)
  800df88:	bd80      	pop	{r7, pc}
  800df8a:	bf00      	nop
  800df8c:	200014d8 	.word	0x200014d8
- 800df90:	08012298 	.word	0x08012298
+ 800df90:	0801221c 	.word	0x0801221c
  800df94:	20000558 	.word	0x20000558
  800df98:	2000179c 	.word	0x2000179c
  800df9c:	20000559 	.word	0x20000559
@@ -25736,7 +25734,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800e068:	bd80      	pop	{r7, pc}
  800e06a:	bf00      	nop
  800e06c:	20001ac0 	.word	0x20001ac0
- 800e070:	0801229c 	.word	0x0801229c
+ 800e070:	08012220 	.word	0x08012220
 
 0800e074 <USBD_FS_ManufacturerStrDescriptor>:
  800e074:	b580      	push	{r7, lr}
@@ -25755,7 +25753,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800e090:	46bd      	mov	sp, r7
  800e092:	bd80      	pop	{r7, pc}
  800e094:	20001ac0 	.word	0x20001ac0
- 800e098:	080122a8 	.word	0x080122a8
+ 800e098:	0801222c 	.word	0x0801222c
 
 0800e09c <USBD_FS_SerialStrDescriptor>:
  800e09c:	b580      	push	{r7, lr}
@@ -25801,7 +25799,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800e0f0:	bd80      	pop	{r7, pc}
  800e0f2:	bf00      	nop
  800e0f4:	20001ac0 	.word	0x20001ac0
- 800e0f8:	080122b4 	.word	0x080122b4
+ 800e0f8:	08012238 	.word	0x08012238
 
 0800e0fc <USBD_FS_InterfaceStrDescriptor>:
  800e0fc:	b580      	push	{r7, lr}
@@ -25829,7 +25827,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800e12c:	bd80      	pop	{r7, pc}
  800e12e:	bf00      	nop
  800e130:	20001ac0 	.word	0x20001ac0
- 800e134:	080122c0 	.word	0x080122c0
+ 800e134:	08012244 	.word	0x08012244
 
 0800e138 <Get_SerialNum>:
  800e138:	b580      	push	{r7, lr}
@@ -26706,10 +26704,10 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800e86a:	4798      	blx	r3
  800e86c:	3601      	adds	r6, #1
  800e86e:	e7f2      	b.n	800e856 <__libc_init_array+0x1e>
- 800e870:	08012718 	.word	0x08012718
- 800e874:	08012718 	.word	0x08012718
- 800e878:	08012718 	.word	0x08012718
- 800e87c:	0801271c 	.word	0x0801271c
+ 800e870:	08012698 	.word	0x08012698
+ 800e874:	08012698 	.word	0x08012698
+ 800e878:	08012698 	.word	0x08012698
+ 800e87c:	0801269c 	.word	0x0801269c
 
 0800e880 <malloc>:
  800e880:	4b02      	ldr	r3, [pc, #8]	; (800e88c <malloc+0xc>)
@@ -27311,11 +27309,11 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800ee00:	e7ee      	b.n	800ede0 <_printf_float+0x2a8>
  800ee02:	bf00      	nop
  800ee04:	7fefffff 	.word	0x7fefffff
- 800ee08:	08012314 	.word	0x08012314
- 800ee0c:	08012318 	.word	0x08012318
- 800ee10:	08012320 	.word	0x08012320
- 800ee14:	0801231c 	.word	0x0801231c
- 800ee18:	08012651 	.word	0x08012651
+ 800ee08:	08012298 	.word	0x08012298
+ 800ee0c:	0801229c 	.word	0x0801229c
+ 800ee10:	080122a4 	.word	0x080122a4
+ 800ee14:	080122a0 	.word	0x080122a0
+ 800ee18:	080125d1 	.word	0x080125d1
  800ee1c:	9a0e      	ldr	r2, [sp, #56]	; 0x38
  800ee1e:	6da3      	ldr	r3, [r4, #88]	; 0x58
  800ee20:	429a      	cmp	r2, r3
@@ -27802,8 +27800,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800f2ac:	2500      	movs	r5, #0
  800f2ae:	f104 0619 	add.w	r6, r4, #25
  800f2b2:	e7f5      	b.n	800f2a0 <_printf_i+0x230>
- 800f2b4:	08012324 	.word	0x08012324
- 800f2b8:	08012335 	.word	0x08012335
+ 800f2b4:	080122a8 	.word	0x080122a8
+ 800f2b8:	080122b9 	.word	0x080122b9
 
 0800f2bc <_sbrk_r>:
  800f2bc:	b538      	push	{r3, r4, r5, lr}
@@ -28072,7 +28070,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800f522:	230a      	movs	r3, #10
  800f524:	e7ac      	b.n	800f480 <_strtol_l.isra.0+0x60>
  800f526:	bf00      	nop
- 800f528:	08012347 	.word	0x08012347
+ 800f528:	080122cb 	.word	0x080122cb
 
 0800f52c <_strtol_r>:
  800f52c:	f7ff bf78 	b.w	800f420 <_strtol_l.isra.0>
@@ -28510,15 +28508,15 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800f97c:	3fc68a28 	.word	0x3fc68a28
  800f980:	509f79fb 	.word	0x509f79fb
  800f984:	3fd34413 	.word	0x3fd34413
- 800f988:	08012454 	.word	0x08012454
- 800f98c:	0801246b 	.word	0x0801246b
+ 800f988:	080123d8 	.word	0x080123d8
+ 800f98c:	080123ef 	.word	0x080123ef
  800f990:	7ff00000 	.word	0x7ff00000
- 800f994:	08012450 	.word	0x08012450
- 800f998:	08012447 	.word	0x08012447
- 800f99c:	08012652 	.word	0x08012652
+ 800f994:	080123d4 	.word	0x080123d4
+ 800f998:	080123cb 	.word	0x080123cb
+ 800f99c:	080125d2 	.word	0x080125d2
  800f9a0:	3ff80000 	.word	0x3ff80000
- 800f9a4:	08012568 	.word	0x08012568
- 800f9a8:	080124ca 	.word	0x080124ca
+ 800f9a4:	080124e8 	.word	0x080124e8
+ 800f9a8:	0801244e 	.word	0x0801244e
  800f9ac:	2301      	movs	r3, #1
  800f9ae:	930b      	str	r3, [sp, #44]	; 0x2c
  800f9b0:	e7d4      	b.n	800f95c <_dtoa_r+0x2b4>
@@ -28750,8 +28748,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  800fc44:	e9cd 0104 	strd	r0, r1, [sp, #16]
  800fc48:	e7c3      	b.n	800fbd2 <_dtoa_r+0x52a>
  800fc4a:	bf00      	nop
- 800fc4c:	08012568 	.word	0x08012568
- 800fc50:	08012540 	.word	0x08012540
+ 800fc4c:	080124e8 	.word	0x080124e8
+ 800fc50:	080124c0 	.word	0x080124c0
  800fc54:	3ff00000 	.word	0x3ff00000
  800fc58:	40240000 	.word	0x40240000
  800fc5c:	401c0000 	.word	0x401c0000
@@ -29389,9 +29387,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8010270:	f000 f8a8 	bl	80103c4 <__multadd>
  8010274:	4682      	mov	sl, r0
  8010276:	e7eb      	b.n	8010250 <_dtoa_r+0xba8>
- 8010278:	080124ca 	.word	0x080124ca
- 801027c:	08012651 	.word	0x08012651
- 8010280:	08012447 	.word	0x08012447
+ 8010278:	0801244e 	.word	0x0801244e
+ 801027c:	080125d1 	.word	0x080125d1
+ 8010280:	080123cb 	.word	0x080123cb
 
 08010284 <_localeconv_r>:
  8010284:	4800      	ldr	r0, [pc, #0]	; (8010288 <_localeconv_r+0x4>)
@@ -29508,8 +29506,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8010370:	e9c0 3303 	strd	r3, r3, [r0, #12]
  8010374:	e7f7      	b.n	8010366 <_Balloc+0x66>
  8010376:	bf00      	nop
- 8010378:	08012454 	.word	0x08012454
- 801037c:	080124db 	.word	0x080124db
+ 8010378:	080123d8 	.word	0x080123d8
+ 801037c:	0801245f 	.word	0x0801245f
 
 08010380 <_Bfree>:
  8010380:	b570      	push	{r4, r5, r6, lr}
@@ -29537,8 +29535,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  80103b4:	6021      	str	r1, [r4, #0]
  80103b6:	f843 4022 	str.w	r4, [r3, r2, lsl #2]
  80103ba:	bd70      	pop	{r4, r5, r6, pc}
- 80103bc:	08012454 	.word	0x08012454
- 80103c0:	080124db 	.word	0x080124db
+ 80103bc:	080123d8 	.word	0x080123d8
+ 80103c0:	0801245f 	.word	0x0801245f
 
 080103c4 <__multadd>:
  80103c4:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -29594,8 +29592,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8010448:	4620      	mov	r0, r4
  801044a:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  801044e:	bf00      	nop
- 8010450:	080124ca 	.word	0x080124ca
- 8010454:	080124db 	.word	0x080124db
+ 8010450:	0801244e 	.word	0x0801244e
+ 8010454:	0801245f 	.word	0x0801245f
 
 08010458 <__hi0bits>:
  8010458:	0c02      	lsrs	r2, r0, #16
@@ -29687,8 +29685,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8010512:	6103      	str	r3, [r0, #16]
  8010514:	bd10      	pop	{r4, pc}
  8010516:	bf00      	nop
- 8010518:	080124ca 	.word	0x080124ca
- 801051c:	080124db 	.word	0x080124db
+ 8010518:	0801244e 	.word	0x0801244e
+ 801051c:	0801245f 	.word	0x0801245f
 
 08010520 <__multiply>:
  8010520:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -29806,8 +29804,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  801065a:	d1a5      	bne.n	80105a8 <__multiply+0x88>
  801065c:	3f01      	subs	r7, #1
  801065e:	e7a1      	b.n	80105a4 <__multiply+0x84>
- 8010660:	080124ca 	.word	0x080124ca
- 8010664:	080124db 	.word	0x080124db
+ 8010660:	0801244e 	.word	0x0801244e
+ 8010664:	0801245f 	.word	0x0801245f
 
 08010668 <__pow5mult>:
  8010668:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -29875,9 +29873,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8010708:	4638      	mov	r0, r7
  801070a:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  801070e:	bf00      	nop
- 8010710:	08012630 	.word	0x08012630
- 8010714:	08012454 	.word	0x08012454
- 8010718:	080124db 	.word	0x080124db
+ 8010710:	080125b0 	.word	0x080125b0
+ 8010714:	080123d8 	.word	0x080123d8
+ 8010718:	0801245f 	.word	0x0801245f
 
 0801071c <__lshift>:
  801071c:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -29956,8 +29954,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  80107e6:	d8f9      	bhi.n	80107dc <__lshift+0xc0>
  80107e8:	e7ea      	b.n	80107c0 <__lshift+0xa4>
  80107ea:	bf00      	nop
- 80107ec:	080124ca 	.word	0x080124ca
- 80107f0:	080124db 	.word	0x080124db
+ 80107ec:	0801244e 	.word	0x0801244e
+ 80107f0:	0801245f 	.word	0x0801245f
 
 080107f4 <__mcmp>:
  80107f4:	4603      	mov	r3, r0
@@ -30087,8 +30085,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  801093e:	3f01      	subs	r7, #1
  8010940:	e7e8      	b.n	8010914 <__mdiff+0xe8>
  8010942:	bf00      	nop
- 8010944:	080124ca 	.word	0x080124ca
- 8010948:	080124db 	.word	0x080124db
+ 8010944:	0801244e 	.word	0x0801244e
+ 8010948:	0801245f 	.word	0x0801245f
 
 0801094c <__d2b>:
  801094c:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
@@ -30159,8 +30157,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  80109f6:	6031      	str	r1, [r6, #0]
  80109f8:	e7e1      	b.n	80109be <__d2b+0x72>
  80109fa:	bf00      	nop
- 80109fc:	080124ca 	.word	0x080124ca
- 8010a00:	080124db 	.word	0x080124db
+ 80109fc:	0801244e 	.word	0x0801244e
+ 8010a00:	0801245f 	.word	0x0801245f
 
 08010a04 <_calloc_r>:
  8010a04:	b538      	push	{r3, r4, r5, lr}
@@ -30454,11 +30452,11 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8010cbc:	f7fe f9d8 	bl	800f070 <_printf_i>
  8010cc0:	e7eb      	b.n	8010c9a <_svfiprintf_r+0x1c2>
  8010cc2:	bf00      	nop
- 8010cc4:	0801263c 	.word	0x0801263c
- 8010cc8:	08012646 	.word	0x08012646
+ 8010cc4:	080125bc 	.word	0x080125bc
+ 8010cc8:	080125c6 	.word	0x080125c6
  8010ccc:	0800eb39 	.word	0x0800eb39
  8010cd0:	08010a21 	.word	0x08010a21
- 8010cd4:	08012642 	.word	0x08012642
+ 8010cd4:	080125c2 	.word	0x080125c2
 
 08010cd8 <_sungetc_r>:
  8010cd8:	b538      	push	{r3, r4, r5, lr}
@@ -30839,8 +30837,8 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  801106a:	e7f9      	b.n	8011060 <__ssvfiscanf_r+0x2d4>
  801106c:	08010cd9 	.word	0x08010cd9
  8011070:	08010d53 	.word	0x08010d53
- 8011074:	08012347 	.word	0x08012347
- 8011078:	08012642 	.word	0x08012642
+ 8011074:	080122cb 	.word	0x080122cb
+ 8011078:	080125c2 	.word	0x080125c2
  801107c:	00000000 	.word	0x00000000
 
 08011080 <_scanf_chars>:
@@ -30922,7 +30920,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8011126:	441f      	add	r7, r3
  8011128:	6127      	str	r7, [r4, #16]
  801112a:	e7cb      	b.n	80110c4 <_scanf_chars+0x44>
- 801112c:	08012347 	.word	0x08012347
+ 801112c:	080122cb 	.word	0x080122cb
 
 08011130 <_scanf_i>:
  8011130:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -31114,10 +31112,10 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  80112fe:	e7eb      	b.n	80112d8 <_scanf_i+0x1a8>
  8011300:	2001      	movs	r0, #1
  8011302:	e7f2      	b.n	80112ea <_scanf_i+0x1ba>
- 8011304:	080122d0 	.word	0x080122d0
+ 8011304:	08012254 	.word	0x08012254
  8011308:	080114a5 	.word	0x080114a5
  801130c:	0800f52d 	.word	0x0800f52d
- 8011310:	08012666 	.word	0x08012666
+ 8011310:	080125e6 	.word	0x080125e6
 
 08011314 <_read_r>:
  8011314:	b538      	push	{r3, r4, r5, lr}
@@ -31288,7 +31286,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  801149a:	230a      	movs	r3, #10
  801149c:	e7ab      	b.n	80113f6 <_strtoul_l.isra.0+0x4a>
  801149e:	bf00      	nop
- 80114a0:	08012347 	.word	0x08012347
+ 80114a0:	080122cb 	.word	0x080122cb
 
 080114a4 <_strtoul_r>:
  80114a4:	f7ff bf82 	b.w	80113ac <_strtoul_l.isra.0>
@@ -31355,9 +31353,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8011540:	e7f3      	b.n	801152a <__assert_func+0x12>
  8011542:	bf00      	nop
  8011544:	2000035c 	.word	0x2000035c
- 8011548:	08012668 	.word	0x08012668
- 801154c:	08012675 	.word	0x08012675
- 8011550:	080126a3 	.word	0x080126a3
+ 8011548:	080125e8 	.word	0x080125e8
+ 801154c:	080125f5 	.word	0x080125f5
+ 8011550:	08012623 	.word	0x08012623
 
 08011554 <__sflush_r>:
  8011554:	898a      	ldrh	r2, [r1, #12]
@@ -31533,9 +31531,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  80116c6:	bf08      	it	eq
  80116c8:	68ec      	ldreq	r4, [r5, #12]
  80116ca:	e7da      	b.n	8011682 <_fflush_r+0x22>
- 80116cc:	080126c4 	.word	0x080126c4
- 80116d0:	080126e4 	.word	0x080126e4
- 80116d4:	080126a4 	.word	0x080126a4
+ 80116cc:	08012644 	.word	0x08012644
+ 80116d0:	08012664 	.word	0x08012664
+ 80116d4:	08012624 	.word	0x08012624
 
 080116d8 <std>:
  80116d8:	2300      	movs	r3, #0
@@ -31660,7 +31658,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  80117ea:	2301      	movs	r3, #1
  80117ec:	61a3      	str	r3, [r4, #24]
  80117ee:	e7d1      	b.n	8011794 <__sinit+0xc>
- 80117f0:	08012310 	.word	0x08012310
+ 80117f0:	08012294 	.word	0x08012294
  80117f4:	08011721 	.word	0x08011721
 
 080117f8 <__sfp>:
@@ -31715,7 +31713,7 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8011876:	603b      	str	r3, [r7, #0]
  8011878:	e7ee      	b.n	8011858 <__sfp+0x60>
  801187a:	bf00      	nop
- 801187c:	08012310 	.word	0x08012310
+ 801187c:	08012294 	.word	0x08012294
  8011880:	ffff0001 	.word	0xffff0001
 
 08011884 <fiprintf>:
@@ -32126,14 +32124,14 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8011c18:	f7fd fa2a 	bl	800f070 <_printf_i>
  8011c1c:	e7e4      	b.n	8011be8 <_vfiprintf_r+0x208>
  8011c1e:	bf00      	nop
- 8011c20:	080126c4 	.word	0x080126c4
- 8011c24:	080126e4 	.word	0x080126e4
- 8011c28:	080126a4 	.word	0x080126a4
- 8011c2c:	0801263c 	.word	0x0801263c
- 8011c30:	08012646 	.word	0x08012646
+ 8011c20:	08012644 	.word	0x08012644
+ 8011c24:	08012664 	.word	0x08012664
+ 8011c28:	08012624 	.word	0x08012624
+ 8011c2c:	080125bc 	.word	0x080125bc
+ 8011c30:	080125c6 	.word	0x080125c6
  8011c34:	0800eb39 	.word	0x0800eb39
  8011c38:	080119bb 	.word	0x080119bb
- 8011c3c:	08012642 	.word	0x08012642
+ 8011c3c:	080125c2 	.word	0x080125c2
 
 08011c40 <__swbuf_r>:
  8011c40:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -32207,9 +32205,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8011cd0:	f04f 37ff 	mov.w	r7, #4294967295
  8011cd4:	e7ea      	b.n	8011cac <__swbuf_r+0x6c>
  8011cd6:	bf00      	nop
- 8011cd8:	080126c4 	.word	0x080126c4
- 8011cdc:	080126e4 	.word	0x080126e4
- 8011ce0:	080126a4 	.word	0x080126a4
+ 8011cd8:	08012644 	.word	0x08012644
+ 8011cdc:	08012664 	.word	0x08012664
+ 8011ce0:	08012624 	.word	0x08012624
 
 08011ce4 <__ascii_wctomb>:
  8011ce4:	4603      	mov	r3, r0
@@ -32316,9 +32314,9 @@ uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len)
  8011dc8:	e7f7      	b.n	8011dba <__swsetup_r+0xba>
  8011dca:	bf00      	nop
  8011dcc:	2000035c 	.word	0x2000035c
- 8011dd0:	080126c4 	.word	0x080126c4
- 8011dd4:	080126e4 	.word	0x080126e4
- 8011dd8:	080126a4 	.word	0x080126a4
+ 8011dd0:	08012644 	.word	0x08012644
+ 8011dd4:	08012664 	.word	0x08012664
+ 8011dd8:	08012624 	.word	0x08012624
 
 08011ddc <abort>:
  8011ddc:	2006      	movs	r0, #6

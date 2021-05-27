@@ -406,13 +406,11 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 	else if (strncmp((const char*) Buf, "#p", 2) == 0
 			|| strncmp((const char*) Buf, "#P", 2) == 0)
 	{
-		sprintf((char*) usb_tx_buf,
-				"#Input : Encoder value for photo distance = %d\n"
-						"#Memory : Encoder value for photo distance = %d\n"
-						"#USB Select= %d.0 (default : 2.0)\n"
-						"#Auto triggering= %s\n", input_enc_val,
-				wp.enc_val_for_photo_dist, usbselect,
-				(run_f == true) ? ("#Started\n") : ("#Disabled\n"));
+		sprintf((char*) usb_tx_buf, "#input,%d\n"
+				"#memory,%d\n"
+				"#usb,%d\n"
+				"#trigger,%s\n", input_enc_val, wp.enc_val_for_photo_dist,
+				usbselect, (run_f == true) ? ("1") : ("0"));
 		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
 				strlen((const char*) usb_tx_buf));
 	}
