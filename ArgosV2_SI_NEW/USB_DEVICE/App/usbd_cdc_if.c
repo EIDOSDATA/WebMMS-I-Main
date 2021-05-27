@@ -407,12 +407,12 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 			|| strncmp((const char*) Buf, "#P", 2) == 0)
 	{
 		sprintf((char*) usb_tx_buf,
-				"#Input : Encoder value for photo distance = %d\r\n"
-						"#Memory : Encoder value for photo distance = %d\r\n"
-						"#USB Select= %d.0 (default : 2.0)\r\n"
-						"#Auto triggering= %s\r\n", input_enc_val,
+				"#Input : Encoder value for photo distance = %d\n"
+						"#Memory : Encoder value for photo distance = %d\n"
+						"#USB Select= %d.0 (default : 2.0)\n"
+						"#Auto triggering= %s\n", input_enc_val,
 				wp.enc_val_for_photo_dist, usbselect,
-				(run_f == true) ? ("#Started\r\n") : ("#Disabled\r\n"));
+				(run_f == true) ? ("#Started\n") : ("#Disabled\n"));
 		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
 				strlen((const char*) usb_tx_buf));
 	}
@@ -520,8 +520,8 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 			//;
 		}
 		HAL_FLASH_Lock();
-		sprintf((char*) usb_tx_buf, "#Save %s",
-				(FlashStatus == HAL_OK) ? ("Complete\r\n") : ("Fail\r\n"));
+		sprintf((char*) usb_tx_buf, "#save,%s",
+				(FlashStatus == HAL_OK) ? ("1\n") : ("0\n"));
 		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
 				strlen((const char*) usb_tx_buf));
 	}
@@ -529,14 +529,14 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 	// USB 2.0
 	else if (strncmp((const char*) Buf, "#2", 2) == 0)
 	{
-		CDC_Transmit_FS((uint8_t*) "#USB Select 2.0\r\n", 17);
+		CDC_Transmit_FS((uint8_t*) "#USB Select 2.0\n", 17);
 		usbselect = 2;
 		can_transmit(usbselect);
 	}
 	// USB 3.0
 	else if (strncmp((const char*) Buf, "#3", 2) == 0)
 	{
-		CDC_Transmit_FS((uint8_t*) "#USB Select 3.0\r\n", 17);
+		CDC_Transmit_FS((uint8_t*) "#USB Select 3.0\n", 17);
 		usbselect = 3;
 		can_transmit(usbselect);
 	}
@@ -576,7 +576,7 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 			|| strncmp((const char*) Buf, "#T", 2) == 0)
 	{
 		run_f = 0;
-		CDC_Transmit_FS((uint8_t*) "#Stopped!\r\n", 11); // ACK
+		CDC_Transmit_FS((uint8_t*) "#Stopped!\n", 11); // ACK
 	}
 	else
 	{
