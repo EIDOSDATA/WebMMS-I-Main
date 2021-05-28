@@ -426,7 +426,8 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 	}
 
 	// Save
-	else if (strncmp((const char*) Buf, "#h", 2) == 0)
+	else if (strncmp((const char*) Buf, "#h", 2) == 0
+			|| strncmp((const char*) Buf, "#H", 2) == 0)
 	{
 		/*
 		 wP.encoderTargetCount = input_enc_val;
