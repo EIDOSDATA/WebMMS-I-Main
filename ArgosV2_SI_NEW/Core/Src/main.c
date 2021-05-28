@@ -363,8 +363,8 @@ int main(void)
 			if (a_pls_cnt >= wp.enc_val_for_photo_dist && a_pls_cnt < 65500)
 			{
 				TIM8->CNT = 0;
-				cds_print();
-				//cam_act(); // Driver Control
+				//cds_print();
+				cam_act(); // Driver Control
 			}
 			else if (a_pls_cnt <= 0 || a_pls_cnt > 65500)
 			{
