@@ -235,21 +235,21 @@ void cds_print()
 	{
 	case 1:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04d\n", adc_value[0]);
+		sprintf((char*) usb_tx_buf, "#CDS,%04d\n", adc_value[0]);
 	case 2:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04d,%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04d,%04d\n", adc_value[0],
 				adc_value[1]);
 	case 3:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04dm%04dm%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04dm%04dm%04d\n", adc_value[0],
 				adc_value[1], adc_value[2]);
 	case 4:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04d,%04d,%04d,%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04d,%04d,%04d,%04d\n", adc_value[0],
 				adc_value[1], adc_value[2], adc_value[3]);
 	default:
-		sprintf((char*) usb_tx_buf, "#cds,%04d,%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04d,%04d\n", adc_value[0],
 				adc_value[1]);
 		break;
 	}
