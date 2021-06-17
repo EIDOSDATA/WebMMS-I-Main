@@ -337,11 +337,9 @@ int main(void)
 
 	while (1)
 	{
-		// MX_LWIP_Process();
-		// UDP_INPUT();
+
 		switch (usb_sel_f)
 		{
-		/* Key board Input */
 		case 1:
 			CDC_Transmit_FS((uint8_t*) "Input EncoderTargetCount\r\n", 26);
 			while (!enterkey_f)
@@ -365,8 +363,8 @@ int main(void)
 			if (a_pls_cnt >= wp.enc_val_for_photo_dist && a_pls_cnt < 65500)
 			{
 				TIM8->CNT = 0;
-				cds_print();
-				//cam_act(); // Driver Control
+				//cds_print();
+				cam_act(); // Driver Control
 			}
 			else if (a_pls_cnt <= 0 || a_pls_cnt > 65500)
 			{
