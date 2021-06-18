@@ -166,7 +166,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	if (GPIO_Pin & STROBE_CHK_Pin)
 	{
-		stb_cnt_all++;
+		stb_cnt_all = stb_chk0 + stb_chk1 + stb_chk2 + stb_chk3;
+
+		sprintf((char*) usb_tx_buf, "#STROBE,%d\n", stb_cnt_all);
+		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
+				strlen((const char*) usb_tx_buf));
+		stb_chk0 = 0;
+		stb_chk1 = 0;
+		stb_chk2 = 0;
+		stb_chk3 = 0;
+
 		// MARK DRIVE
 		HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_SET);
 
