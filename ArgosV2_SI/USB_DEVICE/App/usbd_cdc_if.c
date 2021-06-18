@@ -406,10 +406,10 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 	else if (strncmp((const char*) Buf, "#p", 2) == 0
 			|| strncmp((const char*) Buf, "#P", 2) == 0)
 	{
-		sprintf((char*) usb_tx_buf, "#input,%d\n"
-				"#memory,%d\n"
-				"#usb,%d\n"
-				"#trigger,%s\n", input_enc_val, wp.enc_val_for_photo_dist,
+		sprintf((char*) usb_tx_buf, "#INPUT,%d\n"
+				"#MEMORY,%d\n"
+				"#USB,%d\n"
+				"#TRIGGER,%s\n", input_enc_val, wp.enc_val_for_photo_dist,
 				usbselect, (run_f == true) ? ("1") : ("0"));
 		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
 				strlen((const char*) usb_tx_buf));
@@ -519,7 +519,7 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 			//;
 		}
 		HAL_FLASH_Lock();
-		sprintf((char*) usb_tx_buf, "#save,%s",
+		sprintf((char*) usb_tx_buf, "#SAVE,%s",
 				(FlashStatus == HAL_OK) ? ("1\n") : ("0\n"));
 		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
 				strlen((const char*) usb_tx_buf));
@@ -568,14 +568,14 @@ void serial_cmd_func(uint8_t *Buf, uint32_t *Len)
 		 B_PLS_CNT = 65535;
 		 */
 		run_f = 1;
-		CDC_Transmit_FS((uint8_t*) "#AutoTrigger Started!\r\n", 23); // ACK
+		CDC_Transmit_FS((uint8_t*) "#TRIGGER,1\r\n", 12); // AUTO TRIGGER RUN
 	}
 	// Stop
 	else if (strncmp((const char*) Buf, "#t", 2) == 0
 			|| strncmp((const char*) Buf, "#T", 2) == 0)
 	{
 		run_f = 0;
-		CDC_Transmit_FS((uint8_t*) "#Stopped!\n", 11); // ACK
+		CDC_Transmit_FS((uint8_t*) "#TRIGGER,0\r\n", 12); // AUTO TRIGGER STOP
 	}
 	else
 	{

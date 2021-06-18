@@ -166,7 +166,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	if (GPIO_Pin & STROBE_CHK_Pin)
 	{
-		stb_cnt_all++;
+		stb_cnt_all = stb_chk0 + stb_chk1 + stb_chk2 + stb_chk3;
+
+		sprintf((char*) usb_tx_buf, "#STROBE,%d\n", stb_cnt_all);
+		CDC_Transmit_FS((uint8_t*) usb_tx_buf,
+				strlen((const char*) usb_tx_buf));
+		stb_chk0 = 0;
+		stb_chk1 = 0;
+		stb_chk2 = 0;
+		stb_chk3 = 0;
+
 		// MARK DRIVE
 		HAL_GPIO_WritePin(STROBE_DRV_GPIO_Port, STROBE_DRV_Pin, GPIO_PIN_SET);
 
@@ -235,21 +244,21 @@ void cds_print()
 	{
 	case 1:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04d\n", adc_value[0]);
+		sprintf((char*) usb_tx_buf, "#CDS,%04d\n", adc_value[0]);
 	case 2:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04d,%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04d,%04d\n", adc_value[0],
 				adc_value[1]);
 	case 3:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04dm%04dm%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04dm%04dm%04d\n", adc_value[0],
 				adc_value[1], adc_value[2]);
 	case 4:
 		break;
-		sprintf((char*) usb_tx_buf, "#cds,%04d,%04d,%04d,%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04d,%04d,%04d,%04d\n", adc_value[0],
 				adc_value[1], adc_value[2], adc_value[3]);
 	default:
-		sprintf((char*) usb_tx_buf, "#cds,%04d,%04d\n", adc_value[0],
+		sprintf((char*) usb_tx_buf, "#CDS,%04d,%04d\n", adc_value[0],
 				adc_value[1]);
 		break;
 	}
